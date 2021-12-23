@@ -10,6 +10,13 @@ class Home extends Admin_controller  {
 		$data['title'] = 'dashboard';
         $data['name'] = 'dashboard';
         $data['url'] = $this->redirect;
+        
+        $this->load->model('Banner_model', 'banners');
+        $data['banners'] = $this->banners->count();
+        $this->load->model('News_model', 'news');
+        $data['news'] = $this->news->count();
+        $this->load->model('Become_partners_model', 'partners');
+        $data['partners'] = $this->partners->count();
 
 		return $this->template->load('template', 'home', $data);
 	}

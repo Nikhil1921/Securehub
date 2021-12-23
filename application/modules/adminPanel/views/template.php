@@ -97,9 +97,9 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="card">
+                                <?= $name != 'dashboard' ? '<div class="card">' : ''  ?>
                                     <?= $contents ?>
-                                </div>
+                                <?= $name != 'dashboard' ? '</div>' : ''  ?>
                             </div>
                         </div>
                     </div>
