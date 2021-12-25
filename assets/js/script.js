@@ -36,7 +36,7 @@
 })(jQuery);
 
 $('.loader-wrapper').fadeOut('slow', function() {
-    $(this).remove();
+    $(this).hide();
 });
 
 $(window).on('scroll', function() {
@@ -101,11 +101,50 @@ $(".chat-menu-icons .toogle-bar").click(function() {
 
 
 // active link
+// custom code start here
+
+var url = $("#base_url").val();
 if ($('input[name="error_msg"]').val() != '') {
     flash_msg("Error", $('input[name="error_msg"]').val(), "danger");
 }
 if ($('input[name="success_msg"]').val() != '') {
     flash_msg("Success", $('input[name="success_msg"]').val(), "success");
+}
+
+if ($('select[name="ins_id"]').length > 0 && $('select[name="ins_type_id"]').length > 0) {
+    $('select[name="ins_type_id"]').change(function() {
+        var select = $(this);
+        var selected = select.data('value');
+        var options = '<option value="">Select Insurance</option>';
+
+        if (select.val()) {
+            $.ajax({
+                url: url + "get-insurance-list",
+                type: 'get',
+                data: { 'parent_id': select.val() },
+                dataType: 'json',
+                cache: false,
+                async: false,
+                beforeSend: function() {
+                    $('.loader-wrapper').fadeIn();
+                },
+                complete: function() {
+                    $('.loader-wrapper').fadeOut();
+                },
+                success: function(result) {
+                    for (var k in result)
+                        options += `<option ${result[k].val == selected ? 'selected' : ''} value="${result[k].val}">${result[k].ins_type}</option>`;
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    flash_msg("Error", "Something is not going good. Try again.", "danger");
+                }
+            });
+        }
+
+        $('select[name="ins_id"]').html(options);
+    });
+
+    $('select[name="ins_type_id"]').trigger('change');
 }
 
 function flash_msg(title, message, type) {
@@ -170,3 +209,5 @@ var script = {
             }); */
     }
 };
+
+// custom code end here

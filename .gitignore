@@ -10,12 +10,10 @@ application/logs/*
 
 composer.lock
 
-user_guide_src/build/*
-user_guide_src/cilexer/build/*
-user_guide_src/cilexer/dist/*
-user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
 uploads/banners/*
 !uploads/banners/index.html
 uploads/news/*
 !uploads/news/index.html
+uploads/plans/*
+!uploads/plans/index.html

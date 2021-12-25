@@ -20,11 +20,11 @@ class Admin_controller extends MY_Controller
         $this->load->library('upload');
         $config = [
                 'upload_path'      => $this->path,
-                'allowed_types'    => 'jpg|jpeg|png',
+                'allowed_types'    => 'jpg|jpeg|png|pdf',
                 'file_name'        => time(),
                 'file_ext_tolower' => TRUE
             ];
-
+        
         $this->upload->initialize($config);
         if ($this->upload->do_upload($upload)){
             $img = $this->upload->data("file_name");
@@ -44,5 +44,14 @@ class Admin_controller extends MY_Controller
             return ['error' => false, 'message' => $img];
         }else
             return ['error' => true, 'message' => $this->upload->display_errors()];
+    }
+
+    public function get_insurance_list()
+    {
+        $return = array_map(function($ins){
+            return ['val' => e_id($ins['id']), 'ins_type' => $ins['ins_type']];
+        }, $this->main->getall("insurance", 'id, ins_type', ['is_deleted' => 0, 'parent_id' => d_id($this->input->get('parent_id'))]));
+        
+        die(json_encode($return));
     }
 }

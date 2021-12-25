@@ -51,12 +51,16 @@
                     <?= form_error('description') ?>
                 </div>
             </div>
+            <div class="col-12"></div>
             <div class="col-3">
                 <?= form_button([
                     'type'    => 'submit',
-                    'class'   => 'btn btn-outline-primary btn-block',
+                    'class'   => 'btn btn-outline-primary btn-block col-12',
                     'content' => 'SAVE'
                 ]); ?>
+            </div>
+            <div class="col-3">
+                <?= anchor("$url", 'CANCEL', 'class="btn btn-outline-danger col-12"'); ?>
             </div>
         </div>
     <?= form_close() ?>

@@ -17,6 +17,12 @@ class Home extends Admin_controller  {
         $data['news'] = $this->news->count();
         $this->load->model('Become_partners_model', 'partners');
         $data['partners'] = $this->partners->count();
+        $this->load->model('Companies_model', 'companies');
+        $data['companies'] = $this->companies->count();
+        $this->load->model('Insurance_model', 'insurance');
+        $data['insurance'] = $this->insurance->count();
+        $this->load->model('Plans_model', 'plans');
+        $data['plans'] = $this->plans->count();
 
 		return $this->template->load('template', 'home', $data);
 	}

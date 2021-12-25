@@ -34,6 +34,9 @@
             </div>
         </div>
     </div>
+    <div class="col-12">
+        <div class="text-right mt-3"><?= anchor(admin('login'), 'click here', 'class="btn-link text-capitalize"') ?> to login</div>
+    </div>
     <div class="form-group form-row mt-3 mb-0">
         <?= form_button([
             'type'    => 'submit',

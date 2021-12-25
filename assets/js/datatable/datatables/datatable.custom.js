@@ -47,7 +47,7 @@ var table = $('.datatable').DataTable({
         url: dataTableUrl,
         type: "GET",
         data: function(data) {
-            /* data.status = $("#order-status").val(); */
+            data.ins_type = $("input[name='ins_type']").val();
         },
         complete: function(response) {},
     },
@@ -55,4 +55,9 @@ var table = $('.datatable').DataTable({
         "targets": "target",
         "orderable": false,
     }, ]
+});
+
+$('.ins_type').click(function() {
+    $("input[name='ins_type']").val($(this).data('value'));
+    table.ajax.reload();
 });
