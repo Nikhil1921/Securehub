@@ -9,6 +9,7 @@ class Become_partners extends Admin_controller  {
 	
 	public function index()
 	{
+        check_access($this->name, 'view');
 		$data['title'] = $this->title;
         $data['name'] = $this->name;
         $data['url'] = $this->redirect;
@@ -33,11 +34,11 @@ class Become_partners extends Admin_controller  {
             $sub_array[] = $row->mobile;
             $sub_array[] = $row->email;
             
-            $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            /* $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="icon-settings"></span></button><div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" x-placement="bottom-start">';
             $action .= anchor($this->redirect."/update/".e_id($row->id), '<i class="fa fa-edit"></i> Edit</a>', 'class="dropdown-item"');
 
-            $sub_array[] = $action;
+            $sub_array[] = $action; */
 
             $data[] = $sub_array;  
             $sr++;
@@ -52,24 +53,6 @@ class Become_partners extends Admin_controller  {
         
         die(json_encode($output));
     }
-
-    public function update($id)
-	{
-        $this->form_validation->set_rules($this->validate);
-
-        if ($this->form_validation->run() == FALSE)
-        {
-            $data['title'] = $this->title;
-            $data['name'] = $this->name;
-            $data['operation'] = "Update";
-            $data['url'] = $this->redirect;
-            $data['data'] = $this->main->get($this->table, 'name, mobile, email', ['id' => d_id($id)]);
-            
-            return $this->template->load('template', "$this->redirect/form", $data);
-        }else{
-            flashMsg(1, "", "", "$this->redirect/update/$id");
-        }
-	}
 
     protected $validate = [
         [

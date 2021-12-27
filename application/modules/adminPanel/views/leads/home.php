@@ -16,7 +16,10 @@
         <table class="datatable table table-striped table-bordered nowrap">
             <thead>
                 <th class="target">Sr.</th>
-                <th>Company Name</th>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Branch</th>
                 <th class="target">Action</th>
             </thead>
             <tbody>
@@ -24,3 +27,4 @@
         </table>
     </div>
 </div>
+<input type="hidden" name="ins_type" value="User" />

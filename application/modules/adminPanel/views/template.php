@@ -66,12 +66,16 @@
                         </div>
                         <ul class="sidebar-menu">
                             <li><a class="sidebar-header <?= $name == 'dashboard' ? 'active' : '' ?>" href="<?= base_url(admin()) ?>"><i data-feather="home"></i><span> Dashboard</span></a></li>
-                            <li><a class="sidebar-header <?= $name == 'banners' ? 'active' : '' ?>" href="<?= base_url(admin('banners')) ?>"><i data-feather="image"></i><span> Banner</span></a></li>
-                            <li><a class="sidebar-header <?= $name == 'news' ? 'active' : '' ?>" href="<?= base_url(admin('news')) ?>"><i data-feather="file-text"></i><span> News</span></a></li>
                             <!-- <li><a class="sidebar-header <?= $name == 'insurance' ? 'active' : '' ?>" href="<?= base_url(admin('insurance')) ?>"><i data-feather="file-text"></i><span> Insurance</span></a></li> -->
-                            <li><a class="sidebar-header <?= $name == 'insurance_plans' ? 'active' : '' ?>" href="<?= base_url(admin('insurance_plans')) ?>"><i data-feather="file-text"></i><span> Insurance Plans</span></a></li>
-                            <li><a class="sidebar-header <?= $name == 'companies' ? 'active' : '' ?>" href="<?= base_url(admin('companies')) ?>"><i data-feather="globe"></i><span> Insurance Companies</span></a></li>
-                            <li><a class="sidebar-header <?= $name == 'become_partners' ? 'active' : '' ?>" href="<?= base_url(admin('become_partners')) ?>"><i data-feather="users"></i><span> Become Partner</span></a></li>
+                            <?php if(verify_access('banners', 'view')): ?><li><a class="sidebar-header <?= $name == 'banners' ? 'active' : '' ?>" href="<?= base_url(admin('banners')) ?>"><i data-feather="image"></i><span> Banner</span></a></li><?php endif ?>
+                            <?php if(verify_access('news', 'view')): ?><li><a class="sidebar-header <?= $name == 'news' ? 'active' : '' ?>" href="<?= base_url(admin('news')) ?>"><i data-feather="file-text"></i><span> News</span></a></li><?php endif ?>
+                            <?php if(verify_access('insurance_plans', 'view')): ?><li><a class="sidebar-header <?= $name == 'insurance_plans' ? 'active' : '' ?>" href="<?= base_url(admin('insurance_plans')) ?>"><i data-feather="file-text"></i><span> Insurance Plans</span></a></li><?php endif ?>
+                            <?php if(verify_access('companies', 'view')): ?><li><a class="sidebar-header <?= $name == 'companies' ? 'active' : '' ?>" href="<?= base_url(admin('companies')) ?>"><i data-feather="globe"></i><span> Insurance Companies</span></a></li><?php endif ?>
+                            <?php if(verify_access('become_partners', 'view')): ?><li><a class="sidebar-header <?= $name == 'become_partners' ? 'active' : '' ?>" href="<?= base_url(admin('become_partners')) ?>"><i data-feather="users"></i><span> Become Partner</span></a></li><?php endif ?>
+                            <?php if(verify_access('branches', 'view')): ?><li><a class="sidebar-header <?= $name == 'branches' ? 'active' : '' ?>" href="<?= base_url(admin('branches')) ?>"><i data-feather="home"></i><span> Branches</span></a></li><?php endif ?>
+                            <?php if(verify_access('users', 'view')): ?><li><a class="sidebar-header <?= $name == 'users' ? 'active' : '' ?>" href="<?= base_url(admin('users')) ?>"><i data-feather="users"></i><span> Users</span></a></li><?php endif ?>
+                            <?php if(verify_access('leads', 'view')): ?><li><a class="sidebar-header <?= $name == 'leads' ? 'active' : '' ?>" href="<?= base_url(admin('leads')) ?>"><i data-feather="users"></i><span> Leads</span></a></li><?php endif ?>
+                            <?php if(verify_access('permissions', 'view')): ?><li><a class="sidebar-header <?= $name == 'permissions' ? 'active' : '' ?>" href="<?= base_url(admin('permissions')) ?>"><i data-feather="users"></i><span> Permissions</span></a></li><?php endif ?>
                         </ul>
                     </div>
                 </div>

@@ -16,7 +16,7 @@
         <table class="datatable table table-striped table-bordered nowrap">
             <thead>
                 <th class="target">Sr.</th>
-                <th>Company Name</th>
+                <th>Branch Name</th>
                 <th class="target">Action</th>
             </thead>
             <tbody>

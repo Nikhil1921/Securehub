@@ -1,22 +1,15 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class News extends Admin_controller  {
+class Users extends Admin_controller  {
 
-    public function __construct()
-	{
-		parent::__construct();
-		$this->path = $this->config->item('news');
-	}
-
-	private $table = 'news';
-	protected $redirect = 'news';
-	protected $title = 'News';
-	protected $name = 'news';
+	private $table = 'logins';
+	protected $redirect = 'users';
+	protected $title = 'User';
+	protected $name = 'users';
 	
 	public function index()
 	{
         check_access($this->name, 'view');
-
 		$data['title'] = $this->title;
         $data['name'] = $this->name;
         $data['url'] = $this->redirect;
@@ -29,7 +22,7 @@ class News extends Admin_controller  {
 	public function get()
     {
         check_ajax();
-        $this->load->model('News_model', 'data');
+        $this->load->model('Users_model', 'data');
         $fetch_data = $this->data->make_datatables();
         $sr = $_GET['start'] + 1;
         $data = [];
@@ -39,16 +32,16 @@ class News extends Admin_controller  {
         {  
             $sub_array = [];
             $sub_array[] = $sr;
-            $sub_array[] = $row->title;
-            $sub_array[] = img(['src' => $this->path.$row->image, 'width' => '100%', 'height' => '100']);
+            $sub_array[] = $row->name;
+            $sub_array[] = $row->mobile;
+            $sub_array[] = $row->email ? $row->email : 'Not Given';
+            $sub_array[] = $row->b_name ? $row->b_name : 'Main Branch';
             
             $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="icon-settings"></span></button><div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" x-placement="bottom-start">';
-            
             if ($update)
                 $action .= anchor($this->redirect."/update/".e_id($row->id), '<i class="fa fa-edit"></i> Edit</a>', 'class="dropdown-item"');
-            
-            if ($delete)    
+            if ($delete)
                 $action .= form_open($this->redirect.'/delete', 'id="'.e_id($row->id).'"', ['id' => e_id($row->id)]).
                     '<a class="dropdown-item" onclick="script.delete('.e_id($row->id).'); return false;" href=""><i class="fa fa-trash"></i> Delete</a>'.
                     form_close();
@@ -81,23 +74,22 @@ class News extends Admin_controller  {
             $data['name'] = $this->name;
             $data['operation'] = "Add";
             $data['url'] = $this->redirect;
+            $data['branches'] = $this->main->getall('branches', 'id, b_name', ['is_deleted' => 0]);
             
             return $this->template->load('template', "$this->redirect/form", $data);
         }else{
-            $image = $this->uploadImage('image');
-            if ($image['error'] == TRUE)
-			    flashMsg(0, "", $image["message"], "$this->redirect/add");
-            else{
-                $post = [
-                    'title'       => $this->input->post('title'),
-                    'description' => $this->input->post('description'),
-                    'image'       => $image['message']
-                ];
+            $post = [
+    			'mobile'   	 => $this->input->post('mobile'),
+    			'email'   	 => $this->input->post('email'),
+    			'name'   	 => $this->input->post('name'),
+    			'role'   	 => $this->input->post('role'),
+                'branch_id'  => d_id($this->input->post('branch_id')),
+                'password'   => my_crypt($this->input->post('password'))
+    		];
+            
+            $id = $this->main->add($post, $this->table);
 
-                $id = $this->main->add($post, $this->table);
-
-                flashMsg($id, "$this->title added.", "$this->title not added. Try again.", $this->redirect);
-            }
+            flashMsg($id, "$this->title added.", "$this->title not added. Try again.", $this->redirect);
         }
 	}
 
@@ -112,25 +104,21 @@ class News extends Admin_controller  {
             $data['name'] = $this->name;
             $data['operation'] = "Update";
             $data['url'] = $this->redirect;
-            $data['data'] = $this->main->get($this->table, 'title, image, description', ['id' => d_id($id)]);
+            $data['branches'] = $this->main->getall('branches', 'id, b_name', ['is_deleted' => 0]);
+            $data['data'] = $this->main->get($this->table, 'mobile, email, name, role, branch_id', ['id' => d_id($id)]);
             
             return $this->template->load('template', "$this->redirect/form", $data);
         }else{
             $post = [
-                    'title'       => $this->input->post('title'),
-                    'description' => $this->input->post('description')
-                ];
+    			'mobile'   	 => $this->input->post('mobile'),
+    			'email'   	 => $this->input->post('email'),
+    			'name'   	 => $this->input->post('name'),
+    			'role'   	 => $this->input->post('role'),
+                'branch_id'  => d_id($this->input->post('branch_id'))
+    		];
 
-            if (!empty($_FILES['image']['name'])) {
-                $image = $this->uploadImage('image');
-                if ($image['error'] == TRUE)
-                    flashMsg(0, "", $image["message"], "$this->redirect/update/$id");
-                else{
-                    if (file_exists($this->path.$this->input->post('image')))
-                        unlink($this->path.$this->input->post('image'));
-                    $post['image'] = $image['message'];
-                }
-            }
+            if ($this->input->post('password'))
+                $post['password'] = my_crypt($this->input->post('password'));
             
             $id = $this->main->update(['id' => d_id($id)], $post, $this->table);
 
@@ -154,22 +142,92 @@ class News extends Admin_controller  {
         }
     }
 
+    public function mobile_check($str)
+    {   
+        $where = ['mobile' => $str, 'id != ' => d_id($this->uri->segment(4)), 'is_deleted' => 0, 'role' => $this->input->post('role')];
+        
+        if ($this->main->check($this->table, $where, 'id'))
+        {
+            $this->form_validation->set_message('mobile_check', 'The %s is already in use');
+            return FALSE;
+        } else
+            return TRUE;
+    }
+
+    public function email_check($str)
+    {   
+        $where = ['email' => $str, 'id != ' => d_id($this->uri->segment(4)), 'is_deleted' => 0, 'role' => $this->input->post('role')];
+        
+        if ($this->main->check($this->table, $where, 'id'))
+        {
+            $this->form_validation->set_message('email_check', 'The %s is already in use');
+            return FALSE;
+        } else
+            return TRUE;
+    }
+
+    public function password_check($str)
+    {   
+        if (! $str && ! $this->uri->segment(4))
+        {
+            $this->form_validation->set_message('password_check', '%s is required');
+            return FALSE;
+        } else
+            return TRUE;
+    }
+
     protected $validate = [
         [
-            'field' => 'title',
-            'label' => 'Title',
+            'field' => 'name',
+            'label' => 'Name',
             'rules' => 'required|max_length[255]',
             'errors' => [
                 'required' => "%s is required",
-                'max_length' => "Max 255 chars allowed.",
+                'max_length' => "Max 255 chars allowed"
             ],
         ],
         [
-            'field' => 'description',
-            'label' => 'Description',
+            'field' => 'mobile',
+            'label' => 'Mobile',
+            'rules' => 'required|numeric|exact_length[10]|callback_mobile_check',
+            'errors' => [
+                'required' => "%s is required",
+                'numeric' => "%s is invalid",
+                'exact_length' => "%s is invalid",
+            ],
+        ],
+        [
+            'field' => 'email',
+            'label' => 'Email',
+            'rules' => 'required|max_length[255]|callback_email_check',
+            'errors' => [
+                'required' => "%s is required",
+                'numeric' => "%s is invalid",
+                'max_length' => "Max 255 chars allowed"
+            ],
+        ],
+        [
+            'field' => 'role',
+            'label' => 'Role',
             'rules' => 'required',
             'errors' => [
                 'required' => "%s is required"
+            ],
+        ],
+        [
+            'field' => 'branch_id',
+            'label' => 'Branch',
+            'rules' => 'required',
+            'errors' => [
+                'required' => "%s is required"
+            ],
+        ],
+        [
+            'field' => 'password',
+            'label' => 'Password',
+            'rules' => 'callback_password_check|max_length[255]',
+            'errors' => [
+                'max_length' => "Max 255 chars allowed"
             ],
         ]
     ];

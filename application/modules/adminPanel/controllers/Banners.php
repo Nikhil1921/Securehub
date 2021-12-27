@@ -15,6 +15,8 @@ class Banners extends Admin_controller  {
 	
 	public function index()
 	{
+        check_access($this->name, 'view');
+
 		$data['title'] = $this->title;
         $data['name'] = $this->name;
         $data['url'] = $this->redirect;
@@ -31,6 +33,7 @@ class Banners extends Admin_controller  {
         $fetch_data = $this->data->make_datatables();
         $sr = $_GET['start'] + 1;
         $data = [];
+        $delete = verify_access($this->name, 'delete');
         foreach($fetch_data as $row)
         {  
             $sub_array = [];
@@ -39,9 +42,11 @@ class Banners extends Admin_controller  {
             
             $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="icon-settings"></span></button><div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" x-placement="bottom-start">';
-            $action .= form_open($this->redirect.'/delete', 'id="'.e_id($row->id).'"', ['id' => e_id($row->id), 'banner' => $row->banner]).
-                '<a class="dropdown-item" onclick="script.delete('.e_id($row->id).'); return false;" href=""><i class="fa fa-trash"></i> Delete</a>'.
-                form_close();
+            
+            if ($delete)
+                 $action .= form_open($this->redirect.'/delete', 'id="'.e_id($row->id).'"', ['id' => e_id($row->id), 'banner' => $row->banner]).
+                    '<a class="dropdown-item" onclick="script.delete('.e_id($row->id).'); return false;" href=""><i class="fa fa-trash"></i> Delete</a>'.
+                    form_close();
 
             $action .= '</div></div>';
             $sub_array[] = $action;
@@ -62,6 +67,7 @@ class Banners extends Admin_controller  {
 
 	public function upload()
 	{
+        check_access($this->name, 'add');
 		$image = $this->uploadImage('banner');
 
 		if ($image['error'] == TRUE)
@@ -75,6 +81,7 @@ class Banners extends Admin_controller  {
 
 	public function delete()
     {
+        check_access($this->name, 'delete');
         $this->form_validation->set_rules('id', 'id', 'required|numeric');
         $this->form_validation->set_rules('banner', 'banner', 'required');
         

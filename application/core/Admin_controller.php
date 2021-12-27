@@ -11,7 +11,7 @@ class Admin_controller extends MY_Controller
 		if (!$this->session->auth) 
 			return redirect(admin('login'));
 
-        $this->user = (object) $this->main->get("logins", 'name, role, mobile, email', ['id' => $this->session->auth]);
+        $this->user = (object) $this->main->get("logins", 'name, role, mobile, email, branch_id', ['id' => $this->session->auth]);
 		$this->redirect = admin($this->redirect);
 	}
 

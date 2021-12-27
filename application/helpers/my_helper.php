@@ -75,3 +75,28 @@ if ( ! function_exists('check_ajax'))
             die;
     }
 }
+
+if ( ! function_exists('check_access'))
+{
+    function check_access($name, $operation)
+    {
+        $CI =& get_instance();
+        
+        if ($CI->user->role === 'Admin')
+            return true;
+        else
+            return $CI->main->check('permissions', ['nav' => $name, 'role' => $CI->user->role, 'operation' => $operation], 'operation') ? true : redirect(admin('forbidden'));
+    }
+}
+
+if ( ! function_exists('verify_access'))
+{
+    function verify_access($name, $operation)
+    {
+        $CI =& get_instance();
+        if ($CI->user->role === 'Admin')
+            return true;
+        else
+            return $CI->main->check('permissions', ['nav' => $name, 'role' => $CI->user->role, 'operation' => $operation], 'operation');
+    }
+}

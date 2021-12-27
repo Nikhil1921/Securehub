@@ -127,7 +127,7 @@ class Home extends MY_Controller  {
 	public function signup()
 	{
 		post();
-		verifyRequiredParams(["mobile"]);
+		verifyRequiredParams(["mobile", 'branch_id']);
 
 		$post = [
     			'mobile'   	 	=> $this->input->post('mobile'),
@@ -145,6 +145,7 @@ class Home extends MY_Controller  {
 			
 			$post = [
     			'mobile'   	 => $this->input->post('mobile'),
+    			'branch_id'  => $this->input->post('branch_id'),
     			'role'   	 => $this->role,
     			'otp'   	 => random_string('numeric', 6),
 				'otp'   	 => 999999,

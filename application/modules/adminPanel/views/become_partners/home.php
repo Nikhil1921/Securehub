@@ -10,7 +10,7 @@
                 <th>Name</th>
                 <th>Mobile</th>
                 <th>Email</th>
-                <th class="target">Action</th>
+                <!-- <th class="target">Action</th> -->
             </thead>
             <tbody>
             </tbody>

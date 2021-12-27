@@ -12,11 +12,31 @@
     </div>
 </div>
 <div class="card-body">
+    <div class="row">
+        <div class="col-md-6">
+            <?= form_button([
+                'data-value' => 'Staff',
+                'class'   => 'btn btn-outline-primary btn-block ins_type',
+                'content' => 'Staff'
+            ]); ?>
+        </div>
+        <div class="col-md-6">
+            <?= form_button([
+                'data-value' => 'Partner',
+                'class'   => 'btn btn-outline-primary btn-block ins_type',
+                'content' => 'Partner'
+            ]); ?>
+        </div>
+    </div>
+    <br>
     <div class="table-responsive">
         <table class="datatable table table-striped table-bordered nowrap">
             <thead>
                 <th class="target">Sr.</th>
-                <th>Company Name</th>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Branch</th>
                 <th class="target">Action</th>
             </thead>
             <tbody>
@@ -24,3 +44,4 @@
         </table>
     </div>
 </div>
+<input type="hidden" name="ins_type" value="Staff" />

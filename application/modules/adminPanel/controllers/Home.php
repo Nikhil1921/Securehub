@@ -10,21 +10,45 @@ class Home extends Admin_controller  {
 		$data['title'] = 'dashboard';
         $data['name'] = 'dashboard';
         $data['url'] = $this->redirect;
-        
-        $this->load->model('Banner_model', 'banners');
-        $data['banners'] = $this->banners->count();
-        $this->load->model('News_model', 'news');
-        $data['news'] = $this->news->count();
-        $this->load->model('Become_partners_model', 'partners');
-        $data['partners'] = $this->partners->count();
-        $this->load->model('Companies_model', 'companies');
-        $data['companies'] = $this->companies->count();
-        $this->load->model('Insurance_model', 'insurance');
-        $data['insurance'] = $this->insurance->count();
-        $this->load->model('Plans_model', 'plans');
-        $data['plans'] = $this->plans->count();
 
-		return $this->template->load('template', 'home', $data);
+        if(verify_access('banners', 'view')):
+            $this->load->model('Banner_model', 'banners');
+            $data['banners'] = $this->banners->count();
+        endif;
+        if(verify_access('news', 'view')):
+            $this->load->model('News_model', 'news');
+            $data['news'] = $this->news->count();
+        endif;
+        if(verify_access('insurance', 'view')):
+            $this->load->model('Insurance_model', 'insurance');
+            $data['insurance'] = $this->insurance->count();
+        endif;
+        if(verify_access('insurance_plans', 'view')):
+            $this->load->model('Plans_model', 'plans');
+            $data['plans'] = $this->plans->count();
+        endif;
+        if(verify_access('companies', 'view')):
+            $this->load->model('Companies_model', 'companies');
+            $data['companies'] = $this->companies->count();
+        endif;
+        if(verify_access('become_partners', 'view')):
+            $this->load->model('Become_partners_model', 'partners');
+            $data['partners'] = $this->partners->count();
+        endif;
+        if(verify_access('branches', 'view')):
+            $this->load->model('Branches_model', 'branches');
+            $data['branches'] = $this->branches->count();
+        endif;
+        if(verify_access('users', 'view')):
+            $this->load->model('Users_model', 'users');
+            $data['users'] = $this->users->count();
+        endif;
+        if(verify_access('leads', 'view')):
+            $this->load->model('Users_model', 'leads');
+            $data['leads'] = $this->leads->count();
+        endif;
+
+        return $this->template->load('template', 'home', $data);
 	}
 
 	public function profile()

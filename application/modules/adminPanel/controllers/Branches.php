@@ -1,22 +1,15 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class News extends Admin_controller  {
+class Branches extends Admin_controller  {
 
-    public function __construct()
-	{
-		parent::__construct();
-		$this->path = $this->config->item('news');
-	}
-
-	private $table = 'news';
-	protected $redirect = 'news';
-	protected $title = 'News';
-	protected $name = 'news';
+	private $table = 'branches';
+	protected $redirect = 'branches';
+	protected $title = 'Branch';
+	protected $name = 'branches';
 	
 	public function index()
 	{
         check_access($this->name, 'view');
-
 		$data['title'] = $this->title;
         $data['name'] = $this->name;
         $data['url'] = $this->redirect;
@@ -29,7 +22,7 @@ class News extends Admin_controller  {
 	public function get()
     {
         check_ajax();
-        $this->load->model('News_model', 'data');
+        $this->load->model('Branches_model', 'data');
         $fetch_data = $this->data->make_datatables();
         $sr = $_GET['start'] + 1;
         $data = [];
@@ -39,16 +32,13 @@ class News extends Admin_controller  {
         {  
             $sub_array = [];
             $sub_array[] = $sr;
-            $sub_array[] = $row->title;
-            $sub_array[] = img(['src' => $this->path.$row->image, 'width' => '100%', 'height' => '100']);
+            $sub_array[] = $row->b_name;
             
             $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="icon-settings"></span></button><div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" x-placement="bottom-start">';
-            
             if ($update)
                 $action .= anchor($this->redirect."/update/".e_id($row->id), '<i class="fa fa-edit"></i> Edit</a>', 'class="dropdown-item"');
-            
-            if ($delete)    
+            if ($delete)
                 $action .= form_open($this->redirect.'/delete', 'id="'.e_id($row->id).'"', ['id' => e_id($row->id)]).
                     '<a class="dropdown-item" onclick="script.delete('.e_id($row->id).'); return false;" href=""><i class="fa fa-trash"></i> Delete</a>'.
                     form_close();
@@ -84,20 +74,13 @@ class News extends Admin_controller  {
             
             return $this->template->load('template', "$this->redirect/form", $data);
         }else{
-            $image = $this->uploadImage('image');
-            if ($image['error'] == TRUE)
-			    flashMsg(0, "", $image["message"], "$this->redirect/add");
-            else{
-                $post = [
-                    'title'       => $this->input->post('title'),
-                    'description' => $this->input->post('description'),
-                    'image'       => $image['message']
-                ];
+            $post = [
+                'b_name'       => $this->input->post('b_name')
+            ];
 
-                $id = $this->main->add($post, $this->table);
+            $id = $this->main->add($post, $this->table);
 
-                flashMsg($id, "$this->title added.", "$this->title not added. Try again.", $this->redirect);
-            }
+            flashMsg($id, "$this->title added.", "$this->title not added. Try again.", $this->redirect);
         }
 	}
 
@@ -112,25 +95,13 @@ class News extends Admin_controller  {
             $data['name'] = $this->name;
             $data['operation'] = "Update";
             $data['url'] = $this->redirect;
-            $data['data'] = $this->main->get($this->table, 'title, image, description', ['id' => d_id($id)]);
+            $data['data'] = $this->main->get($this->table, 'b_name', ['id' => d_id($id)]);
             
             return $this->template->load('template', "$this->redirect/form", $data);
         }else{
             $post = [
-                    'title'       => $this->input->post('title'),
-                    'description' => $this->input->post('description')
-                ];
-
-            if (!empty($_FILES['image']['name'])) {
-                $image = $this->uploadImage('image');
-                if ($image['error'] == TRUE)
-                    flashMsg(0, "", $image["message"], "$this->redirect/update/$id");
-                else{
-                    if (file_exists($this->path.$this->input->post('image')))
-                        unlink($this->path.$this->input->post('image'));
-                    $post['image'] = $image['message'];
-                }
-            }
+                'b_name'       => $this->input->post('b_name')
+            ];
             
             $id = $this->main->update(['id' => d_id($id)], $post, $this->table);
 
@@ -156,20 +127,12 @@ class News extends Admin_controller  {
 
     protected $validate = [
         [
-            'field' => 'title',
-            'label' => 'Title',
-            'rules' => 'required|max_length[255]',
+            'field' => 'b_name',
+            'label' => 'Branch name',
+            'rules' => 'required|max_length[100]',
             'errors' => [
                 'required' => "%s is required",
-                'max_length' => "Max 255 chars allowed.",
-            ],
-        ],
-        [
-            'field' => 'description',
-            'label' => 'Description',
-            'rules' => 'required',
-            'errors' => [
-                'required' => "%s is required"
+                'max_length' => "Max 100 chars allowed.",
             ],
         ]
     ];
