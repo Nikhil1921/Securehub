@@ -23,6 +23,21 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
+                        <?= form_label('Your Email', 'email', 'class="col-form-label"') ?>
+                        <?= form_input([
+                            'class' => "form-control",
+                            'type' => "email",
+                            'id' => "email",
+                            'name' => "email",
+                            'maxlength' => 255,
+                            'required' => "",
+                            'value' => $this->user->email
+                        ]); ?>
+                        <?= form_error('email') ?>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
                         <?= form_label('Your Mobile', 'mobile', 'class="col-form-label"') ?>
                         <?= form_input([
                             'class' => "form-control",
@@ -49,13 +64,16 @@
                         <?= form_error('password') ?>
                     </div>
                 </div>
-                <div class="col-6"></div>
+                <div class="col-12"></div>
                 <div class="col-3">
                     <?= form_button([
                         'type'    => 'submit',
                         'class'   => 'btn btn-outline-primary btn-block',
                         'content' => 'UPDATE'
                     ]); ?>
+                </div>
+                <div class="col-3">
+                    <?= anchor("$url", 'CANCEL', 'class="btn btn-outline-danger col-12"'); ?>
                 </div>
             </div>
         <?= form_close() ?>

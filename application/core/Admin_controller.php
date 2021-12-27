@@ -11,7 +11,7 @@ class Admin_controller extends MY_Controller
 		if (!$this->session->auth) 
 			return redirect(admin('login'));
 
-        $this->user = (object) $this->main->get("logins", 'name, role, mobile', ['id' => $this->session->auth]);
+        $this->user = (object) $this->main->get("logins", 'name, role, mobile, email', ['id' => $this->session->auth]);
 		$this->redirect = admin($this->redirect);
 	}
 
@@ -35,7 +35,7 @@ class Admin_controller extends MY_Controller
             if ($this->upload->data('file_ext') == '.png')
                 $image = imagecreatefrompng($this->path.$img);
 
-            if ($image){
+            if (isset($image)){
                 convert_webp($this->path, $image, $name);
                 unlink($this->path.$img);
                 $img = "$name.webp";

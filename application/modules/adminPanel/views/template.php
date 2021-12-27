@@ -68,7 +68,7 @@
                             <li><a class="sidebar-header <?= $name == 'dashboard' ? 'active' : '' ?>" href="<?= base_url(admin()) ?>"><i data-feather="home"></i><span> Dashboard</span></a></li>
                             <li><a class="sidebar-header <?= $name == 'banners' ? 'active' : '' ?>" href="<?= base_url(admin('banners')) ?>"><i data-feather="image"></i><span> Banner</span></a></li>
                             <li><a class="sidebar-header <?= $name == 'news' ? 'active' : '' ?>" href="<?= base_url(admin('news')) ?>"><i data-feather="file-text"></i><span> News</span></a></li>
-                            <li><a class="sidebar-header <?= $name == 'insurance' ? 'active' : '' ?>" href="<?= base_url(admin('insurance')) ?>"><i data-feather="file-text"></i><span> Insurance</span></a></li>
+                            <!-- <li><a class="sidebar-header <?= $name == 'insurance' ? 'active' : '' ?>" href="<?= base_url(admin('insurance')) ?>"><i data-feather="file-text"></i><span> Insurance</span></a></li> -->
                             <li><a class="sidebar-header <?= $name == 'insurance_plans' ? 'active' : '' ?>" href="<?= base_url(admin('insurance_plans')) ?>"><i data-feather="file-text"></i><span> Insurance Plans</span></a></li>
                             <li><a class="sidebar-header <?= $name == 'companies' ? 'active' : '' ?>" href="<?= base_url(admin('companies')) ?>"><i data-feather="globe"></i><span> Insurance Companies</span></a></li>
                             <li><a class="sidebar-header <?= $name == 'become_partners' ? 'active' : '' ?>" href="<?= base_url(admin('become_partners')) ?>"><i data-feather="users"></i><span> Become Partner</span></a></li>

@@ -44,6 +44,7 @@ class Home extends Admin_controller  {
         {
             $post = [
     			'mobile'   	 => $this->input->post('mobile'),
+    			'email'   	 => $this->input->post('email'),
     			'name'   	 => $this->input->post('name')
     		];
 
@@ -74,6 +75,18 @@ class Home extends Admin_controller  {
             return TRUE;
     }
 
+    public function email_check($str)
+    {   
+        $where = ['email' => $str, 'id != ' => $this->session->auth, 'is_deleted' => 0, 'role' => $this->user->role];
+        
+        if ($this->main->check($this->table, $where, 'id'))
+        {
+            $this->form_validation->set_message('email_check', 'The %s is already in use');
+            return FALSE;
+        } else
+            return TRUE;
+    }
+
     protected $profile = [
         [
             'field' => 'name',
@@ -92,6 +105,16 @@ class Home extends Admin_controller  {
                 'required' => "%s is required",
                 'numeric' => "%s is invalid",
                 'exact_length' => "%s is invalid",
+            ],
+        ],
+        [
+            'field' => 'email',
+            'label' => 'Email',
+            'rules' => 'required|max_length[255]|callback_email_check',
+            'errors' => [
+                'required' => "%s is required",
+                'numeric' => "%s is invalid",
+                'max_length' => "Max 255 chars allowed"
             ],
         ],
         [
