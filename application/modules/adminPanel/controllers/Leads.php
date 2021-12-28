@@ -30,6 +30,7 @@ class Leads extends Admin_controller  {
         $update = verify_access($this->name, 'update');
         $assign = verify_access($this->name, 'assign');
         $followup = verify_access($this->name, 'followup');
+        $plan = verify_access($this->name, 'purchase plan');
         foreach($fetch_data as $row)
         {  
             $sub_array = [];
@@ -47,6 +48,8 @@ class Leads extends Admin_controller  {
                 $action .= anchor($this->redirect."/assign/".e_id($row->id), '<i class="fa fa-user"></i> Assign Staff</a>', 'class="dropdown-item"');
             if ($followup)
                 $action .= anchor($this->redirect."/followup/".e_id($row->id), '<i class="fa fa-users"></i> Follow up</a>', 'class="dropdown-item"');
+            if ($plan)
+                $action .= anchor($this->redirect."/purchase-plan/".e_id($row->id), '<i class="fa fa-money"></i> Purchase plan</a>', 'class="dropdown-item"');
             
             /* $action .= form_open($this->redirect.'/delete', 'id="'.e_id($row->id).'"', ['id' => e_id($row->id)]).
                 '<a class="dropdown-item" onclick="script.delete('.e_id($row->id).'); return false;" href=""><i class="fa fa-trash"></i> Delete</a>'.
@@ -89,8 +92,10 @@ class Leads extends Admin_controller  {
     			'email'   	 => $this->input->post('email'),
     			'name'   	 => $this->input->post('name'),
     			'role'   	 => "User",
-    			'staff_id'   => $this->user->role === 'Admin' ? 0 : $this->session->auth,
-                'branch_id'  => d_id($this->input->post('branch_id'))
+    			'staff_id'   => $this->user->role == 'Staff' ? $this->session->auth : 0,
+    			'partner_id' => $this->user->role == 'Partner' ? $this->session->auth : 0,
+                'branch_id'  => d_id($this->input->post('branch_id')),
+                'password'   => my_crypt('123456')
     		];
             
             $id = $this->main->add($post, $this->table);

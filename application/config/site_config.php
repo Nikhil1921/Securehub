@@ -5,3 +5,4 @@ $config['banners'] = 'uploads/banners/';
 $config['news'] = 'uploads/news/';
 $config['insurance'] = 'uploads/insurance/';
 $config['plans'] = 'uploads/plans/';
+$config['purchase'] = 'uploads/purchase/';

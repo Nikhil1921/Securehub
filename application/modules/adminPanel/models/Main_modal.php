@@ -50,7 +50,7 @@ class Main_modal extends MY_Model
             [
                 'name' => 'leads',
                 'title' => 'Leads',
-                'permissions' => ['view', 'add', 'update', 'assign', 'followup'],
+                'permissions' => ['view', 'add', 'update', 'assign', 'followup', 'purchase plan'],
                 'added' => array_map(function($arr){
                     return $arr['operation'];
                 }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'leads']))
@@ -70,6 +70,22 @@ class Main_modal extends MY_Model
                 'added' => array_map(function($arr){
                     return $arr['operation'];
                 }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'users']))
+            ],
+            [
+                'name' => 'followups',
+                'title' => 'Followups',
+                'permissions' => ['view'],
+                'added' => array_map(function($arr){
+                    return $arr['operation'];
+                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'followups']))
+            ],
+            [
+                'name' => 'purchased_plans',
+                'title' => 'Purchased plans',
+                'permissions' => ['view', 'repurchase'],
+                'added' => array_map(function($arr){
+                    return $arr['operation'];
+                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'purchased_plans']))
             ],
         ];
         

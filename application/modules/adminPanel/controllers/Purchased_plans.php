@@ -1,17 +1,17 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Insurance extends Admin_controller  {
+class Purchased_plans extends Admin_controller  {
 
     public function __construct()
 	{
 		parent::__construct();
-		$this->path = $this->config->item('insurance');
+		$this->path = $this->config->item('purchase');
 	}
 
-	private $table = 'insurance';
-	protected $redirect = 'insurance';
-	protected $title = 'Insurance';
-	protected $name = 'insurance';
+	private $table = 'purchase_plan';
+	protected $redirect = 'purchased_plans';
+	protected $title = 'Purchased plan';
+	protected $name = 'purchased_plans';
 	
 	public function index()
 	{
@@ -21,7 +21,7 @@ class Insurance extends Admin_controller  {
         $data['url'] = $this->redirect;
         $data['operation'] = "List";
         $data['datatable'] = "$this->redirect/get";
-        $data['types'] = $this->main->getall($this->table, 'id, ins_type', ['is_deleted' => 0, 'parent_id' => 0]);
+        $data['types'] = $this->main->getall('insurance', 'id, ins_type', ['is_deleted' => 0, 'parent_id' => 0]);
 		
 		return $this->template->load('template', "$this->redirect/home", $data);
 	}
@@ -29,7 +29,7 @@ class Insurance extends Admin_controller  {
 	public function get()
     {
         check_ajax();
-        $this->load->model('Insurance_model', 'data');
+        $this->load->model('Purchased_plans_model', 'data');
         $fetch_data = $this->data->make_datatables();
         $sr = $_GET['start'] + 1;
         $data = [];
@@ -37,16 +37,23 @@ class Insurance extends Admin_controller  {
         {  
             $sub_array = [];
             $sub_array[] = $sr;
-            $sub_array[] = $row->ins_type;
-            $sub_array[] = img(['src' => $this->path.$row->image, 'width' => '100%', 'height' => '50']);
+            $sub_array[] = $row->title;
+            $sub_array[] = $row->policy_no;
+            $sub_array[] = $row->premium;
+            $sub_array[] = $row->purchase_date;
+            $sub_array[] = $row->expiry_date;
+            $sub_array[] = $row->client;
+            if($this->user->role != 'Partner'): $sub_array[] = $row->partner; endif;
+            $sub_array[] = $row->premium * $row->commission / 100;
+            $sub_array[] = $row->commission_status;
             
-            /* $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="icon-settings"></span></button><div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" x-placement="bottom-start">';
             
-            $action .= anchor($this->redirect."/update/".e_id($row->id), '<i class="fa fa-edit"></i> Edit</a>', 'class="dropdown-item"');
+            /* $action .= anchor($this->redirect."/update/".e_id($row->id), '<i class="fa fa-edit"></i> Edit</a>', 'class="dropdown-item"'); */
                 
             $action .= '</div></div>';
-            $sub_array[] = $action; */
+            $sub_array[] = $action;
 
             $data[] = $sub_array;  
             $sr++;

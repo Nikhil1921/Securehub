@@ -17,3 +17,5 @@ uploads/news/*
 !uploads/news/index.html
 uploads/plans/*
 !uploads/plans/index.html
+uploads/purchase/*
+!uploads/purchase/index.html

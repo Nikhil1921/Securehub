@@ -78,16 +78,9 @@ class Users extends Admin_controller  {
             
             return $this->template->load('template', "$this->redirect/form", $data);
         }else{
-            $post = [
-    			'mobile'   	 => $this->input->post('mobile'),
-    			'email'   	 => $this->input->post('email'),
-    			'name'   	 => $this->input->post('name'),
-    			'role'   	 => $this->input->post('role'),
-                'branch_id'  => d_id($this->input->post('branch_id')),
-                'password'   => my_crypt($this->input->post('password'))
-    		];
+            $this->load->model('Users_model');
             
-            $id = $this->main->add($post, $this->table);
+            $id = $this->Users_model->addUser($this->table);
 
             flashMsg($id, "$this->title added.", "$this->title not added. Try again.", $this->redirect);
         }
@@ -105,22 +98,13 @@ class Users extends Admin_controller  {
             $data['operation'] = "Update";
             $data['url'] = $this->redirect;
             $data['branches'] = $this->main->getall('branches', 'id, b_name', ['is_deleted' => 0]);
-            $data['data'] = $this->main->get($this->table, 'mobile, email, name, role, branch_id', ['id' => d_id($id)]);
+            $data['data'] = $this->main->get($this->table, 'id, mobile, email, name, role, branch_id', ['id' => d_id($id)]);
             
             return $this->template->load('template', "$this->redirect/form", $data);
         }else{
-            $post = [
-    			'mobile'   	 => $this->input->post('mobile'),
-    			'email'   	 => $this->input->post('email'),
-    			'name'   	 => $this->input->post('name'),
-    			'role'   	 => $this->input->post('role'),
-                'branch_id'  => d_id($this->input->post('branch_id'))
-    		];
-
-            if ($this->input->post('password'))
-                $post['password'] = my_crypt($this->input->post('password'));
+            $this->load->model('Users_model');
             
-            $id = $this->main->update(['id' => d_id($id)], $post, $this->table);
+            $id = $this->Users_model->updateUser($this->table, d_id($id));
 
             flashMsg($id, "$this->title updated.", "$this->title not updated. Try again.", $this->redirect);
         }

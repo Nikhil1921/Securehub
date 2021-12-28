@@ -23,9 +23,14 @@ class Branches extends Admin_controller  {
     {
         check_ajax();
         $this->load->model('Branches_model', 'data');
+        $this->load->model('Purchased_plans_model');
         $fetch_data = $this->data->make_datatables();
         $sr = $_GET['start'] + 1;
-        $data = [];
+        $data = [
+            [$sr++, "Main Branch", $this->Purchased_plans_model->commission('', 0),
+            $this->Purchased_plans_model->commission('Pending', 0),
+            $this->Purchased_plans_model->commission('Paid', 0), ""]
+        ];
         $update = verify_access($this->name, 'update');
         $delete = verify_access($this->name, 'delete');
         foreach($fetch_data as $row)
@@ -33,6 +38,9 @@ class Branches extends Admin_controller  {
             $sub_array = [];
             $sub_array[] = $sr;
             $sub_array[] = $row->b_name;
+            $sub_array[] = $this->Purchased_plans_model->commission('', $row->id);
+            $sub_array[] = $this->Purchased_plans_model->commission('Pending', $row->id);
+            $sub_array[] = $this->Purchased_plans_model->commission('Paid', $row->id);
             
             $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="icon-settings"></span></button><div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" x-placement="bottom-start">';

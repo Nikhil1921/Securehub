@@ -62,7 +62,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <?= form_label('Role', 'role', 'class="col-form-label"'); ?>
-                        <?= form_dropdown('role', ['Staff' => 'Staff', 'Partner' => 'Partner'], set_value('role') ? set_value('role') : (isset($data['role']) ? $data['role'] : ''), 'class="form-control" id="role" required'); ?>
+                        <?= form_dropdown('role', ['Staff' => 'Staff', 'Partner' => 'Partner'], set_value('role') ? set_value('role') : (isset($data['role']) ? $data['role'] : ''), 'class="form-control select-commission" id="role" required onchange="selectCommission(this)" data-value="'.(isset($data['id']) ? e_id($data['id']) : '').'"'); ?>
                         <?= form_error('role') ?>
                     </div>
                 </div>
@@ -77,6 +77,21 @@
                             'maxlength' => 255
                         ]); ?>
                         <?= form_error('password') ?>
+                    </div>
+                </div>
+                <div class="col-12" id="select-commission">
+                    <div class="row">
+                        <!-- <div class="col-6">
+                            <div class="form-group">
+                                <?= form_label('Commission', 'commission', 'class="col-form-label"') ?>
+                                <?= form_input([
+                                    'class' => "form-control",
+                                    'type' => "number",
+                                    'id' => "commission",
+                                    'name' => "commission[][]"
+                                ]); ?>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-12"></div>

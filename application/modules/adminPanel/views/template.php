@@ -19,6 +19,8 @@
         <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/datatables.css') ?>">
         <?php endif ?>
         <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/feather-icon.css') ?>">
+        <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/select2.css') ?>">
+        <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/date-picker.css') ?>">
         <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/bootstrap.css') ?>">
         <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/style.css') ?>">
         <link id="color" rel="stylesheet" href="<?= base_url('assets/css/light-1.css') ?>" media="screen">
@@ -43,7 +45,7 @@
                         <li></li>
                         <li class="onhover-dropdown">
                             <div class="media align-items-center">
-                                <?= img(['class' => "align-self-center pull-right img-50 rounded-circle", 'src' => "assets/images/favicon.png"]) ?>
+                                <?= img(['class' => "align-self-center pull-right img-50 rounded-circle", 'src' => "assets/images/user.png"]) ?>
                             </div>
                             <ul class="profile-dropdown onhover-show-div p-20">
                             <li><a href="<?= base_url(admin('profile')) ?>"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Edit Profile</a></li>
@@ -60,7 +62,7 @@
                 <div class="page-sidebar">
                     <div class="sidebar custom-scrollbar">
                         <div class="sidebar-user text-center">
-                            <div><?= img(['src' => 'assets/images/favicon.png', 'class' => "img-60 rounded-circle"]) ?></div>
+                            <div><?= img(['src' => 'assets/images/user.png', 'class' => "img-60 rounded-circle"]) ?></div>
                             <h6 class="mt-3 f-14"><?= $this->user->name ?></h6>
                             <p><?= $this->user->role ?></p>
                         </div>
@@ -75,6 +77,8 @@
                             <?php if(verify_access('branches', 'view')): ?><li><a class="sidebar-header <?= $name == 'branches' ? 'active' : '' ?>" href="<?= base_url(admin('branches')) ?>"><i data-feather="home"></i><span> Branches</span></a></li><?php endif ?>
                             <?php if(verify_access('users', 'view')): ?><li><a class="sidebar-header <?= $name == 'users' ? 'active' : '' ?>" href="<?= base_url(admin('users')) ?>"><i data-feather="users"></i><span> Users</span></a></li><?php endif ?>
                             <?php if(verify_access('leads', 'view')): ?><li><a class="sidebar-header <?= $name == 'leads' ? 'active' : '' ?>" href="<?= base_url(admin('leads')) ?>"><i data-feather="users"></i><span> Leads</span></a></li><?php endif ?>
+                            <?php if(verify_access('followups', 'view')): ?><li><a class="sidebar-header <?= $name == 'followups' ? 'active' : '' ?>" href="<?= base_url(admin('followup')) ?>"><i data-feather="users"></i><span> Followups</span></a></li><?php endif ?>
+                            <?php if(verify_access('purchased_plans', 'view')): ?><li><a class="sidebar-header <?= $name == 'purchased_plans' ? 'active' : '' ?>" href="<?= base_url(admin('purchased_plans')) ?>"><i data-feather="file-text"></i><span> Purchased plans</span></a></li><?php endif ?>
                             <?php if(verify_access('permissions', 'view')): ?><li><a class="sidebar-header <?= $name == 'permissions' ? 'active' : '' ?>" href="<?= base_url(admin('permissions')) ?>"><i data-feather="users"></i><span> Permissions</span></a></li><?php endif ?>
                         </ul>
                     </div>
@@ -129,7 +133,12 @@
         <script src="<?= base_url('assets/js/datatable/datatables/datatable.custom.js') ?>"></script>
         <script src="<?= base_url('assets/js/sweet-alert/sweetalert.min.js') ?>"></script>
         <?php endif ?>
+        <script src="<?= base_url('assets/js/datepicker/date-picker/datepicker.js') ?>"></script>
+        <script src="<?= base_url('assets/js/datepicker/date-picker/datepicker.en.js') ?>"></script>
+        <script src="<?= base_url('assets/js/datepicker/date-picker/datepicker.custom.js') ?>"></script>
         <script src="<?= base_url('assets/js/config.js') ?>"></script>
+        <script src="<?= base_url('assets/js/select2/select2.full.min.js') ?>"></script>
+        <script src="<?= base_url('assets/js/select2/select2-custom.js') ?>"></script>
         <script src="<?= base_url('assets/js/script.js') ?>"></script>
     </body>
 </html>

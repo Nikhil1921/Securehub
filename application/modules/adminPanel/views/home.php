@@ -171,4 +171,61 @@
         </div>
     </div>
     <?php endif ?>
+    <?php if(isset($commission)): ?>
+    <div class="col-md-3" onclick="window.location.href = '<?= base_url(admin('purchased_plans')) ?>'">
+        <div class="card">
+            <div class="card-body">
+                <div class="chart-widget-dashboard">
+                    <div class="media">
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-0 f-w-600">
+                                <span class="counter"><?= $commission ?></span>
+                            </h5>
+                            <p>Total commission</p>
+                        </div>
+                        <i class="fa fa-money fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif ?>
+    <?php if(isset($pending_commission)): ?>
+    <div class="col-md-3" onclick="window.location.href = '<?= base_url(admin('purchased_plans')) ?>'">
+        <div class="card">
+            <div class="card-body">
+                <div class="chart-widget-dashboard">
+                    <div class="media">
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-0 f-w-600">
+                                <span class="counter"><?= $pending_commission ?></span>
+                            </h5>
+                            <p>Pending commission</p>
+                        </div>
+                        <i class="fa fa-money fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif ?>
+    <?php if(isset($paid_commission)): ?>
+    <div class="col-md-3" onclick="window.location.href = '<?= base_url(admin('purchased_plans')) ?>'">
+        <div class="card">
+            <div class="card-body">
+                <div class="chart-widget-dashboard">
+                    <div class="media">
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-0 f-w-600">
+                                <span class="counter"><?= $paid_commission ?></span>
+                            </h5>
+                            <p>Paid commission</p>
+                        </div>
+                        <i class="fa fa-money fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif ?>
 </div>

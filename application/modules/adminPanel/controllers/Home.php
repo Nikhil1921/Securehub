@@ -41,13 +41,19 @@ class Home extends Admin_controller  {
         endif;
         if(verify_access('users', 'view')):
             $this->load->model('Users_model', 'users');
-            $data['users'] = $this->users->count();
+            $data['users'] = $this->users->users_count();
         endif;
         if(verify_access('leads', 'view')):
             $this->load->model('Users_model', 'leads');
-            $data['leads'] = $this->leads->count();
+            $data['leads'] = $this->leads->leads_count();
         endif;
-
+        if(in_array($this->user->role, ['Partner', 'Admin'])):
+            $this->load->model('Purchased_plans_model');
+            $data['commission'] = $this->Purchased_plans_model->commission();
+            $data['pending_commission'] = $this->Purchased_plans_model->commission('Pending');
+            $data['paid_commission'] = $this->Purchased_plans_model->commission('Paid');
+        endif;
+        
         return $this->template->load('template', 'home', $data);
 	}
 

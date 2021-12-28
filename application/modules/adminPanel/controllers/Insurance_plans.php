@@ -87,6 +87,7 @@ class Insurance_plans extends Admin_controller  {
             return $this->template->load('template', "$this->redirect/form", $data);
         }else{
             $image = $this->uploadImage('image');
+            
             if ($image['error'] == TRUE)
 			    flashMsg(0, "", $image["message"], "$this->redirect/add");
             else{
@@ -99,7 +100,7 @@ class Insurance_plans extends Admin_controller  {
                     'description' => $this->input->post('description'),
                     'image'       => $image['message']
                 ];
-
+                
                 $id = $this->main->add($post, $this->table);
 
                 flashMsg($id, "$this->title added.", "$this->title not added. Try again.", $this->redirect);

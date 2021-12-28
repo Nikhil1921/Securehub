@@ -210,4 +210,34 @@ var script = {
     }
 };
 
+function selectCommission(select) {
+    if (select.value == 'Partner') {
+        $.ajax({
+            url: url + "get-commission",
+            type: 'get',
+            data: { 'user_id': $(select).data('value') },
+            cache: false,
+            async: false,
+            beforeSend: function() {
+                $('.loader-wrapper').fadeIn();
+            },
+            complete: function() {
+                $('.loader-wrapper').fadeOut();
+            },
+            success: function(result) {
+                $('#select-commission').html(result);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                flash_msg("Error", "Something is not going good. Try again.", "danger");
+            }
+        });
+    } else {
+        $('#select-commission').html('');
+    }
+}
+
+if ($('.select-commission').length) {
+    selectCommission(document.getElementById('role'))
+}
+
 // custom code end here

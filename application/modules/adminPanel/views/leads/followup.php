@@ -18,8 +18,8 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if($followups): ?>
-                <?php foreach($followups as $follow): ?>
+                <?php $hide = false; if($followups): ?>
+                <?php foreach($followups as $follow): if (in_array($follow['status'], ['Not interested', 'Plan purchased'])) $hide = true; ?>
                     <tr>
                         <td><?= $follow['remarks'] ?></td>
                         <td><?= $follow['status'] ?></td>
@@ -33,7 +33,7 @@
                 <?php endif ?>
             </tbody>
         </table>
-        <?php if($data['is_activated'] == false): ?>
+        <?php if($hide == false && $this->user->role == 'Staff'): ?>
         <?= form_open() ?>
             <div class="row">
                 <div class="col-6">
