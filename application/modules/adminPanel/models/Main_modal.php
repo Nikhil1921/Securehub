@@ -50,7 +50,7 @@ class Main_modal extends MY_Model
             [
                 'name' => 'leads',
                 'title' => 'Leads',
-                'permissions' => ['view', 'add', 'update', 'assign', 'followup', 'purchase plan'],
+                'permissions' => ['view', 'add', 'update', 'assign', 'followup', 'purchase plan', 'vehicle documents', 'user documents'],
                 'added' => array_map(function($arr){
                     return $arr['operation'];
                 }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'leads']))
@@ -66,7 +66,7 @@ class Main_modal extends MY_Model
             [
                 'name' => 'users',
                 'title' => 'Users',
-                'permissions' => ['view', 'add', 'update', 'delete'],
+                'permissions' => ['view', 'add', 'update', 'delete', 'commission'],
                 'added' => array_map(function($arr){
                     return $arr['operation'];
                 }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'users']))
@@ -82,10 +82,26 @@ class Main_modal extends MY_Model
             [
                 'name' => 'purchased_plans',
                 'title' => 'Purchased plans',
-                'permissions' => ['view', 'repurchase'],
+                'permissions' => ['view'],
                 'added' => array_map(function($arr){
                     return $arr['operation'];
                 }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'purchased_plans']))
+            ],
+            [
+                'name' => 'digital_business',
+                'title' => 'Digital business',
+                'permissions' => ['view'],
+                'added' => array_map(function($arr){
+                    return $arr['operation'];
+                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'digital_business']))
+            ],
+            [
+                'name' => 'business_frames',
+                'title' => 'Digital business frames',
+                'permissions' => ['view', 'add', 'delete'],
+                'added' => array_map(function($arr){
+                    return $arr['operation'];
+                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'business_frames']))
             ],
         ];
         

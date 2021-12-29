@@ -6,16 +6,19 @@
     <?= form_open('', '', ['role' => $role]) ?>
         <div class="row">
             <?php foreach($navs as $nav): ?>
-                <div class="col-6">
+                <div class="col-12">
                     <div class="form-group">
-                        <?= form_label($nav['title'], $nav['name'], 'class="col-form-label"'); ?>
-                        <div class="form-group m-t-15 m-checkbox-inline mb-0">
-                        <?php foreach($nav['permissions'] as $per): ?>
-                          <div class="checkbox checkbox-dark">
-                            <input id="<?= $nav['name'].$per ?>" type="checkbox" <?= in_array($per, $nav['added']) ? 'checked' : '' ?> value="<?= $per ?>" name="permissions[<?= $nav['name'] ?>][]">
-                            <label for="<?= $nav['name'].$per ?>"><?= ucfirst($per) ?></label>
-                          </div>
-                        <?php endforeach ?>
+                        <div class="alert alert-dark outline">
+                            <?= form_label($nav['title'], $nav['name'], 'class="col-form-label"'); ?>
+                            <hr />
+                            <div class="form-group m-t-15 m-checkbox-inline mb-0">
+                            <?php foreach($nav['permissions'] as $per): ?>
+                            <div class="checkbox checkbox-dark">
+                                <input id="<?= $nav['name'].$per ?>" type="checkbox" <?= in_array($per, $nav['added']) ? 'checked' : '' ?> value="<?= $per ?>" name="permissions[<?= $nav['name'] ?>][]">
+                                <label for="<?= $nav['name'].$per ?>"><?= ucfirst($per) ?></label>
+                            </div>
+                            <?php endforeach ?>
+                            </div>
                         </div>
                     </div>
                 </div>

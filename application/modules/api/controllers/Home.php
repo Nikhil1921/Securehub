@@ -10,6 +10,9 @@ class Home extends MY_Controller  {
 		$this->news = $this->config->item('news');
 		$this->insurance = $this->config->item('insurance');
 		$this->plans = $this->config->item('plans');
+		$this->business = $this->config->item('business');
+		$this->app_table = $this->config->item('app_table');
+		$this->document = $this->config->item('document');
 	}
 
 	private $table = 'logins';
@@ -319,8 +322,370 @@ class Home extends MY_Controller  {
 		echoRespnse(200, $response);
 	}
 
+	public function digital_business_price()
+	{
+		get();
+
+		$price = $this->main->get($this->app_table, 'value price', ['cong_name' => 'business_price']);
+		$validity = $this->main->get($this->app_table, 'CONCAT(value, " Months") validity', ['cong_name' => 'business_validity']);
+		
+		if ($row = array_merge($price, $validity)) {
+			$response['row'] = $row;
+			$response['error'] = false;
+			$response['message'] = "Business price success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Business price not success. Try again.";
+		}
+		
+		echoRespnse(200, $response);
+	}
+
+	public function digital_business()
+	{
+		post();
+		$api = authenticate($this->table);
+		verifyRequiredParams(["name", "mobile", "email", "address", 'about_us', 'payment_id', 'paid_amount']);
+
+		$logo = $this->uploadImage("logo", $this->business, 'jpg|jpeg|png');
+
+		if ($logo['error'] == TRUE) {
+			$response['error'] = true;
+			$response['message'] = $logo["message"];
+		}else{
+			$month = $this->main->check($this->app_table, ['cong_name' => 'business_validity'], 'value');
+			for ($i=0; $i < 6; $i++) { 
+				if ($i < 3) $banner[$i]['image'] = '';
+				$gallery[$i]['image'] = '';
+			}
+			
+			$post = [
+					'name'        => $this->input->post('name'),
+					'mobile'      => $this->input->post('mobile'),
+					'email'       => $this->input->post('email'),
+					'address'     => $this->input->post('address'),
+					'about_us'    => $this->input->post('about_us'),
+					'payment_id'  => $this->input->post('payment_id'),
+					'paid_amount' => $this->input->post('paid_amount'),
+					'gallery'     => json_encode($gallery),
+					'banner'      => json_encode($banner),
+					'user_id'     => $api,
+					'purchased'   => date('Y-m-d'),
+					'expiry'      => date('Y-m-d', strtotime('+ '.($month ? $month : 12).'Months')),
+					'logo'        => $logo['message']
+				];
+				
+			if ($this->main->add($post, "digital_business") !== false) {
+				$response['error'] = false;
+				$response['message'] = "Digital business saved.";
+			}else{
+				if (file_exists($this->business.$logo['message'])) unlink($this->business.$logo['message']);
+				$response['error'] = true;
+				$response['message'] = "Digital business not saved. Try again.";
+			}
+		}
+
+		echoRespnse(200, $response);
+	}
+
+	public function business_list()
+	{
+		get();
+		$api = authenticate($this->table);
+
+		$post = [
+    			'user_id'    => $api,
+    			'is_deleted' => 0
+    		];
+
+		$row = array_map(function($arr) {
+			return 
+				[
+					'name'       => $arr['name'],
+					'mobile'     => $arr['mobile'],
+					'email'      => $arr['email'],
+					'address'    => $arr['address'],
+					'logo'       => $arr['logo'],
+					'about_us'   => $arr['about_us'],
+					'gallery'    => json_decode($arr['gallery']),
+					'banner'     => json_decode($arr['banner']),
+					'payment_id' => $arr['payment_id'],
+					'purchased'  => date('d-m-Y', strtotime($arr['purchased'])),
+					'expiry'     => date('d-m-Y', strtotime($arr['expiry']))
+				];
+		}, $this->main->getall("digital_business", 'name, mobile, email, address, logo, about_us, gallery, banner, payment_id, purchased, expiry', $post));
+
+		if ($row) {
+			$response['img_url'] = base_url($this->business);
+			$response['row'] = $row;
+			$response['error'] = false;
+			$response['message'] = "Business list success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Business list not success. Try again.";
+		}
+		
+		echoRespnse(200, $response);
+	}
+
+	public function upload_banner_gallery()
+	{
+		post();
+		$api = authenticate($this->table);
+		verifyRequiredParams(["id", 'img_type', 'img_no']);
+		$img_type = $this->input->post('img_type');
+		$img_no = $this->input->post('img_no');
+		$id = $this->input->post('id');
+		$data = $this->main->get('digital_business', $img_type, ['id' => $id]);
+
+		if (!$data) {
+			$response['error'] = true;
+			$response['message'] = "Digital business not found. Try again.";
+			echoRespnse(200, $response);
+		}
+
+		$data = json_decode($data[$img_type]);
+		$unlink = $data[$img_no]->image;
+		$image = $this->uploadImage("image", $this->business, 'jpg|jpeg|png');
+
+		if ($image['error'] == TRUE) {
+			$response['error'] = true;
+			$response['message'] = $image["message"];
+		}else{
+			$data[$img_no]->image = $image['message'];
+			
+			$post = [ $img_type => json_encode($data) ];
+
+			if ($this->main->update(['id' => $id], $post, "digital_business") !== false) {
+				if ($unlink && file_exists($this->business.$unlink)) unlink($this->business.$unlink);
+				$response['error'] = false;
+				$response['message'] = "Digital business saved.";
+			}else{
+				if (file_exists($this->business.$image['message'])) unlink($this->business.$image['message']);
+				$response['error'] = true;
+				$response['message'] = "Digital business not saved. Try again.";
+			}
+		}
+
+		echoRespnse(200, $response);
+	}
+
+	public function business_frames_list()
+	{
+		get();
+
+		$post = [ 'is_deleted' => 0 ];
+
+		$row = $this->main->getall("business_frames", 'CONCAT("'.base_url($this->business).'", frame)frame', $post);
+
+		if ($row) {
+			$response['row'] = $row;
+			$response['error'] = false;
+			$response['message'] = "Business frame list success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Business frame list not success. Try again.";
+		}
+		
+		echoRespnse(200, $response);
+	}
+
+	public function add_vehicle()
+	{
+		post();
+		$api = authenticate($this->table);
+		verifyRequiredParams(["reg_no"]);
+
+		$post = [ 'user_id' => $api, 'reg_no' => $this->input->post('reg_no') ];
+
+		if ($this->main->add($post, "vehicles")) {
+			$response['error'] = false;
+			$response['message'] = "Add vehicle success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Add vehicle not success. Try again.";
+		}
+		
+		echoRespnse(200, $response);
+	}
+
+	public function update_vehicle()
+	{
+		post();
+		$api = authenticate($this->table);
+		verifyRequiredParams(["id", "reg_no"]);
+
+		$post = [ 'reg_no' => $this->input->post('reg_no') ];
+
+		if ($this->main->update(['id' => $this->input->post('id')], $post, "vehicles")) {
+			$response['error'] = false;
+			$response['message'] = "Update vehicle success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Update vehicle not success. Try again.";
+		}
+		
+		echoRespnse(200, $response);
+	}
+
+	public function vehicle_list()
+	{
+		get();
+		$api = authenticate($this->table);		
+
+		$post = [ 'user_id' => $api, 'is_deleted' => 0 ];
+
+		if ($row = $this->main->getall("vehicles", 'id, reg_no', $post)) {
+			$response['row'] = $row;
+			$response['error'] = false;
+			$response['message'] = "Vehicle list success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Vehicle list not success. Try again.";
+		}
+		
+		echoRespnse(200, $response);
+	}
+
+	public function add_vehicle_document()
+	{
+		post();
+		$api = authenticate($this->table);
+		verifyRequiredParams(["veh_id", 'document_name', 'purchase_date', 'expiry_date']);
+
+		$image = $this->uploadImage("image", $this->document, 'jpg|jpeg|png|pdf');
+
+		if ($image['error'] == TRUE) {
+			$response['error'] = true;
+			$response['message'] = $image["message"];
+		}else{
+			$post = [ 
+				'veh_id' => $this->input->post('veh_id'),
+				'document_name' => $this->input->post('document_name'),
+				'purchase_date' => date('Y-m-d', strtotime($this->input->post('purchase_date'))),
+				'expiry_date' => date('Y-m-d', strtotime($this->input->post('expiry_date'))),
+				'image'	=> $image["message"]
+			];
+	
+			if ($row = $this->main->add($post, "vehicle_documents")) {
+				$response['error'] = false;
+				$response['message'] = "Add vehicle document success.";
+			}else{
+				if (file_exists($this->document.$image['message'])) unlink($this->document.$image['message']);
+				$response['error'] = true;
+				$response['message'] = "Add vehicle document not success. Try again.";
+			}
+		}
+		
+		echoRespnse(200, $response);
+	}
+
+	public function add_document()
+	{
+		post();
+		$api = authenticate($this->table);
+		verifyRequiredParams(['document_name', 'purchase_date', 'expiry_date', 'notification']);
+
+		$image = $this->uploadImage("image", $this->document, 'jpg|jpeg|png|pdf');
+
+		if ($image['error'] == TRUE) {
+			$response['error'] = true;
+			$response['message'] = $image["message"];
+		}else{
+			$post = [ 
+				'user_id' 		=> $api,
+				'document_name' => $this->input->post('document_name'),
+				'notification' 	=> $this->input->post('notification'),
+				'purchase_date' => date('Y-m-d', strtotime($this->input->post('purchase_date'))),
+				'expiry_date' 	=> date('Y-m-d', strtotime($this->input->post('expiry_date'))),
+				'image'			=> $image["message"]
+			];
+	
+			if ($row = $this->main->add($post, "user_documents")) {
+				$response['error'] = false;
+				$response['message'] = "Add document success.";
+			}else{
+				if (file_exists($this->document.$image['message'])) unlink($this->document.$image['message']);
+				$response['error'] = true;
+				$response['message'] = "Add document not success. Try again.";
+			}
+		}
+		
+		echoRespnse(200, $response);
+	}
+
+	public function vehicle_document_list()
+	{
+		get();
+		$api = authenticate($this->table);
+		verifyRequiredParams(["veh_id"]);
+
+		$post = [ 'is_deleted' => 0, 'veh_id' => $this->input->get('veh_id') ];
+
+		if ($row = $this->main->getall("vehicle_documents", 'id, veh_id, document_name, CONCAT("'.base_url($this->document).'", image) image, purchase_date, expiry_date', $post)) {
+			$response['row'] = $row;
+			$response['error'] = false;
+			$response['message'] = "Vehicle document list success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Vehicle document list not success. Try again.";
+		}
+		
+		echoRespnse(200, $response);
+	}
+
+	public function document_list()
+	{
+		get();
+		$api = authenticate($this->table);
+
+		$post = [ 'is_deleted' => 0, 'user_id' => $api ];
+
+		if ($row = $this->main->getall("user_documents", 'id, document_name, CONCAT("'.base_url($this->document).'", image) image, purchase_date, expiry_date, notification', $post)) {
+			$response['row'] = $row;
+			$response['error'] = false;
+			$response['message'] = "Document list success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Document list not success. Try again.";
+		}
+		
+		echoRespnse(200, $response);
+	}
+
 	public function error_404()
 	{
 		$this->load->view('error_404');
 	}
+
+	protected function uploadImage($upload, $path, $allowed)
+    {
+        $this->load->library('upload');
+        $config = [
+                'upload_path'      => $path,
+                'allowed_types'    => $allowed,
+                'file_name'        => time(),
+                'file_ext_tolower' => TRUE
+            ];
+        
+        $this->upload->initialize($config);
+        if ($this->upload->do_upload($upload)){
+            $img = $this->upload->data("file_name");
+            $name = $this->upload->data("raw_name");
+            
+            if (in_array($this->upload->data('file_ext'), ['.jpg', '.jpeg']))
+                $image = imagecreatefromjpeg($path.$img);
+            if ($this->upload->data('file_ext') == '.png')
+                $image = imagecreatefrompng($path.$img);
+
+            if (isset($image)){
+                convert_webp($path, $image, $name);
+                unlink($path.$img);
+                $img = "$name.webp";
+            }
+            
+            return ['error' => false, 'message' => $img];
+        }else
+            return ['error' => true, 'message' => strip_tags($this->upload->display_errors())];
+    }
 }

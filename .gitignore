@@ -19,3 +19,7 @@ uploads/plans/*
 !uploads/plans/index.html
 uploads/purchase/*
 !uploads/purchase/index.html
+uploads/business/*
+!uploads/business/index.html
+uploads/document/*
+!uploads/document/index.html

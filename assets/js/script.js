@@ -180,7 +180,7 @@ var script = {
     delete: function(id) {
         swal({
                 title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this!",
+                text: "You will not be able to recover this!",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,

@@ -115,10 +115,7 @@ class Companies extends Admin_controller  {
         $this->form_validation->set_rules('id', 'id', 'required|numeric');
         
         if ($this->form_validation->run() == FALSE)
-            $response = [
-                        'message' => "Some required fields are missing.",
-                        'status' => false
-                    ];
+            flashMsg(0, "", "Some required fields are missing.", $this->redirect);
         else{
             $id = $this->main->update(['id' => d_id($this->input->post('id'))], ['is_deleted' => 1], $this->table);
             flashMsg($id, "$this->title deleted.", "$this->title not deleted.", $this->redirect);

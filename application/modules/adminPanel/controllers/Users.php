@@ -28,6 +28,7 @@ class Users extends Admin_controller  {
         $data = [];
         $update = verify_access($this->name, 'update');
         $delete = verify_access($this->name, 'delete');
+        $commission = verify_access($this->name, 'commission');
         foreach($fetch_data as $row)
         {  
             $sub_array = [];
@@ -41,6 +42,10 @@ class Users extends Admin_controller  {
                         <span class="icon-settings"></span></button><div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" x-placement="bottom-start">';
             if ($update)
                 $action .= anchor($this->redirect."/update/".e_id($row->id), '<i class="fa fa-edit"></i> Edit</a>', 'class="dropdown-item"');
+            if ($commission && $this->input->get('ins_type') == 'Partner')
+                $action .= form_open($this->redirect.'/commission', 'id="'.e_id($row->id).'"', ['id' => e_id($row->id)]).
+                    '<a class="dropdown-item" onclick="script.delete('.e_id($row->id).'); return false;" href=""><i class="fa fa-money"></i> Clear Commission</a>'.
+                    form_close();
             if ($delete)
                 $action .= form_open($this->redirect.'/delete', 'id="'.e_id($row->id).'"', ['id' => e_id($row->id)]).
                     '<a class="dropdown-item" onclick="script.delete('.e_id($row->id).'); return false;" href=""><i class="fa fa-trash"></i> Delete</a>'.
@@ -110,16 +115,30 @@ class Users extends Admin_controller  {
         }
 	}
 
+	public function commission()
+	{
+        check_access($this->name, 'commission');
+
+        $this->form_validation->set_rules('id', 'id', 'required|numeric');
+        
+        if ($this->form_validation->run() == FALSE)
+            flashMsg(0, "", "Some required fields are missing.", $this->redirect);
+        else{
+            $where = ['commission_status' => 'Pending', 'partner_id' => d_id($this->input->post('id'))];
+            
+            $id = $this->main->update($where, ['commission_status' => 'Paid'], "purchase_plan");
+            
+            flashMsg($id, "Commission cleared.", "Commission not cleared.", $this->redirect);
+        }
+	}
+
 	public function delete()
     {
         check_access($this->name, 'delete');
         $this->form_validation->set_rules('id', 'id', 'required|numeric');
         
         if ($this->form_validation->run() == FALSE)
-            $response = [
-                        'message' => "Some required fields are missing.",
-                        'status' => false
-                    ];
+            flashMsg(0, "", "Some required fields are missing.", $this->redirect);
         else{
             $id = $this->main->update(['id' => d_id($this->input->post('id'))], ['is_deleted' => 1], $this->table);
             flashMsg($id, "$this->title deleted.", "$this->title not deleted.", $this->redirect);

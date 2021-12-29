@@ -61,3 +61,8 @@ $('.ins_type').click(function() {
     $("input[name='ins_type']").val($(this).data('value'));
     table.ajax.reload();
 });
+
+$("select[name=vehicle]").change(function() {
+    $("input[name='ins_type']").val($(this).val());
+    table.ajax.reload();
+});

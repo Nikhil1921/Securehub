@@ -13,6 +13,7 @@ class Admin_controller extends MY_Controller
 
         $this->user = (object) $this->main->get("logins", 'name, role, mobile, email, branch_id', ['id' => $this->session->auth]);
 		$this->redirect = admin($this->redirect);
+		$this->app_table = $this->config->item('app_table');
 	}
 
 	protected function uploadImage($upload)
@@ -92,7 +93,11 @@ class Admin_controller extends MY_Controller
             $data['operation'] = "purchase plan";
             $data['url'] = $this->redirect;
             $data['data'] = $this->main->get("logins", 'mobile, email, name, partner_id, branch_id', ['id' => d_id($id)]);
-            $data['users'] = $this->main->getall('logins', 'id, name', ['is_deleted' => 0, 'role' => 'Partner', 'branch_id' => $data['data']['branch_id']]);
+            $users = ['is_deleted' => 0, 'role' => 'Partner', 'branch_id' => $data['data']['branch_id']];
+            
+            if (isset($data['data']['partner_id'])) $users['id'] = $data['data']['partner_id'];
+
+            $data['users'] = $this->main->getall('logins', 'id, name', $users);
             $data['plans'] = $this->main->getall('insurance_plans', 'id, title', ['is_deleted' => 0]);
             
             return $this->template->load('template', "leads/purchase_plan", $data);

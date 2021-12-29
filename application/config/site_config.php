@@ -6,3 +6,6 @@ $config['news'] = 'uploads/news/';
 $config['insurance'] = 'uploads/insurance/';
 $config['plans'] = 'uploads/plans/';
 $config['purchase'] = 'uploads/purchase/';
+$config['business'] = 'uploads/business/';
+$config['document'] = 'uploads/document/';
+$config['app_table'] = 'app_configs';

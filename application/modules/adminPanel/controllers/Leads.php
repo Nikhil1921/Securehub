@@ -31,6 +31,8 @@ class Leads extends Admin_controller  {
         $assign = verify_access($this->name, 'assign');
         $followup = verify_access($this->name, 'followup');
         $plan = verify_access($this->name, 'purchase plan');
+        $veh_documents = verify_access($this->name, 'vehicle documents');
+        $documents = verify_access($this->name, 'user documents');
         foreach($fetch_data as $row)
         {  
             $sub_array = [];
@@ -50,6 +52,10 @@ class Leads extends Admin_controller  {
                 $action .= anchor($this->redirect."/followup/".e_id($row->id), '<i class="fa fa-users"></i> Follow up</a>', 'class="dropdown-item"');
             if ($plan)
                 $action .= anchor($this->redirect."/purchase-plan/".e_id($row->id), '<i class="fa fa-money"></i> Purchase plan</a>', 'class="dropdown-item"');
+            if ($veh_documents)
+                $action .= anchor($this->redirect."/vehicle-documents/".e_id($row->id), '<i class="fa fa-truck"></i> Vehicle Documents</a>', 'class="dropdown-item"');
+            if ($documents)
+                $action .= anchor($this->redirect."/documents/".e_id($row->id), '<i class="fa fa-briefcase"></i> User Documents</a>', 'class="dropdown-item"');
             
             /* $action .= form_open($this->redirect.'/delete', 'id="'.e_id($row->id).'"', ['id' => e_id($row->id)]).
                 '<a class="dropdown-item" onclick="script.delete('.e_id($row->id).'); return false;" href=""><i class="fa fa-trash"></i> Delete</a>'.
@@ -183,6 +189,109 @@ class Leads extends Admin_controller  {
             flashMsg($f_id, "Followup added.", "Followup not added. Try again.", $this->redirect.'/followup/'.$id);
         }
 	}
+
+    public function vehicle_documents($id)
+    {
+        if ($this->input->is_ajax_request()) {
+            
+            $this->load->model('Vehicle_documents_model', 'data');
+            $fetch_data = $this->data->make_datatables();
+            $sr = $_GET['start'] + 1;
+            $data = [];
+            $path = $this->config->item('document');
+            foreach($fetch_data as $row)
+            {  
+                $sub_array = [];
+                $sub_array[] = $sr;
+                $sub_array[] = $row->document_name;
+                $sub_array[] = date('d-m-Y', strtotime($row->purchase_date));
+                $sub_array[] = date('d-m-Y', strtotime($row->expiry_date));
+                
+                $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="icon-settings"></span></button><div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" x-placement="bottom-start">';
+                
+                $action .= anchor($path.$row->image, '<i class="fa fa-eye"></i> View</a>', 'class="dropdown-item" target="_blank"');
+                $action .= anchor($path.$row->image, '<i class="fa fa-download"></i> Download</a>', 'class="dropdown-item" download="download"');
+
+                $action .= '</div></div>';
+                $sub_array[] = $action;
+
+                $data[] = $sub_array;
+                $sr++;
+            }
+
+            $output = [
+                "draw"              => intval($_GET["draw"]),  
+                "recordsTotal"      => $this->data->count(),
+                "recordsFiltered"   => $this->data->get_filtered_data(),
+                "data"              => $data
+            ];
+            
+            die(json_encode($output));
+        }else{
+            check_access($this->name, 'vehicle documents');
+            $data['title'] = 'vehicle documents';
+            $data['name'] = $this->name;
+            $data['operation'] = "list";
+            $data['url'] = $this->redirect;
+            $data['datatable'] = "$this->redirect/vehicle_documents/$id";
+            $data['vehicles'] = $this->main->getall("vehicles", 'id, reg_no', ['user_id' => d_id($id)]);
+
+            return $this->template->load('template', "$this->redirect/vehicle_documents", $data);
+        }
+    }
+
+    public function documents($id)
+    {
+        if ($this->input->is_ajax_request()) {
+            $this->load->model('User_documents_model', 'data');
+            $fetch_data = $this->data->make_datatables();
+            $sr = $_GET['start'] + 1;
+            $data = [];
+            $path = $this->config->item('document');
+            foreach($fetch_data as $row)
+            {  
+                $sub_array = [];
+                $sub_array[] = $sr;
+                $sub_array[] = $row->document_name;
+                $sub_array[] = date('d-m-Y', strtotime($row->purchase_date));
+                $sub_array[] = date('d-m-Y', strtotime($row->expiry_date));
+                $sub_array[] = $row->notification;
+                
+                $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="icon-settings"></span></button><div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" x-placement="bottom-start">';
+                
+                $action .= anchor($path.$row->image, '<i class="fa fa-eye"></i> View</a>', 'class="dropdown-item" target="_blank"');
+                $action .= anchor($path.$row->image, '<i class="fa fa-download"></i> Download</a>', 'class="dropdown-item" download="download"');
+
+                $action .= '</div></div>';
+                $sub_array[] = $action;
+
+                $data[] = $sub_array;
+                $sr++;
+            }
+
+            $output = [
+                "draw"              => intval($_GET["draw"]),  
+                "recordsTotal"      => $this->data->count(),
+                "recordsFiltered"   => $this->data->get_filtered_data(),
+                "data"              => $data
+            ];
+            
+            die(json_encode($output));
+        }else{
+            check_access($this->name, 'user documents');
+
+            $data['title'] = 'user documents';
+            $data['name'] = $this->name;
+            $data['operation'] = "list";
+            $data['url'] = $this->redirect;
+            $data['id'] = $id;
+            $data['datatable'] = "$this->redirect/documents/$id";
+
+            return $this->template->load('template', "$this->redirect/documents", $data);
+        }
+    }
 
     public function mobile_check($str)
     {   
