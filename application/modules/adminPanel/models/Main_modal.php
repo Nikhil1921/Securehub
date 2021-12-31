@@ -103,6 +103,14 @@ class Main_modal extends MY_Model
                     return $arr['operation'];
                 }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'business_frames']))
             ],
+            [
+                'name' => 'claims',
+                'title' => 'Claims',
+                'permissions' => ['view', 'followup'],
+                'added' => array_map(function($arr){
+                    return $arr['operation'];
+                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'claims']))
+            ],
         ];
         
         return $navs;
@@ -144,6 +152,27 @@ class Main_modal extends MY_Model
             $this->db->where(['id' => $u_id])->update('logins', ['is_deleted' => 1, 'update_at' => $data['created_at']]);
         if ($data['status'] == 'Plan purchased')
             $this->db->where(['id' => $u_id])->update('logins', ['is_varified' => 1, 'is_activated' => 1, 'update_at' => $data['created_at']]);
+
+        $this->db->trans_complete();
+        
+		return $this->db->trans_status();
+    }
+
+    public function purchase_followup($claim_id, $table, $follow_table)
+    {
+        $this->db->trans_start();
+        
+        $data = [
+            'claim_id'   => $claim_id,
+            'staff_id'   => $this->session->auth,
+            'status'     => $this->input->post('status'),
+            'remarks'    => $this->input->post('remarks'),
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+        
+        $this->db->insert($follow_table, $data);
+        
+        $this->db->where(['id' => $claim_id])->update($table, ['claim_status' => $data['status']]);
 
         $this->db->trans_complete();
         
