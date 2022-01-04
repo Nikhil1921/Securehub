@@ -178,4 +178,14 @@ class Main_modal extends MY_Model
         
 		return $this->db->trans_status();
     }
+
+    public function commission_details($id)
+    {
+        return $this->db->select('CONCAT(c.commission, "%") commission, CONCAT(i.ins_type, " Insurance") ins_type')
+                        ->from("commissions c")
+                        ->where(['user_id' => $id])
+                        ->join('insurance i', 'c.ins_id = i.id')
+                        ->get()
+                        ->result();
+    }
 }

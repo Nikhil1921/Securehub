@@ -6,7 +6,7 @@
 class Purchased_plans_model extends MY_Model
 {
 	public $table = "purchase_plan p";
-	public $select_column = ['p.id', 'ip.title', 'p.policy_no', 'p.premium', 'p.purchase_date', 'p.expiry_date', 'c.name client', 'l.name partner', 'p.commission', 'p.commission_status'];
+	public $select_column = ['p.id', 'ip.title', 'p.policy_no', '(p.premium + p.gst) premium', 'p.purchase_date', 'p.expiry_date', 'c.name client', 'l.name partner', 'p.commission', 'p.commission_status'];
 	public $search_column = ['p.id', 'ip.title', 'p.policy_no', 'p.premium', 'p.purchase_date', 'p.expiry_date', 'c.name', 'l.name', 'p.commission', 'p.commission_status'];
     public $order_column = [null, 'ip.title', 'p.policy_no', 'p.premium', 'p.purchase_date', 'p.expiry_date', 'c.name', 'l.name', 'p.commission', 'p.commission_status', null];
 	public $order = ['p.id' => 'DESC'];

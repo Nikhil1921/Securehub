@@ -61,6 +61,21 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
+                        <?= form_label('GST on policy', 'gst', 'class="col-form-label"') ?>
+                        <?= form_input([
+                            'class' => "form-control",
+                            'type' => "text",
+                            'id' => "gst",
+                            'name' => "gst",
+                            'maxlength' => 255,
+                            'required' => "",
+                            'value' => set_value('gst')
+                        ]); ?>
+                        <?= form_error('gst') ?>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
                         <?= form_label('Purchase date', 'purchase_date', 'class="col-form-label"') ?>
                         <div class="input-group">
                             <input class="datepicker-here form-control digits" name="purchase_date" id="purchase_date" type="text" data-language="en" required />

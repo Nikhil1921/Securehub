@@ -93,6 +93,42 @@ class Home extends Admin_controller  {
         return redirect(admin('login'));
     }
 
+	public function commission_details()
+    {
+        if(! $this->user->role == 'Partner') return redirect(admin());
+        
+        if ($this->session->checkCommision)
+        {
+            $this->session->set_flashdata('checkCommision', true);
+            $data['commissions'] = $this->main->commission_details($this->session->auth);
+        }
+
+        if ($this->input->server('REQUEST_METHOD') === 'POST')
+        {
+            $post = [
+    			'id'   	     => $this->session->auth,
+    			'password'   => my_crypt($this->input->post('password'))
+    		];
+            
+    		$user = $this->main->get($this->table, 'id', $post);
+
+            if ($user) {
+    			$this->session->set_flashdata('checkCommision', true);
+    			return redirect(admin('commission-details'));
+    		}else{
+    			$this->session->set_flashdata('error', 'Password not match.');
+    			return redirect(admin('commission-details'));
+    		}
+        }
+
+        $data['title'] = 'commission details';
+        $data['name'] = 'commission details';
+        $data['operation'] = 'view';
+        $data['url'] = $this->redirect;
+        
+        return $this->template->load('template', 'commission_details', $data);
+    }
+
 	public function backup()
     {
         // Load the DB utility class
