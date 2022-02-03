@@ -181,7 +181,7 @@
                             <h5 class="mt-0 mb-0 f-w-600">
                                 <span class="counter"><?= $commission ?></span>
                             </h5>
-                            <p>Total commission</p>
+                            <p>Total revenue</p>
                         </div>
                         <i class="fa fa-money fa-2x"></i>
                     </div>
@@ -200,7 +200,7 @@
                             <h5 class="mt-0 mb-0 f-w-600">
                                 <span class="counter"><?= $pending_commission ?></span>
                             </h5>
-                            <p>Pending commission</p>
+                            <p>Pending revenue</p>
                         </div>
                         <i class="fa fa-money fa-2x"></i>
                     </div>
@@ -219,7 +219,7 @@
                             <h5 class="mt-0 mb-0 f-w-600">
                                 <span class="counter"><?= $paid_commission ?></span>
                             </h5>
-                            <p>Paid commission</p>
+                            <p>Paid revenue</p>
                         </div>
                         <i class="fa fa-money fa-2x"></i>
                     </div>

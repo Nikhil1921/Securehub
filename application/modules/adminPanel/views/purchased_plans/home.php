@@ -5,7 +5,7 @@
 <div class="card-body">
     <div class="row">
         <?php foreach($types as $type): ?>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <?= form_button([
                     'data-value' => e_id($type['id']),
                     'class'   => 'btn btn-outline-primary btn-block ins_type',
@@ -24,11 +24,11 @@
                 <th>Purchase date</th>
                 <th>Expiry</th>
                 <th>Client Name</th>
-                <?php if($this->user->role != 'Partner'): ?>
+                <?php if($this->user->role == 'Admin'): ?>
                 <th>Partner Name</th>
+                <th>Revenue</th>
+                <th>Revenue status</th>
                 <?php endif ?>
-                <th>Commission</th>
-                <th>Commission status</th>
             </thead>
             <tbody>
             </tbody>

@@ -44,34 +44,49 @@
                         <?= form_error('policy_no') ?>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-4">
                     <div class="form-group">
-                        <?= form_label('Policy premium', 'premium', 'class="col-form-label"') ?>
+                        <?= form_label('Net Policy premium', 'premium', 'class="col-form-label"') ?>
                         <?= form_input([
                             'class' => "form-control",
                             'type' => "text",
                             'id' => "premium",
                             'name' => "premium",
-                            'maxlength' => 255,
+                            'maxlength' => 10,
                             'required' => "",
                             'value' => set_value('premium')
                         ]); ?>
                         <?= form_error('premium') ?>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-4">
                     <div class="form-group">
-                        <?= form_label('GST on policy', 'gst', 'class="col-form-label"') ?>
+                        <?= form_label('OD Policy premium', 'od_premium', 'class="col-form-label"') ?>
                         <?= form_input([
                             'class' => "form-control",
                             'type' => "text",
-                            'id' => "gst",
-                            'name' => "gst",
-                            'maxlength' => 255,
+                            'id' => "od_premium",
+                            'name' => "od_premium",
+                            'maxlength' => 10,
                             'required' => "",
-                            'value' => set_value('gst')
+                            'value' => set_value('od_premium')
                         ]); ?>
-                        <?= form_error('gst') ?>
+                        <?= form_error('od_premium') ?>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <?= form_label('Total Policy premium', 'total_premium', 'class="col-form-label"') ?>
+                        <?= form_input([
+                            'class' => "form-control",
+                            'type' => "text",
+                            'id' => "total_premium",
+                            'name' => "total_premium",
+                            'maxlength' => 10,
+                            'required' => "",
+                            'value' => set_value('total_premium')
+                        ]); ?>
+                        <?= form_error('total_premium') ?>
                     </div>
                 </div>
                 <div class="col-6">

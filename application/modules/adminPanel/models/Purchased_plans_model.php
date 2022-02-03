@@ -6,9 +6,9 @@
 class Purchased_plans_model extends MY_Model
 {
 	public $table = "purchase_plan p";
-	public $select_column = ['p.id', 'ip.title', 'p.policy_no', '(p.premium + p.gst) premium', 'p.purchase_date', 'p.expiry_date', 'c.name client', 'l.name partner', 'p.commission', 'p.commission_status'];
-	public $search_column = ['p.id', 'ip.title', 'p.policy_no', 'p.premium', 'p.purchase_date', 'p.expiry_date', 'c.name', 'l.name', 'p.commission', 'p.commission_status'];
-    public $order_column = [null, 'ip.title', 'p.policy_no', 'p.premium', 'p.purchase_date', 'p.expiry_date', 'c.name', 'l.name', 'p.commission', 'p.commission_status', null];
+	public $select_column = ['p.id', 'ip.title', 'p.policy_no', 'p.total_premium', 'p.purchase_date', 'p.expiry_date', 'c.name client', 'l.name partner', 'p.commission', 'p.commission_status', 'i.comm_type', 'p.od_premium', 'p.premium'];
+	public $search_column = ['p.id', 'ip.title', 'p.policy_no', 'p.total_premium', 'p.purchase_date', 'p.expiry_date', 'c.name', 'l.name', 'p.commission', 'p.commission_status'];
+    public $order_column = [null, 'ip.title', 'p.policy_no', 'p.total_premium', 'p.purchase_date', 'p.expiry_date', 'c.name', 'l.name', 'p.commission', 'p.commission_status', null];
 	public $order = ['p.id' => 'DESC'];
 
 	public function make_query()
@@ -18,6 +18,7 @@ class Purchased_plans_model extends MY_Model
 		$this->db->select($this->select_column)
             	 ->from($this->table)
                  ->join('insurance_plans ip', 'ip.id = p.plan_id', 'left')
+                 ->join('insurance i', 'i.id = ip.ins_id', 'left')
                  ->join('logins c', 'c.id = p.user_id', 'left')
                  ->join('logins l', 'l.id = p.partner_id', 'left');
 				 
@@ -36,6 +37,7 @@ class Purchased_plans_model extends MY_Model
 		$this->db->select('p.id')
 		         ->from($this->table)
                  ->join('insurance_plans ip', 'ip.id = p.plan_id', 'left')
+				 ->join('insurance i', 'i.id = ip.ins_id', 'left')
                  ->join('logins c', 'c.id = p.user_id', 'left')
                  ->join('logins l', 'l.id = p.partner_id', 'left');
 				 
@@ -50,8 +52,16 @@ class Purchased_plans_model extends MY_Model
 
 	public function commission($status=null, $branch_id=null)
 	{
-		$this->db->select('SUM(p.commission * p.premium / 100) commission')
+		$this->db->select('SUM(case when (i.comm_type = "NET") 
+								THEN
+									p.commission * p.premium / 100
+								ELSE
+									p.commission * p.od_premium / 100
+								END)
+								as revenue')
 		         ->from($this->table)
+				 ->join('insurance_plans ip', 'ip.id = p.plan_id', 'left')
+				 ->join('insurance i', 'i.id = ip.ins_id', 'left')
 				 ->join('logins c', 'c.id = p.user_id', 'left');
 			
 		if ($branch_id) $this->db->where('c.branch_id', $branch_id);
@@ -60,6 +70,6 @@ class Purchased_plans_model extends MY_Model
 		
 		$commission = $this->db->get()->row_array();
 		
-		return $commission ? floor($commission['commission']) : 0;
+		return $commission ? floor($commission['revenue']) : 0;
 	}
 }

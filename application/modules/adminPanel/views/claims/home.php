@@ -9,7 +9,7 @@
 <div class="card-body">
     <div class="row">
         <?php foreach($types as $type): ?>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <?= form_button([
                     'data-value' => e_id($type['id']),
                     'class'   => 'btn btn-outline-primary btn-block ins_type',

@@ -17,9 +17,9 @@
             <thead>
                 <th class="target">Sr.</th>
                 <th>Branch Name</th>
-                <th class="target">Total commission</th>
-                <th class="target">Pending commission</th>
-                <th class="target">Paid commission</th>
+                <th class="target">Total revenue</th>
+                <th class="target">Pending revenue</th>
+                <th class="target">Paid revenue</th>
                 <th class="target">Action</th>
             </thead>
             <tbody>

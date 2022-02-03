@@ -115,7 +115,8 @@ class Admin_controller extends MY_Controller
                     'plan_id'         => $plan_id,
                     'policy_no'       => $this->input->post('policy_no'),
                     'premium'         => $this->input->post('premium'),
-                    'gst'             => $this->input->post('gst'),
+                    'od_premium'      => $this->input->post('od_premium'),
+                    'total_premium'   => $this->input->post('total_premium'),
                     'purchase_date'   => date('Y-m-d', strtotime($this->input->post('purchase_date'))),
                     'expiry_date'     => date('Y-m-d', strtotime($this->input->post('expiry_date'))),
                     'user_id'         => d_id($id),
@@ -152,7 +153,7 @@ class Admin_controller extends MY_Controller
         ],
         [
             'field' => 'premium',
-            'label' => 'Policy premium',
+            'label' => 'Net Policy premium',
             'rules' => 'required|numeric',
             'errors' => [
                 'required' => "%s is required",
@@ -160,8 +161,17 @@ class Admin_controller extends MY_Controller
             ],
         ],
         [
-            'field' => 'gst',
-            'label' => 'GST on policy',
+            'field' => 'od_premium',
+            'label' => 'OD Policy premium',
+            'rules' => 'required|numeric',
+            'errors' => [
+                'required' => "%s is required",
+                'numeric' => "%s is invalid.",
+            ],
+        ],
+        [
+            'field' => 'total_premium',
+            'label' => 'Total Policy premium',
             'rules' => 'required|numeric',
             'errors' => [
                 'required' => "%s is required",

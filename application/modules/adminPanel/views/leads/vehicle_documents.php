@@ -4,6 +4,7 @@
         <div class="col-8">
             <h5><?= $title ?> <?= $operation ?></h5>
         </div>
+        <?php if ($vehicles): ?>
         <div class="col-4">
             <select name="vehicle" class="form-control">
                 <option value="">Select Vehicle</option>
@@ -12,6 +13,7 @@
                 <?php endforeach ?>
             </select>
         </div>
+        <?php endif ?>
     </div>
 </div>
 <div class="card-body">

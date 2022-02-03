@@ -190,7 +190,7 @@ class Leads extends Admin_controller  {
         }
 	}
 
-    public function vehicle_documents($id)
+    public function vehicle_documents($id=null)
     {
         if ($this->input->is_ajax_request()) {
             
@@ -231,12 +231,13 @@ class Leads extends Admin_controller  {
         }else{
             check_access($this->name, 'vehicle documents');
             $data['title'] = 'vehicle documents';
-            $data['name'] = $this->name;
+            $data['name'] = 'vehicle-documents';
             $data['operation'] = "list";
             $data['url'] = $this->redirect;
             $data['datatable'] = "$this->redirect/vehicle_documents/$id";
-            $data['vehicles'] = $this->main->getall("vehicles", 'id, reg_no', ['user_id' => d_id($id)]);
 
+            $data['vehicles'] = $this->main->getall("vehicles", 'id, reg_no', ['user_id' => d_id($id)]);
+            
             return $this->template->load('template', "$this->redirect/vehicle_documents", $data);
         }
     }

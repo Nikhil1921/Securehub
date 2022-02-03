@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <?= form_label('Enter Password to see commission details', 'password', 'class="col-form-label"') ?>
+                        <?= form_label('Enter Password to see revenue details', 'password', 'class="col-form-label"') ?>
                         <?= form_input([
                             'class' => "form-control",
                             'type' => "password",
@@ -38,12 +38,12 @@
                 <thead>
                     <th>SR NO.</th>
                     <th>Insurance</th>
-                    <th>Commission</th>
+                    <th>Revenue</th>
                 </thead>
                 <tbody>
                     <?php if(! $commissions): ?>
                         <tr>
-                            <td colspan="3" class="text-center">No commissions available</td>
+                            <td colspan="3" class="text-center">No revenue available</td>
                         </tr>
                     <?php else: ?>
                     <?php foreach($commissions as $k => $com): ?>

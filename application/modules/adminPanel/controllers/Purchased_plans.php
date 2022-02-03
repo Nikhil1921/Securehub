@@ -39,13 +39,16 @@ class Purchased_plans extends Admin_controller  {
             $sub_array[] = $sr;
             $sub_array[] = $row->title;
             $sub_array[] = $row->policy_no;
-            $sub_array[] = $row->premium;
-            $sub_array[] = $row->purchase_date;
-            $sub_array[] = $row->expiry_date;
+            $sub_array[] = "$row->premium + $row->od_premium = $row->total_premium";
+            $sub_array[] = date('d-m-Y', strtotime($row->purchase_date));
+            $sub_array[] = date('d-m-Y', strtotime($row->expiry_date));
             $sub_array[] = $row->client;
-            if($this->user->role != 'Partner'): $sub_array[] = $row->partner; endif;
-            $sub_array[] = $row->premium * $row->commission / 100;
-            $sub_array[] = $row->commission_status;
+            if ($this->user->role == 'Admin'):
+                $sub_array[] = $row->partner ? $row->partner : 'NA';
+                $comm = $row->comm_type == 'NET' ? $row->premium : $row->od_premium;
+                $sub_array[] = $row->partner ? $comm * $row->commission / 100 : 'NA';
+                $sub_array[] = $row->partner ? $row->commission_status : 'NA';
+            endif;
             
             $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="icon-settings"></span></button><div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" x-placement="bottom-start">';

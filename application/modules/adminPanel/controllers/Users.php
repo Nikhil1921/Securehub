@@ -44,7 +44,7 @@ class Users extends Admin_controller  {
                 $action .= anchor($this->redirect."/update/".e_id($row->id), '<i class="fa fa-edit"></i> Edit</a>', 'class="dropdown-item"');
             if ($commission && $this->input->get('ins_type') == 'Partner')
                 $action .= form_open($this->redirect.'/commission', 'id="'.e_id($row->id).'"', ['id' => e_id($row->id)]).
-                    '<a class="dropdown-item" onclick="script.delete('.e_id($row->id).'); return false;" href=""><i class="fa fa-money"></i> Clear Commission</a>'.
+                    '<a class="dropdown-item" onclick="script.delete('.e_id($row->id).'); return false;" href=""><i class="fa fa-money"></i> Clear Revenue</a>'.
                     form_close();
             if ($delete)
                 $action .= form_open($this->redirect.'/delete', 'id="'.e_id($row->id).'"', ['id' => e_id($row->id)]).
@@ -54,7 +54,7 @@ class Users extends Admin_controller  {
             $action .= '</div></div>';
             $sub_array[] = $action;
 
-            $data[] = $sub_array;  
+            $data[] = $sub_array;
             $sr++;
         }
 
@@ -128,7 +128,7 @@ class Users extends Admin_controller  {
             
             $id = $this->main->update($where, ['commission_status' => 'Paid'], "purchase_plan");
             
-            flashMsg($id, "Commission cleared.", "Commission not cleared.", $this->redirect);
+            flashMsg($id, "Revenue cleared.", "Revenue not cleared.", $this->redirect);
         }
 	}
 

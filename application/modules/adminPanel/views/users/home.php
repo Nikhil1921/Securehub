@@ -37,6 +37,7 @@
                 <th>Mobile</th>
                 <th>Email</th>
                 <th>Branch</th>
+                <!-- <th class="target" id="partner-revenue" style="display:none;">Revenue</th> -->
                 <th class="target">Action</th>
             </thead>
             <tbody>

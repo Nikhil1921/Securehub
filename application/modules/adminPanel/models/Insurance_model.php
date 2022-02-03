@@ -36,7 +36,7 @@ class Insurance_model extends MY_Model
 	}
 
 	
-	public function get_commission($user_id=0)
+	public function get_commission()
 	{
 		$this->db->select('i.id, CONCAT(i.ins_type, " Insurance") ins_type')
 		         ->from($this->table)

@@ -83,7 +83,7 @@
                     <div class="row">
                         <!-- <div class="col-6">
                             <div class="form-group">
-                                <?= form_label('Commission', 'commission', 'class="col-form-label"') ?>
+                                <?= form_label('Revenue', 'commission', 'class="col-form-label"') ?>
                                 <?= form_input([
                                     'class' => "form-control",
                                     'type' => "number",
