@@ -79,8 +79,17 @@
                             <?php if(verify_access('become_partners', 'view')): ?><li><a class="sidebar-header <?= $name == 'become_partners' ? 'active' : '' ?>" href="<?= base_url(admin('become_partners')) ?>"><i data-feather="users"></i><span> Become Partner</span></a></li><?php endif ?>
                             <?php if(verify_access('branches', 'view')): ?><li><a class="sidebar-header <?= $name == 'branches' ? 'active' : '' ?>" href="<?= base_url(admin('branches')) ?>"><i data-feather="home"></i><span> Branches</span></a></li><?php endif ?>
                             <?php if(verify_access('users', 'view')): ?><li><a class="sidebar-header <?= $name == 'users' ? 'active' : '' ?>" href="<?= base_url(admin('users')) ?>"><i data-feather="users"></i><span> Users</span></a></li><?php endif ?>
-                            <?php if(verify_access('leads', 'view')): ?><li><a class="sidebar-header <?= $name == 'leads' ? 'active' : '' ?>" href="<?= base_url(admin('leads')) ?>"><i data-feather="users"></i><span> Leads</span></a></li><?php endif ?>
-                            <?php if(verify_access('leads', 'vehicle documents')): ?><li><a class="sidebar-header <?= $name == 'vehicle-documents' ? 'active' : '' ?>" href="<?= base_url(admin('leads/vehicle-documents')) ?>"><i data-feather="users"></i><span> Vehicle Documents</span></a></li><?php endif ?>
+                            <?php if(verify_access('leads', 'view') || verify_access('leads', 'vehicle documents') || verify_access('user documents', 'view')): ?>
+                            <li class="<?= in_array($name, ['leads', 'vehicle-documents', 'user-documents']) ? 'active' : '' ?>">
+                                <a class="sidebar-header" href="javascript:;"><i data-feather="users"></i><span>Leads</span><i class="fa fa-angle-right pull-right"></i></a>
+                                <ul class="sidebar-submenu menu-open" style="display: <?= in_array($name, ['leads', 'vehicle-documents', 'user-documents']) ? 'block' : 'none' ?>;">
+                                    <!-- <li class="active"><a href="general-widget.html">General</a></li> -->
+                                    <?php if(verify_access('leads', 'view')): ?><li class="<?= $name == 'leads' ? 'active' : '' ?>"><a href="<?= base_url(admin('leads')) ?>"><span> Leads</span></a></li><?php endif ?>
+                                    <?php if(verify_access('leads', 'vehicle documents')): ?><li class="<?= $name == 'vehicle-documents' ? 'active' : '' ?>"><a href="<?= base_url(admin('leads/vehicle-documents')) ?>"><span> Vehicle Documents</span></a></li><?php endif ?>
+                                    <?php if(verify_access('leads', 'user documents')): ?><li class="<?= $name == 'user-documents' ? 'active' : '' ?>"><a href="<?= base_url(admin('leads/documents')) ?>"><span> User documents</span></a></li><?php endif ?>
+                                </ul>
+                            </li>
+                            <?php endif ?>
                             <?php if(verify_access('followups', 'view')): ?><li><a class="sidebar-header <?= $name == 'followups' ? 'active' : '' ?>" href="<?= base_url(admin('followup')) ?>"><i data-feather="users"></i><span> Followups</span></a></li><?php endif ?>
                             <?php if(verify_access('purchased_plans', 'view')): ?><li><a class="sidebar-header <?= $name == 'purchased_plans' ? 'active' : '' ?>" href="<?= base_url(admin('purchased_plans')) ?>"><i data-feather="file-text"></i><span> Purchased plans</span></a></li><?php endif ?>
                             <?php if(verify_access('claims', 'view')): ?><li><a class="sidebar-header <?= $name == 'claims' ? 'active' : '' ?>" href="<?= base_url(admin('claims')) ?>"><i data-feather="file-text"></i><span> Claims</span></a></li><?php endif ?>

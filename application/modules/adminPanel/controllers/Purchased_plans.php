@@ -44,10 +44,10 @@ class Purchased_plans extends Admin_controller  {
             $sub_array[] = date('d-m-Y', strtotime($row->expiry_date));
             $sub_array[] = $row->client;
             if ($this->user->role == 'Admin'):
-                $sub_array[] = $row->partner ? $row->partner : 'NA';
+                $sub_array[] = $row->partner ? $row->partner : 'Direct Customer';
                 $comm = $row->comm_type == 'NET' ? $row->premium : $row->od_premium;
-                $sub_array[] = $row->partner ? $comm * $row->commission / 100 : 'NA';
-                $sub_array[] = $row->partner ? $row->commission_status : 'NA';
+                $sub_array[] = $row->partner ? $comm * $row->commission / 100 : 'Direct Customer';
+                $sub_array[] = $row->partner ? $row->commission_status : 'Direct Customer';
             endif;
             
             $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

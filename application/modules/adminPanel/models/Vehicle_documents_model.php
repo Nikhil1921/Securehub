@@ -6,9 +6,9 @@
 class Vehicle_documents_model extends MY_Model
 {
 	public $table = "vehicle_documents v";
-	public $select_column = ['v.id', 'v.document_name', 'v.purchase_date', 'v.expiry_date', 'v.image'];
-	public $search_column = ['v.id', 'v.document_name', 'v.purchase_date', 'v.expiry_date', 'v.image'];
-    public $order_column = [null, 'v.document_name', 'v.purchase_date', 'v.expiry_date', null];
+	public $select_column = ['v.id', 'v.document_name', 'v.expiry_date', 'v.image'];
+	public $search_column = ['v.id', 'v.document_name', 'v.expiry_date', 'v.image'];
+    public $order_column = [null, 'v.document_name', 'v.expiry_date', null];
 	public $order = ['v.id' => 'DESC'];
 
 	public function make_query()

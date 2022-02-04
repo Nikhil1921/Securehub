@@ -48,6 +48,7 @@ var table = $('.datatable').DataTable({
         type: "GET",
         data: function(data) {
             data.ins_type = $("input[name='ins_type']").val();
+            data.doc_type = $("input[name='doc_type']").val();
         },
         complete: function(response) {},
     },
@@ -59,6 +60,11 @@ var table = $('.datatable').DataTable({
 
 $('.ins_type').click(function() {
     $("input[name='ins_type']").val($(this).data('value'));
+    table.ajax.reload();
+});
+
+$('.doc_type').click(function() {
+    $("input[name='doc_type']").val($(this).data('value'));
     table.ajax.reload();
 });
 

@@ -204,7 +204,6 @@ class Leads extends Admin_controller  {
                 $sub_array = [];
                 $sub_array[] = $sr;
                 $sub_array[] = $row->document_name;
-                $sub_array[] = date('d-m-Y', strtotime($row->purchase_date));
                 $sub_array[] = date('d-m-Y', strtotime($row->expiry_date));
                 
                 $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -242,7 +241,7 @@ class Leads extends Admin_controller  {
         }
     }
 
-    public function documents($id)
+    public function documents($id=null)
     {
         if ($this->input->is_ajax_request()) {
             $this->load->model('User_documents_model', 'data');
@@ -255,7 +254,6 @@ class Leads extends Admin_controller  {
                 $sub_array = [];
                 $sub_array[] = $sr;
                 $sub_array[] = $row->document_name;
-                $sub_array[] = date('d-m-Y', strtotime($row->purchase_date));
                 $sub_array[] = date('d-m-Y', strtotime($row->expiry_date));
                 $sub_array[] = $row->notification;
                 
@@ -284,7 +282,7 @@ class Leads extends Admin_controller  {
             check_access($this->name, 'user documents');
 
             $data['title'] = 'user documents';
-            $data['name'] = $this->name;
+            $data['name'] = 'user-documents';
             $data['operation'] = "list";
             $data['url'] = $this->redirect;
             $data['id'] = $id;

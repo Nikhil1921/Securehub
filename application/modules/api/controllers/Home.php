@@ -551,7 +551,7 @@ class Home extends MY_Controller  {
 	{
 		post();
 		$api = authenticate($this->table);
-		verifyRequiredParams(["veh_id", 'document_name', 'purchase_date', 'expiry_date']);
+		verifyRequiredParams(["veh_id", 'document_name', 'expiry_date']);
 
 		$image = $this->uploadImage("image", $this->document, 'jpg|jpeg|png|pdf');
 
@@ -562,7 +562,6 @@ class Home extends MY_Controller  {
 			$post = [ 
 				'veh_id' => $this->input->post('veh_id'),
 				'document_name' => $this->input->post('document_name'),
-				'purchase_date' => date('Y-m-d', strtotime($this->input->post('purchase_date'))),
 				'expiry_date' => date('Y-m-d', strtotime($this->input->post('expiry_date'))),
 				'image'	=> $image["message"]
 			];
@@ -584,7 +583,7 @@ class Home extends MY_Controller  {
 	{
 		post();
 		$api = authenticate($this->table);
-		verifyRequiredParams(['document_name', 'purchase_date', 'expiry_date', 'notification']);
+		verifyRequiredParams(['document_name', 'doc_type', 'expiry_date', 'notification']);
 
 		$image = $this->uploadImage("image", $this->document, 'jpg|jpeg|png|pdf');
 
@@ -596,7 +595,7 @@ class Home extends MY_Controller  {
 				'user_id' 		=> $api,
 				'document_name' => $this->input->post('document_name'),
 				'notification' 	=> $this->input->post('notification'),
-				'purchase_date' => date('Y-m-d', strtotime($this->input->post('purchase_date'))),
+				'doc_type' 		=> $this->input->post('doc_type'),
 				'expiry_date' 	=> date('Y-m-d', strtotime($this->input->post('expiry_date'))),
 				'image'			=> $image["message"]
 			];
@@ -622,7 +621,7 @@ class Home extends MY_Controller  {
 
 		$post = [ 'is_deleted' => 0, 'veh_id' => $this->input->get('veh_id') ];
 
-		if ($row = $this->main->getall("vehicle_documents", 'id, veh_id, document_name, CONCAT("'.base_url($this->document).'", image) image, purchase_date, expiry_date', $post)) {
+		if ($row = $this->main->getall("vehicle_documents", 'id, veh_id, document_name, CONCAT("'.base_url($this->document).'", image) image, expiry_date', $post)) {
 			$response['row'] = $row;
 			$response['error'] = false;
 			$response['message'] = "Vehicle document list success.";
@@ -641,7 +640,7 @@ class Home extends MY_Controller  {
 
 		$post = [ 'is_deleted' => 0, 'user_id' => $api ];
 
-		if ($row = $this->main->getall("user_documents", 'id, document_name, CONCAT("'.base_url($this->document).'", image) image, purchase_date, expiry_date, notification', $post)) {
+		if ($row = $this->main->getall("user_documents", 'id, document_name, CONCAT("'.base_url($this->document).'", image) image, doc_type, expiry_date, notification', $post)) {
 			$response['row'] = $row;
 			$response['error'] = false;
 			$response['message'] = "Document list success.";

@@ -22,7 +22,6 @@
             <thead>
                 <th class="target">Sr.</th>
                 <th>Document name</th>
-                <th>Purchase date</th>
                 <th>Expiry date</th>
                 <th class="target">Action</th>
             </thead>
