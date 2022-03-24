@@ -100,3 +100,26 @@ if ( ! function_exists('verify_access'))
             return $CI->main->check('permissions', ['nav' => $name, 'role' => $CI->user->role, 'operation' => $operation], 'operation');
     }
 }
+
+if ( ! function_exists('send_sms'))
+{
+    function send_sms($contact, $sms, $template)
+    {
+        if($_SERVER['HTTP_HOST'] != 'localhost'){
+            $from = 'SCURHB';
+            $key = '4623BFB34ECE4E';
+    
+            $url = "key=".$key."&campaign=13149&routeid=7&type=text&contacts=".$contact."&senderid=".$from."&msg=".urlencode($sms)."&template_id=".$template;
+    
+            $base_URL = 'http://densetek.tk/app/smsapi/index?'.$url;
+    
+            $curl_handle = curl_init();
+            curl_setopt($curl_handle,CURLOPT_URL,$base_URL);
+            curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
+            curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
+            $result = curl_exec($curl_handle);
+            curl_close($curl_handle);
+            return $result;
+        }
+    }
+}

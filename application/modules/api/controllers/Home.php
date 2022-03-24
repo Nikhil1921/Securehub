@@ -102,7 +102,86 @@ class Home extends MY_Controller  {
 		echoRespnse(200, $response);
 	}
 	
-	public function login()
+	public function send_otp()
+	{
+		post();
+		verifyRequiredParams(["mobile"]);
+		$post['mobile'] = $this->input->post('mobile');
+		
+		$this->main->delete('otp_check', $post);
+		
+		$post = [
+			'mobile' => $post['mobile'],
+			'otp' => rand(1000, 9999),
+			'valid_till' => date('Y-m-d H:i:s', strtotime('+15 Minutes')),
+		];
+
+		if ($this->main->add($post, 'otp_check')) {
+			// sms sending start
+			$con = $this->config->item('sms')['OTP'];
+			$sms = str_replace('{#var#}', $post['otp'], $con['sms']);
+			send_sms($post['mobile'], $sms, $con['templete']);
+			// sms sending end
+			$response['error'] = false;
+			$response['message'] = "OTP send success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "OTP send not success.";
+		}
+
+		echoRespnse(200, $response);
+	}
+
+	public function verify_otp()
+	{
+		post();
+		verifyRequiredParams(["mobile", "otp"]);
+		
+		$post = [
+    			'mobile'   	 	=> $this->input->post('mobile'),
+    			'otp'   	 	=> $this->input->post('otp'),
+				'valid_till >=' => date('Y-m-d H:i:s'),
+    		];
+
+		if ($this->main->get('otp_check', 'mobile', $post))
+		{
+			$post = [
+    			'mobile'   	 => $this->input->post('mobile'),
+    			'branch_id'  => 0,
+    			'role'   	 => $this->role,
+				'otp'   	 => 999999,
+				'update_at'  => date('Y-m-d H:i:s', strtotime('+5 minutes')),
+    		];
+
+			$user = $this->main->get($this->table, 'id', ['role' => $this->role, 'mobile' => $post['mobile'], 'is_deleted' => 0]);
+
+			if ($user)
+				$id = $this->main->update(['id' => $user['id']], $post, $this->table);
+			else{
+				$post['created_at'] = date('Y-m-d H:i:s', strtotime('+5 minutes'));
+				$id = $this->main->add($post, $this->table);
+			}
+
+			if ($id) {
+				$this->main->delete('otp_check', ['mobile' => $post['mobile']]);
+				$response['row'] = (string) ($user ? $user['id'] : $id);
+				$response['error'] = false;
+				$response['message'] = "Login success.";
+			} else {
+				$response['error'] = true;
+				$response['message'] = "Login not success.";
+			}
+		}
+		else
+		{
+			$response['error'] = true;
+			$response['message'] = "Invalid otp or OTP expired.";
+		}
+
+		echoRespnse(200, $response);
+	}
+
+	/* public function login()
 	{
 		post();
 		verifyRequiredParams(["mobile", "password"]);
@@ -174,18 +253,35 @@ class Home extends MY_Controller  {
 		}
 
 		echoRespnse(200, $response);
-	}
+	} */
 	
+	public function profile()
+	{
+		get();
+		$api = authenticate($this->table);
+		
+		if ($user = $this->main->get($this->table, 'id, name, mobile, email', ['id' => $api])) {
+			$response['row'] = $user;
+			$response['error'] = false;
+			$response['message'] = "Profile success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Profile not success.";
+		}
+
+		echoRespnse(200, $response);
+	}
+
 	public function update_profile()
 	{
 		post();
 		$api = authenticate($this->table);
-		verifyRequiredParams(["name", "mobile", "email", "password"]);
+		verifyRequiredParams(["name", "mobile", "email"]);
 	
-		if ($this->main->get($this->table, 'id', ['mobile' => $this->input->post('mobile'), 'is_deleted' => 0, 'is_varified' => 1, 'id != ' => $api, 'role' => $this->role])) {
+		if ($this->main->get($this->table, 'id', ['mobile' => $this->input->post('mobile'), 'is_deleted' => 0, 'id != ' => $api, 'role' => $this->role])) {
 			$response['error'] = true;
 			$response['message'] = "Mobile already in use.";
-		} elseif ($this->main->get($this->table, 'id', ['email' => $this->input->post('email'), 'is_deleted' => 0, 'is_varified' => 1, 'id != ' => $api, 'role' => $this->role])) {
+		} elseif ($this->main->get($this->table, 'id', ['email' => $this->input->post('email'), 'is_deleted' => 0, 'id != ' => $api, 'role' => $this->role])) {
 			$response['error'] = true;
 			$response['message'] = "Email already in use.";
 		} else {
@@ -193,7 +289,6 @@ class Home extends MY_Controller  {
 				'mobile'   		=> $this->input->post('mobile'),
 				'name'   	    => $this->input->post('name'),
 				'email'   	    => $this->input->post('email'),
-				'password'   	=> my_crypt($this->input->post('password')),
 				'update_at' 	=> date('Y-m-d H:i:s')
 			];
 
@@ -209,7 +304,7 @@ class Home extends MY_Controller  {
 		echoRespnse(200, $response);
 	}
 
-	public function forgot_password()
+	/* public function forgot_password()
 	{
 		post();
 		verifyRequiredParams(["mobile"]);
@@ -298,17 +393,19 @@ class Home extends MY_Controller  {
 		}
 		
 		echoRespnse(200, $response);
-	}
+	} */
 	
 	public function become_partners()
 	{
 		post();
-		verifyRequiredParams(["name", "mobile", "email"]);
+		verifyRequiredParams(["name", "mobile", "email", "location", "p_message"]);
 
 		$post = [
-    			'name'   => $this->input->post('name'),
-    			'mobile' => $this->input->post('mobile'),
-    			'email'  => $this->input->post('email')
+    			'name'      => $this->input->post('name'),
+    			'mobile'    => $this->input->post('mobile'),
+    			'email'     => $this->input->post('email'),
+    			'location'  => $this->input->post('location'),
+    			'p_message' => $this->input->post('p_message')
     		];
 
 		if ($this->main->add($post, "become_partners") !== false) {
@@ -654,7 +751,7 @@ class Home extends MY_Controller  {
 
 	public function error_404()
 	{
-		$this->load->view('error_404');
+		return $this->load->view('error_404');
 	}
 
 	protected function uploadImage($upload, $path, $allowed)

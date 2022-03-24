@@ -54,6 +54,65 @@ class Home extends CI_Controller {
 
 		return $this->template->load('template', "motor/$page", $data);
 	}
+
+	public function motor_post($page)
+	{
+		$data['name'] = 'motor_insurance';
+		
+		switch ($page) {
+			case 'car':
+				$response = [
+					'error' => false,
+					'message' => 'Request saved successfully.'
+				];
+				break;
+			case 'bike':
+				$response = [
+					'error' => false,
+					'message' => 'Request saved successfully.'
+				];
+				break;
+			case 'taxi':
+				$response = [
+					'error' => false,
+					'message' => 'Request saved successfully.'
+				];
+				break;
+			case 'truck':
+				$response = [
+					'error' => false,
+					'message' => 'Request saved successfully.'
+				];
+				break;
+			case 'misc':
+				$response = [
+					'error' => false,
+					'message' => 'Request saved successfully.'
+				];
+				break;
+			case 'staff-buses':
+				$response = [
+					'error' => false,
+					'message' => 'Request saved successfully.'
+				];
+				break;
+			case 'school-buses':
+				$response = [
+					'error' => false,
+					'message' => 'Request saved successfully.'
+				];
+				break;
+			
+			default:
+				$response = [
+					'error' => true,
+					'message' => 'Page not found'
+				];
+				break;
+		}
+
+		die(json_encode($response));
+	}
 	
 	public function error_404()
 	{

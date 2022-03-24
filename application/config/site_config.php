@@ -16,3 +16,10 @@ $config['twitter'] = 'https://www.twitter.com';
 $config['instagram'] = 'https://www.instagram.com';
 $config['linkedin'] = 'https://www.linkedin.com';
 $config['youtube'] = 'https://www.youtube.com';
+
+$config['sms'] = [
+    'OTP' => [
+        'sms' => 'Welcome to SecureHub. Your account verification OTP is {#var#}. Valid for next 15 minutes.',
+        'templete' => '1507162321973095318'
+    ]
+];

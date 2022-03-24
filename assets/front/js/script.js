@@ -48,74 +48,56 @@ var Tawk_API = Tawk_API || {},
 /* End of Tawk.to Script */
 
 /*  fade_in_button_start  */
-$(document).ready(function() {
-    $("#yes_no_btn_1").click(function() {
-        $("#div1").fadeIn();
+
+const toggleClass = (id, toggle) => {
+    if (toggle == 'show')
+        $(`#${id}`).fadeIn();
+    else
+        $(`#${id}`).fadeOut();
+}
+
+const newCar = (anchor) => {
+    if ($(anchor).html() !== 'I HAVE NEW CAR'){
+        $(`#reg_no`).fadeIn();
+        $(anchor).html("I HAVE NEW CAR");
+    }
+    else{
+        $(anchor).html("I REMEMBER MY VEHICLE NO");
+        $(`#reg_no`).fadeOut();
+    }
+    $("#back-to-top").trigger('click');
+};
+
+const submitForm = (form) => {
+    $.ajax({
+        url: $(form).attr("action"),
+        type: "POST",
+        data: $(form).serialize(),
+        dataType: "json",
+        cache: false,
+        async: false,
+        beforeSend: function () {
+            $(form).find(":submit").hide();
+        },
+        success: function (result) {
+            toast(result.message);
+            $(form).find(":submit").show();
+            if (result.error === false) {
+              $("#back-to-top").trigger("click");
+              form.reset();
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            toast("Something is not going good.");
+        },
     });
-});
+};
+
+const toast = (msg) => {
+    $(".toast").stop().html(msg).fadeIn(400).delay(3000).fadeOut(500);
+};
 
 /*  fade_in_button_end  */
-
-/*  fade_in_button_start  */
-$(document).ready(function() {
-    $("#yes_no_btn_2").click(function() {
-        $("#div2").fadeIn();
-    });
-});
-
-/* fade_in_button_end */
-
-/* fade_in_button_start */
-$(document).ready(function() {
-    $("#yes_no_btn_3").click(function() {
-        $("#div3").fadeIn();
-    });
-});
-
-/* fade_in_button_end */
-
-(function() {
-    "use strict";
-    var jQueryPlugin = (window.jQueryPlugin = function(ident, func) {
-        return function(arg) {
-            if (this.length > 1) {
-                this.each(function() {
-                    var $this = $(this);
-                    if (!$this.data(ident)) {
-                        $this.data(ident, func($this, arg));
-                    }
-                });
-                return this;
-            } else if (this.length === 1) {
-                if (!this.data(ident)) {
-                    this.data(ident, func(this, arg));
-                }
-                return this.data(ident);
-            }
-        };
-    });
-})();
-(function() {
-    "use strict";
-
-    function Guantity($root) {
-        const element = $root;
-        const quantity = $root.first("data-quantity");
-        const quantity_target = $root.find("[data-quantity-target]");
-        const quantity_minus = $root.find("[data-quantity-minus]");
-        const quantity_plus = $root.find("[data-quantity-plus]");
-        var quantity_ = quantity_target.val();
-        $(quantity_minus).click(function() {
-            quantity_target.val(--quantity_);
-        });
-        $(quantity_plus).click(function() {
-            quantity_target.val(++quantity_);
-        });
-    }
-    $.fn.Guantity = jQueryPlugin("Guantity", Guantity);
-    $("[data-quantity]").Guantity();
-})();
-
 
 /* GALLERY  */
 $(window).scroll(function() {
@@ -210,8 +192,6 @@ $exitButton.click(function() {
 /* GALLERY  */
 
 /* GMC  */
-(function() {
-"use strict";
 var jQueryPlugin = (window.jQueryPlugin = function(ident, func) {
     return function(arg) {
         if (this.length > 1) {
@@ -230,64 +210,59 @@ var jQueryPlugin = (window.jQueryPlugin = function(ident, func) {
         }
     };
 });
-})();
-(function() {
-    "use strict";
 
-    function Guantity($root) {
-        const element = $root;
-        const quantity = $root.first("data-quantity");
-        const quantity_target = $root.find("[data-quantity-target]");
-        const quantity_minus = $root.find("[data-quantity-minus]");
-        const quantity_plus = $root.find("[data-quantity-plus]");
-        var quantity_ = quantity_target.val();
-        $(quantity_minus).click(function() {
-            quantity_target.val(--quantity_);
-        });
-        $(quantity_plus).click(function() {
-            quantity_target.val(++quantity_);
-        });
-    }
-    $.fn.Guantity = jQueryPlugin("Guantity", Guantity);
-    $("[data-quantity]").Guantity();
-})();
+function Guantity($root) {
+    const element = $root;
+    const quantity = $root.first("data-quantity");
+    const quantity_target = $root.find("[data-quantity-target]");
+    const quantity_minus = $root.find("[data-quantity-minus]");
+    const quantity_plus = $root.find("[data-quantity-plus]");
+    var quantity_ = quantity_target.val();
+    $(quantity_minus).click(function() {
+        quantity_target.val(--quantity_);
+    });
+    $(quantity_plus).click(function() {
+        quantity_target.val(++quantity_);
+    });
+}
+$.fn.Guantity = jQueryPlugin("Guantity", Guantity);
+$("[data-quantity]").Guantity();
 
 
 /* MEDICLAIM  */
 /* Quentity_Button  */
-jQuery(document).ready(function() {
-    // This button will increment the value
-    $('.qtyplus').click(function(e) {
-        // Stop acting like a button
-        e.preventDefault();
-        // Get the field name
-        fieldName = $(this).attr('field');
-        // Get its current value
-        var currentVal = parseInt($('input[name=' + fieldName + ']').val());
-        // If is not undefined
-        if (!isNaN(currentVal)) {
-            // Increment
-            $('input[name=' + fieldName + ']').val(currentVal + 1);
-        } else {
-            // Otherwise put a 0 there
-            $('input[name=' + fieldName + ']').val(0);
-        }
-    });
-    // This button will decrement the value till 0
-    $(".qtyminus").click(function(e) {
-        // Stop acting like a button
-        e.preventDefault();
-        // Get the field name
-        fieldName = $(this).attr('field');
-        // Get its current value
-        var currentVal = parseInt($('input[name=' + fieldName + ']').val());
-        // If it isn't undefined or its greater than 0
-        if (!isNaN(currentVal) && currentVal > 0) {
-            // Decrement one
-            $('input[name=' + fieldName + ']').val(currentVal - 1);
-        } else {
-            // Otherwise put a 0 there
-            $('input[name=' + fieldName + ']').val(0);
-        }
-    });
+
+// This button will increment the value
+$('.qtyplus').click(function(e) {
+    // Stop acting like a button
+    e.preventDefault();
+    // Get the field name
+    fieldName = $(this).attr('field');
+    // Get its current value
+    var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+    // If is not undefined
+    if (!isNaN(currentVal)) {
+        // Increment
+        $('input[name=' + fieldName + ']').val(currentVal + 1);
+    } else {
+        // Otherwise put a 0 there
+        $('input[name=' + fieldName + ']').val(0);
+    }
+});
+// This button will decrement the value till 0
+$(".qtyminus").click(function(e) {
+    // Stop acting like a button
+    e.preventDefault();
+    // Get the field name
+    fieldName = $(this).attr('field');
+    // Get its current value
+    var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+    // If it isn't undefined or its greater than 0
+    if (!isNaN(currentVal) && currentVal > 0) {
+        // Decrement one
+        $('input[name=' + fieldName + ']').val(currentVal - 1);
+    } else {
+        // Otherwise put a 0 there
+        $('input[name=' + fieldName + ']').val(0);
+    }
 });

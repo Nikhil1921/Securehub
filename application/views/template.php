@@ -10,7 +10,7 @@
     <!-- font Awesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <!-- Stylesheet CSS -->
-    <?= link_tag('assets/front/css/style.css', 'stylesheet', 'text/css') ?>
+    <?= link_tag('assets/front/css/style.css?v=1.0.1', 'stylesheet', 'text/css') ?>
     <!-- Responsive CSS -->
     <?= link_tag('assets/front/css/responsive.css', 'stylesheet', 'text/css') ?>
     <!-- favicon -->
@@ -266,13 +266,14 @@
         </div>
       </div>
     </section>
+      <div class='toast' style='display:none'></div>
     <!-- Back to Top -->
     <a href="javascript:;" id="back-to-top" title="Back to top" class="show"><i class="fas fa-arrow-up"></i></a>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="<?= base_url('assets/front/js/jquery.js') ?>"></script>
+    <script src="<?= base_url('assets/front/js/jquery.min.js') ?>"></script>
     <script src="<?= base_url('assets/front/js/popper.min.js') ?>"></script>
     <script src="<?= base_url('assets/front/js/bootstrap.min.js') ?>"></script>
-    <script src="<?= base_url('assets/front/js/script.js') ?>"></script>
+    <script src="<?= base_url('assets/front/js/script.js?v=1.0.1') ?>"></script>
   </body>
 </html>
