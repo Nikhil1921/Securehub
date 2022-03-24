@@ -5,6 +5,13 @@ $route['default_controller'] = 'home';
 $route['404_override'] = 'home/error_404';
 $route['translate_uri_dashes'] = TRUE;
 
+$rs = [
+    'become-partner' => 'home/become_partner',
+    'motor/(:any)' => 'home/motor/$1',
+];
+
+foreach ($rs as $r => $f) $route[$r] = $f;
+
 $route["$admin/forgot-password"] = "$admin/login/forgot_password";
 $route["$admin/check-otp"] = "$admin/login/check_otp";
 $route["$admin/change-password"] = "$admin/login/change_password";
