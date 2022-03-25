@@ -147,7 +147,6 @@ class Home extends MY_Controller  {
 		{
 			$post = [
     			'mobile'   	 => $this->input->post('mobile'),
-    			'branch_id'  => 0,
     			'role'   	 => $this->role,
 				'otp'   	 => 999999,
 				'update_at'  => date('Y-m-d H:i:s', strtotime('+5 minutes')),
@@ -444,7 +443,7 @@ class Home extends MY_Controller  {
 		$api = authenticate($this->table);
 		verifyRequiredParams(["name", "mobile", "email", "address", 'about_us', 'payment_id', 'paid_amount']);
 
-		$logo = $this->uploadImage("logo", $this->business, 'jpg|jpeg|png');
+		$logo = $this->uploadImages("logo", $this->business, 'jpg|jpeg|png');
 
 		if ($logo['error'] == TRUE) {
 			$response['error'] = true;
@@ -543,7 +542,7 @@ class Home extends MY_Controller  {
 
 		$data = json_decode($data[$img_type]);
 		$unlink = $data[$img_no]->image;
-		$image = $this->uploadImage("image", $this->business, 'jpg|jpeg|png');
+		$image = $this->uploadImages("image", $this->business, 'jpg|jpeg|png');
 
 		if ($image['error'] == TRUE) {
 			$response['error'] = true;
@@ -650,7 +649,7 @@ class Home extends MY_Controller  {
 		$api = authenticate($this->table);
 		verifyRequiredParams(["veh_id", 'document_name', 'expiry_date']);
 
-		$image = $this->uploadImage("image", $this->document, 'jpg|jpeg|png|pdf');
+		$image = $this->uploadImages("image", $this->document, 'jpg|jpeg|png|pdf');
 
 		if ($image['error'] == TRUE) {
 			$response['error'] = true;
@@ -682,7 +681,7 @@ class Home extends MY_Controller  {
 		$api = authenticate($this->table);
 		verifyRequiredParams(['document_name', 'doc_type', 'expiry_date', 'notification']);
 
-		$image = $this->uploadImage("image", $this->document, 'jpg|jpeg|png|pdf');
+		$image = $this->uploadImages("image", $this->document, 'jpg|jpeg|png|pdf');
 
 		if ($image['error'] == TRUE) {
 			$response['error'] = true;
@@ -754,7 +753,7 @@ class Home extends MY_Controller  {
 		return $this->load->view('error_404');
 	}
 
-	protected function uploadImage($upload, $path, $allowed)
+	protected function uploadImages($upload, $path, $allowed)
     {
         $this->load->library('upload');
         $config = [

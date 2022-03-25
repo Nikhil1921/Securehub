@@ -50,31 +50,131 @@ var Tawk_API = Tawk_API || {},
 /*  fade_in_button_start  */
 
 const toggleClass = (id, toggle) => {
-    if (toggle == 'show')
+    if (toggle == 'show'){
         $(`#${id}`).fadeIn();
-    else
+        $(`input[name=exp_date]`).removeClass("ignore");
+        $(`input[name=ext_policy]`).removeClass("ignore");
+    }else{
         $(`#${id}`).fadeOut();
+        $(`input[name=exp_date]`).addClass("ignore");
+        $(`input[name=ext_policy]`).addClass("ignore");
+    }
 }
 
-const newCar = (anchor) => {
-    if ($(anchor).html() !== 'I HAVE NEW CAR'){
+const newCar = (anchor, show) => {
+    if ($(anchor).html().indexOf('I HAVE NEW') === -1)
+    {
         $(`#reg_no`).fadeIn();
-        $(anchor).html("I HAVE NEW CAR");
+        $(anchor).html(`I HAVE NEW ${show}`);
+        $(`input[name=reg_no]`).removeClass("ignore");
     }
-    else{
+    else
+    {
         $(anchor).html("I REMEMBER MY VEHICLE NO");
+        $(`input[name=reg_no]`).addClass("ignore");
         $(`#reg_no`).fadeOut();
     }
     $("#back-to-top").trigger('click');
 };
 
+if ($(".validate-form").length > 0){
+    $(".validate-form").validate({
+        ignore: '.ignore',
+        rules: {
+            reg_no: {
+                required: true,
+                minlength: 10,
+                maxlength: 10
+            },
+            veh_make: {
+                required: true,
+                minlength: 3,
+                maxlength: 100
+            },
+            veh_model: {
+                required: true,
+                minlength: 3,
+                maxlength: 100
+            },
+            mobile: {
+                required: true,
+                minlength: 10,
+                maxlength: 10,
+                digits: true
+            },
+            email: {
+                required: true,
+                minlength: 10,
+                maxlength: 100,
+                email: true
+            },
+            name: {
+                required: true,
+                minlength: 5,
+                maxlength: 100
+            },
+            message: {
+                maxlength: 255
+            },
+            exp_date: {
+                required: true,
+                date: true
+            },
+            dob: {
+                required: true,
+                date: true
+            },
+            location: {
+                required: true,
+                minlength: 5,
+                maxlength: 50
+            },
+            occupation: {
+                required: true,
+                minlength: 5,
+                maxlength: 50
+            },
+            income: {
+                required: true,
+                minlength: 5,
+                digits: true,
+                maxlength: 15
+            },
+            education: {
+                required: true,
+                minlength: 3,
+                maxlength: 50
+            }
+        },
+        messages: {
+            uplod_rc: {
+                accept: "Only jpeg, jpg, png & pdf allowed."
+            },
+            ext_policy: {
+                accept: "Only jpeg, jpg, png & pdf allowed."
+            }
+        },
+        submitHandler: function (form) {
+            submitForm(form);
+        },
+    });
+
+    /* $.validator.addMethod("reg_no", function (value) {
+        return (
+            /^[A-Za-z]{2}[0-9]{2}[A-Za-z]{2}[0-9]{4}$/.test(value)
+        );
+    }, "Given input is invalid."); */
+}
+
 const submitForm = (form) => {
     $.ajax({
         url: $(form).attr("action"),
         type: "POST",
-        data: $(form).serialize(),
+        data: new FormData(form),
         dataType: "json",
         cache: false,
+        contentType: false,
+        processData: false,
         async: false,
         beforeSend: function () {
             $(form).find(":submit").hide();
@@ -88,6 +188,7 @@ const submitForm = (form) => {
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
+            $(form).find(":submit").show();
             toast("Something is not going good.");
         },
     });

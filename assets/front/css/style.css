@@ -1289,7 +1289,7 @@ input.qtyminus {
     font-family: 'Poppins', sans-serif;
 }
 
-#uplod_rc {
+.uplod_rc {
     border: none !important;
     outline: none !important;
     /* padding: 10px; */
@@ -7085,7 +7085,7 @@ textarea.form-control {
     left: 50%;
     margin-left: -10em;
     bottom: 15px;
-    background-color: #000000;
+    background-color: #3a3c40;
     color: #F0F0F0;
     font-family: Calibri;
     font-size: 20px;
@@ -7095,4 +7095,8 @@ textarea.form-control {
     -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
     -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
     box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+}
+
+label.error {
+    color: #bf1212!important;
 }

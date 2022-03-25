@@ -6,185 +6,7 @@
         <div>
           <h2 class="head_clr"><span class="head_name_color">GCV (Goods Carrying Vehicle)</span> Insurance</h2>
         </div>
-        <form method="post" action="" id="inquiry_form" class="inquiryForm" style="border: none;">
-          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active clr_pill" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">T.P Only</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Comprehensive Plan</a>
-            </li>
-          </ul>
-          <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="ig">
-                    <label>Vehicle Registration Number</label>
-                    <input tabindex="1" value="" data-error="Please enter your name Mobile Number" placeholder="Registration Number" type="text" name="mobile" required="">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="ig">
-                    <label>Vehicle Make & Model</label>
-                    <input type="text" name="name" required="" data-error="Please enter your name" placeholder="Make & Model">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="ig">
-                    <label>Mobile Number</label>
-                    <input tabindex="1" value="" data-error="Please enter your name Mobile Number" placeholder="10 Digit Mobile Number" type="text" name="mobile" required="">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="ig">
-                    <label>Email Id</label>
-                    <input type="email" name="email" data-error="Please enter your Email Id" required="" placeholder="Email Id">
-                  </div>
-                </div>
-                <div class="col-12">
-                  <label for="yes_no_radio">Do you have existing policy?</label>
-                  <div class="toggle_btn">
-                    <button id="yes_no_btn_1">Yes</button>
-                    <button id="yes_no_btn_">No</button>
-                  </div>
-                  <div id="div1" style="display: none;">
-                    <div class="top_yes_no pt-2">
-                      <label for="yes_no_radio">Policy Expiry Date</label>
-                      <input type="date" name="date" id="date" placeholder="Date">
-                    </div>
-                    <div class="pt-3">
-                      <div id="wrapper">
-                        <label for="yes_no_radio">Do you have any claim?</label>
-                        <p class="yes_no_p">
-                          <input id="ratio_id" type="radio" name="yes_no" checked>Yes
-                        </p>
-                        <p class="yes_no_p">
-                          <input id="ratio_id" type="radio" name="yes_no">No
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="ig">
-                    <label>Name</label>
-                    <input type="text" name="name" data-error="Please enter your name" placeholder="Name">
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="ig">
-                    <label>Your Message</label>
-                    <textarea name="message" id="text_ins" cols="70" rows="6" required="" placeholder="Your Message"></textarea>
-                  </div>
-                  <div class="mt-2">
-                    <label class="mr-4">Upload Your Vehicle RC :</label>
-                    <input id="uplod_rc" type="file" name="file" style="border: none;padding: 0;outline: none;">
-                  </div>
-                  <div class="mt-2 mb-2">
-                    <label class="mr-4 ">Upload Your Existing Policy Copy :</label>
-                    <input id="uplod_rc" type="file" name="file" style="border: none;padding: 0;outline: none;">
-                  </div>
-                </div>
-                <div class="col-12 mt-4">
-                  <p class="privacy_p">By clicking on "SUBMIT", You Agree to our <a id="term_policy" href="privacy_policy.php">Privacy Policy</a> &amp; <a id="term_policy" href="terms_of_use.php">Terms of Use</a></p>
-                </div>
-                <div class="col-lg-12">
-                  <div class="ig">
-                    <button class="btn_car_submit" tabindex="3" type="submit" name="inquirySubmit"><a href="#">Submit</a></button>
-                  </div>
-                </div>
-                <div class="col-12 mt-2">
-                  <p class="btn_down_p"><a class="btn_a_down" href="i_have_a_new_gcv.php">I HAVE NEW GCV</a></p>
-                  <p class="btn_down_p">Need Help? Call Us at<a class="btn_a_down_last" href="tel:+91 9512137878"> +919512137878</a></p>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="ig">
-                    <label>Vehicle Registration Number</label>
-                    <input tabindex="1" value="" data-error="Please enter your name Mobile Number" placeholder="Registration Number" type="text" name="mobile" required="">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="ig">
-                    <label>Vehicle Make & Model</label>
-                    <input type="text" name="name" required="" data-error="Please enter your name" placeholder="Make & Model">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="ig">
-                    <label>Mobile Number</label>
-                    <input tabindex="1" value="" data-error="Please enter your name Mobile Number" placeholder="10 Digit Mobile Number" type="text" name="mobile" required="">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="ig">
-                    <label>Email Id</label>
-                    <input type="email" name="email" data-error="Please enter your Email Id" required="" placeholder="Email Id">
-                  </div>
-                </div>
-                <div class="col-12">
-                  <label for="yes_no_radio">Do you have existing policy?</label>
-                  <div class="toggle_btn">
-                    <button id="yes_no_btn_3">Yes</button>
-                    <button id="yes_no_btn_">No</button>
-                  </div>
-                  <div id="div3" style="display: none;">
-                    <div class="top_yes_no pt-2">
-                      <label for="yes_no_radio">Policy Expiry Date</label>
-                      <input type="date" name="date" id="date" placeholder="Date">
-                    </div>
-                    <div class="pt-3">
-                      <div id="wrapper">
-                        <label for="yes_no_radio">Do you have any claim?</label>
-                        <p class="yes_no_p">
-                          <input id="ratio_id" type="radio" name="yes_no" checked>Yes
-                        </p>
-                        <p class="yes_no_p">
-                          <input id="ratio_id" type="radio" name="yes_no">No
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="ig">
-                    <label>Name</label>
-                    <input type="text" name="name" data-error="Please enter your name" placeholder="Name">
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="ig">
-                    <label>Your Message</label>
-                    <textarea name="message" id="text_ins" cols="70" rows="6" required="" placeholder="Your Message"></textarea>
-                  </div>
-                  <div class="mt-2">
-                    <label class="mr-4">Upload Your Vehicle RC :</label>
-                    <input id="uplod_rc" type="file" name="file" style="border: none;padding: 0;outline: none;">
-                  </div>
-                  <div class="mt-2 mb-2">
-                    <label class="mr-4 ">Upload Your Existing Policy Copy :</label>
-                    <input id="uplod_rc" type="file" name="file" style="border: none;padding: 0;outline: none;">
-                  </div>
-                </div>
-                <div class="col-12 mt-4">
-                  <p class="privacy_p">By clicking on "SUBMIT", You Agree to our <a id="term_policy" href="privacy_policy.php">Privacy Policy</a> &amp; <a id="term_policy" href="terms_of_use.php">Terms of Use</a></p>
-                </div>
-                <div class="col-lg-12">
-                  <div class="ig">
-                    <button class="btn_car_submit" tabindex="3" type="submit" name="inquirySubmit"><a href="#">Submit</a></button>
-                  </div>
-                </div>
-                <div class="col-12 mt-2">
-                  <p class="btn_down_p"><a class="btn_a_down" href="i_have_a_new_gcv.php">I HAVE NEW GCV</a></p>
-                  <p class="btn_down_p">Need Help? Call Us at<a class="btn_a_down_last" href="tel:+91 9512137878">+919512137878</a></p>
-                </div>
-              </div>
-            </div>
-          </form>
+        <?php $this->load->view('motor/form', ['show' => 'GVC']); ?>
         </div>
       </div>
     </div>
@@ -356,7 +178,7 @@
       <div class="row not_covered_main">
         <div class="col-lg-6 not_covered_content">
           <div class="card crd_why_choose crd_not_covered" style="width: 100%;">
-            <img class="not_covered_img", 'src' => "assets/front/img/icon/drunk.png" alt="Card image c]ap">
+            <?= img(['class' => "not_covered_img", 'src' => "assets/front/img/icon/drunk.png"]) ?>
             <div class="card-body crd_bdy_ins">
               <h5 class="crd_h5_not_covered">Own Damages for Third-Party Policy holder</h5>
               <p class="crd_p_not_covered">In the case of a Third-Party Liability Only Policy, damages to own vehicle won’t be covered.</p>
@@ -365,7 +187,7 @@
         </div>
         <div class="col-lg-6 not_covered_content">
           <div class="card crd_why_choose crd_not_covered" style="width: 100%;">
-            <img class="not_covered_img", 'src' => "assets/front/img/icon/drunk.png" alt="Card image c]ap">
+            <?= img(['class' => "not_covered_img", 'src' => "assets/front/img/icon/drunk.png"]) ?>
             <div class="card-body crd_bdy_ins">
               <h5 class="crd_h5_not_covered">Drunk Riding or without a Licence</h5>
               <p class="crd_p_not_covered">If the owner-driver of the insured Goods Carrying Vehicle is drunk or driving without a valid license</p>
@@ -374,7 +196,7 @@
         </div>
         <div class="col-lg-6 not_covered_content">
           <div class="card crd_why_choose crd_not_covered" style="width: 100%;">
-            <img class="not_covered_img", 'src' => "assets/front/img/icon/drunk.png" alt="Card image c]ap">
+            <?= img(['class' => "not_covered_img", 'src' => "assets/front/img/icon/drunk.png"]) ?>
             <div class="card-body crd_bdy_ins">
               <h5 class="crd_h5_not_covered">Contributory Negligences</h5>
               <p class="crd_p_not_covered">Any damage caused due to a contributory negligence of the owner-driver (such as driving when there’s an existing flood)</p>
@@ -383,7 +205,7 @@
         </div>
         <div class="col-lg-6 not_covered_content">
           <div class="card crd_why_choose crd_not_covered" style="width: 100%;">
-            <img class="not_covered_img", 'src' => "assets/front/img/icon/drunk.png" alt="Card image c]ap">
+            <?= img(['class' => "not_covered_img", 'src' => "assets/front/img/icon/drunk.png"]) ?>
             <div class="card-body crd_bdy_ins">
               <h5 class="crd_h5_not_covered">Consequential Damages</h5>
               <p class="crd_p_not_covered">Any damage that is not a direct result of the accident/natural calamity etc.</p>

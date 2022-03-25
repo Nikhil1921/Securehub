@@ -6,7 +6,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="<?= base_url('assets/images/favicon.png') ?>" type="image/x-icon">
+        <?= link_tag('assets/front/favicon/apple-touch-icon.png', 'apple-touch-icon', '180x180') ?>
+        <?= link_tag('assets/front/favicon/favicon-32x32.png', 'icon', '32x32') ?>
+        <?= link_tag('assets/front/favicon/favicon-16x16.png', 'icon', '16x16') ?>
+        <?= link_tag('assets/front/favicon/favicon.ico', 'icon', '16x16') ?>
         <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.png') ?>" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">

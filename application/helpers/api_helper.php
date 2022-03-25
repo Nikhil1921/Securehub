@@ -108,7 +108,7 @@ if ( ! function_exists('isValidApiKey'))
 {
     function isValidApiKey($key, $table)
     {
-        if (get_instance()->main->check($table, ['id' => $key, 'is_varified' => 1, 'is_deleted' => 0], 'id')) {
+        if (get_instance()->main->check($table, ['id' => $key, 'is_deleted' => 0], 'id')) {
             return TRUE;
         }else{
             return FALSE;

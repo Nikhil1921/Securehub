@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- Bootstrap CSS -->
-    <?= link_tag('assets/front/css/bootstrap.css', 'stylesheet', 'text/css') ?>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" />
     <!-- font Awesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <!-- Stylesheet CSS -->
@@ -14,10 +14,10 @@
     <!-- Responsive CSS -->
     <?= link_tag('assets/front/css/responsive.css', 'stylesheet', 'text/css') ?>
     <!-- favicon -->
-    <?= link_tag('favicon/apple-touch-icon.png', 'apple-touch-icon', '180x180') ?>
-    <?= link_tag('favicon/favicon-32x32.png', 'icon', '32x32') ?>
-    <?= link_tag('favicon/favicon-16x16.png', 'icon', '16x16') ?>
-    <?= link_tag('favicon/favicon.ico', 'icon', '16x16') ?>
+    <?= link_tag('assets/front/favicon/apple-touch-icon.png', 'apple-touch-icon', '180x180') ?>
+    <?= link_tag('assets/front/favicon/favicon-32x32.png', 'icon', '32x32') ?>
+    <?= link_tag('assets/front/favicon/favicon-16x16.png', 'icon', '16x16') ?>
+    <?= link_tag('assets/front/favicon/favicon.ico', 'icon', '16x16') ?>
     <title><?= APP_NAME ?></title>
   </head>
   <body>
@@ -169,7 +169,7 @@
           </div>
           <div class="col-lg-4 contact_content">
             <div class="contact_cont">
-              <h4>Call Us</h4>
+              <h4>Email Us</h4>
               <p><a class="text_deco" href="mailto:<?= $this->config->item('email') ?>"><span><i class="fas fa-envelope con_icn"></i> </span><?= $this->config->item('email') ?></a></p>
             </div>
           </div>
@@ -271,9 +271,13 @@
     <a href="javascript:;" id="back-to-top" title="Back to top" class="show"><i class="fas fa-arrow-up"></i></a>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="<?= base_url('assets/front/js/jquery.min.js') ?>"></script>
-    <script src="<?= base_url('assets/front/js/popper.min.js') ?>"></script>
-    <script src="<?= base_url('assets/front/js/bootstrap.min.js') ?>"></script>
-    <script src="<?= base_url('assets/front/js/script.js?v=1.0.1') ?>"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+    <?php if(isset($validate)): ?>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
+    <?php endif ?>
+    <script src="<?= base_url('assets/front/js/script.js?v=<?= time() ?>') ?>"></script>
   </body>
 </html>

@@ -9,6 +9,10 @@ $rs = [
     ['from' => 'become-partner', 'to' => 'home/become_partner',],
     ['from' => 'motor/(:any)', 'to' => 'home/motor/$1', 'type' => 'get'],
     ['from' => 'motor/(:any)', 'to' => 'home/motor_post/$1', 'type' => 'post'],
+    ['from' => 'life/(:any)', 'to' => 'home/life/$1', 'type' => 'get'],
+    ['from' => 'life/(:any)', 'to' => 'home/life_post/$1', 'type' => 'post'],
+    ['from' => 'other/(:any)', 'to' => 'home/other/$1', 'type' => 'get'],
+    ['from' => 'other/(:any)', 'to' => 'home/other_post/$1', 'type' => 'post'],
 ];
 
 foreach ($rs as $r => $f) 
