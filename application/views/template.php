@@ -81,12 +81,12 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <?= anchor('other/workmen-compensation', 'Workmen Compensation', 'class="dropdown-item"'); ?>
                   <?= anchor('other/cpm', 'Plant and Machinery (CPM)', 'class="dropdown-item"'); ?>
-                  <?= anchor('other/fire-insurence', 'Fire Insurance', 'class="dropdown-item"'); ?>
-                  <?= anchor('other/home-insurence', 'Home Insurance', 'class="dropdown-item"'); ?>
-                  <?= anchor('other/shopkeeper-insurence', 'Shopkeeper Insurance', 'class="dropdown-item"'); ?>
+                  <?= anchor('other/fire-insurance', 'Fire Insurance', 'class="dropdown-item"'); ?>
+                  <?= anchor('other/home-insurance', 'Home Insurance', 'class="dropdown-item"'); ?>
+                  <?= anchor('other/shopkeeper-insurance', 'Shopkeeper Insurance', 'class="dropdown-item"'); ?>
                   <?= anchor('other/office-package-policy', 'Office Package Policy', 'class="dropdown-item"'); ?>
-                  <?= anchor('other/travel-insurence', 'Travel Insurance', 'class="dropdown-item"'); ?>
-                  <?= anchor('other/marine-insurence', 'Marine Insurance', 'class="dropdown-item"'); ?>
+                  <?= anchor('other/travel-insurance', 'Travel Insurance', 'class="dropdown-item"'); ?>
+                  <?= anchor('other/marine-insurance', 'Marine Insurance', 'class="dropdown-item"'); ?>
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -140,7 +140,7 @@
           <div class="row about_us_main">
             <div class="col-12 about_us_heading">
               <div class="about_us_content">
-                <h2 class="page_heading_h2"><span class="page_heading"><?= $title ?></span></h2>
+                <h2 class="page_heading_h2"><?= $heading ?></h2>
                 <ul class="header_ul_contact">
                   <li><?= anchor('', 'Home |', 'class="a_clr_con"'); ?></li>
                   <?php foreach($breads as $k => $b): ?>

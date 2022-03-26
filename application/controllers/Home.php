@@ -14,8 +14,10 @@ class Home extends MY_Controller {
 	public function become_partner()
 	{
 		$data['name'] = 'become_partner';
-		$data['title'] = 'Become partner';
+		$data['title'] = 'Become Partner';
 		$data['breads'] = [['title' => 'Become Partner']];
+		$data['heading'] = '<span class="page_heading">Become</span> Partner';
+		$data['validate'] = TRUE;
 
 		return $this->template->load('template', "become_partner", $data);
 	}
@@ -115,7 +117,7 @@ class Home extends MY_Controller {
 			default:
 				$response = [
 					'error' => true,
-					'message' => 'Page not found'
+					'message' => 'Something is not going good.'
 				];
 				break;
 		}
@@ -199,7 +201,7 @@ class Home extends MY_Controller {
 			default:
 				$response = [
 					'error' => true,
-					'message' => 'Page not found'
+					'message' => 'Something is not going good.'
 				];
 				break;
 		}
@@ -219,23 +221,23 @@ class Home extends MY_Controller {
 			case 'cpm':
 				$data['title'] = 'Plant and Machinery (CPM)';
 				break;
-			case 'fire-insurence':
-				$data['title'] = 'Fire insurence';
+			case 'fire-insurance':
+				$data['title'] = 'Fire insurance';
 				break;
-			case 'home-insurence':
-				$data['title'] = 'Home insurence';
+			case 'home-insurance':
+				$data['title'] = 'Home insurance';
 				break;
-			case 'shopkeeper-insurence':
-				$data['title'] = 'Shopkeeper insurence';
+			case 'shopkeeper-insurance':
+				$data['title'] = 'Shopkeeper insurance';
 				break;
 			case 'office-package-policy':
 				$data['title'] = 'Office package policy';
 				break;
-			case 'travel-insurence':
-				$data['title'] = 'Travel Insurence';
+			case 'travel-insurance':
+				$data['title'] = 'Travel insurance';
 				break;
-			case 'marine-insurence':
-				$data['title'] = 'Marine Insurence';
+			case 'marine-insurance':
+				$data['title'] = 'Marine insurance';
 				break;
 			
 			default:
@@ -244,6 +246,129 @@ class Home extends MY_Controller {
 		}
 
 		return $this->template->load('template', "other/$page", $data);
+	}
+
+	public function other_post($page)
+	{
+		$table = 'other_insurance';
+		
+		switch ($page) {
+			case 'workmen-compensation':
+			case 'cpm':
+			case 'fire-insurance':
+			case 'home-insurance':
+			case 'shopkeeper-insurance':
+			case 'office-package-policy':
+			case 'travel-insurance':
+			case 'marine-insurance':
+				$post = [
+					'name' => $this->input->post('name'),
+					'mobile' => $this->input->post('mobile'),
+					'email' => $this->input->post('email'),
+					'location' => $this->input->post('location'),
+					'message' => $this->input->post('message')
+				];
+
+				if($this->main->add($post, $table))
+					$response = [
+						'error' => false,
+						'message' => 'Request saved successfully.'
+					];
+				else
+					$response = [
+						'error' => true,
+						'message' => 'Request not saved.'
+					];
+			break;
+			
+			default:
+				$response = [
+					'error' => true,
+					'message' => 'Something is not going good.'
+				];
+			break;
+		}
+
+		die(json_encode($response));
+	}
+
+	public function health($page)
+	{
+		$data['name'] = 'health_insurance';
+		$data['validate'] = TRUE;
+		
+		switch ($page) {
+			case 'mediclaim':
+				$data['title'] = 'Workmen Compensation';
+				break;
+			case 'covid':
+				$data['title'] = 'Plant and Machinery (CPM)';
+				break;
+			case 'gpa':
+				$data['title'] = 'Fire insurance';
+				break;
+			case 'personal-accidents':
+				$data['title'] = 'Home insurance';
+				break;
+			case 'shopkeeper-insurance':
+				$data['title'] = 'Shopkeeper insurance';
+				break;
+			case 'gmc':
+				$data['title'] = 'Office package policy';
+				break;
+			
+			default:
+				return $this->error_404();
+				break;
+		}
+
+		return $this->template->load('template', "health/$page", $data);
+	}
+
+	public function health_post($page)
+	{
+		$table = 'health_insurance';
+		
+		switch ($page) {
+			case 'mediclaim':
+			case 'covid':
+			case 'gpa':
+			case 'personal-accidents':
+			case 'shopkeeper-insurance':
+			case 'gmc':
+				$post = [
+					'adult_qty' => $this->input->post('adult_qty'),
+					'child_qty' => $this->input->post('child_qty'),
+					'age' => $this->input->post('age'),
+					'gender' => $this->input->post('gender'),
+					'sum_insured' => $this->input->post('sum_insured'),
+					'pincode' => $this->input->post('pincode'),
+					'mobile' => $this->input->post('mobile'),
+					'email' => $this->input->post('email'),
+					'name' => $this->input->post('name'),
+				];
+				
+				if($this->main->add($post, $table))
+					$response = [
+						'error' => false,
+						'message' => 'Request saved successfully.'
+					];
+				else
+					$response = [
+						'error' => true,
+						'message' => 'Request not saved.'
+					];
+			break;
+			
+			default:
+				$response = [
+					'error' => true,
+					'message' => 'Something is not going good.'
+				];
+			break;
+		}
+
+		die(json_encode($response));
 	}
 	
 	public function error_404()

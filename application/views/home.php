@@ -183,7 +183,7 @@
                 </div>', 'id="hover_a"'); ?>
             </div>
             <div class="col-lg-2 col-md-3 col-6 icon">
-                <?= anchor('other/fire-insurence', '<div class="card" id="crd_icon" style="width: 100%;">
+                <?= anchor('other/fire-insurance', '<div class="card" id="crd_icon" style="width: 100%;">
                     <i id="icon_" class="fas fa-fire-extinguisher"></i>
                     <div class="card-body crd_bdy">
                     <h2 class="icon_h2">Fire Insurance</h2>
@@ -191,7 +191,7 @@
                 </div>', 'id="hover_a"'); ?>
             </div>
             <div class="col-lg-2 col-md-3 col-6 icon">
-                <?= anchor('other/home-insurence', '<div class="card" id="crd_icon" style="width: 100%;">
+                <?= anchor('other/home-insurance', '<div class="card" id="crd_icon" style="width: 100%;">
                     <i id="icon_" class="fas fa-home"></i>
                     <div class="card-body crd_bdy">
                     <h2 class="icon_h2">Home Insurance</h2>
@@ -199,7 +199,7 @@
                 </div>', 'id="hover_a"'); ?>
             </div>
             <div class="col-lg-2 col-md-3 col-6 icon">
-                <?= anchor('other/shopkeeper-insurence', '<div class="card" id="crd_icon" style="width: 100%;">
+                <?= anchor('other/shopkeeper-insurance', '<div class="card" id="crd_icon" style="width: 100%;">
                     <i id="icon_" class="fas fa-store-alt"></i>
                     <div class="card-body crd_bdy">
                     <h2 class="icon_h2">Shopkeeper Insurance</h2>
@@ -215,7 +215,7 @@
                 </div>', 'id="hover_a"'); ?>
             </div>
             <div class="col-lg-2 col-md-3 col-6 icon paddi_top">
-                <?= anchor('other/travel-insurence', '<div class="card" id="crd_icon" style="width: 100%;">
+                <?= anchor('other/travel-insurance', '<div class="card" id="crd_icon" style="width: 100%;">
                     <i id="icon_" class="fas fa-globe-europe"></i>
                     <div class="card-body crd_bdy">
                     <h2 class="icon_h2">Travel Insurance</h2>
@@ -223,7 +223,7 @@
                 </div>', 'id="hover_a"'); ?>
             </div>
             <div class="col-lg-2 col-md-3 col-6 icon paddi_top">
-                <?= anchor('other/marine-insurence', '<div class="card" id="crd_icon" style="width: 100%;">
+                <?= anchor('other/marine-insurance', '<div class="card" id="crd_icon" style="width: 100%;">
                     <i id="icon_" class="fas fa-ship"></i>
                     <div class="card-body crd_bdy">
                     <h2 class="icon_h2">Marine Insurance</h2>

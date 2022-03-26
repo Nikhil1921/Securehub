@@ -102,6 +102,18 @@ if ($(".validate-form").length > 0){
                 maxlength: 10,
                 digits: true
             },
+            pincode: {
+                required: true,
+                minlength: 6,
+                maxlength: 6,
+                digits: true
+            },
+            sum_insured: {
+                required: true,
+                minlength: 5,
+                maxlength: 10,
+                digits: true
+            },
             email: {
                 required: true,
                 minlength: 10,
@@ -114,6 +126,10 @@ if ($(".validate-form").length > 0){
                 maxlength: 100
             },
             message: {
+                maxlength: 255
+            },
+            p_message: {
+                required: true,
                 maxlength: 255
             },
             exp_date: {
@@ -165,6 +181,19 @@ if ($(".validate-form").length > 0){
         );
     }, "Given input is invalid."); */
 }
+
+const qtyPlus = (input) => {
+    let value = parseInt($(`input[name=${input}]`).val());
+    $(`input[name=${input}]`).val(value+1);
+    return;
+};
+
+const qtyMinus = (input) => {
+    let value = $(`input[name=${input}]`).val();
+    if(value > 1)
+        $(`input[name=${input}]`).val(value-1);
+    return;
+};
 
 const submitForm = (form) => {
     $.ajax({

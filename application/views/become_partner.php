@@ -8,38 +8,38 @@
           <h3>without spending anything!</h3>
           <h4>Partner with SecureHub Consultants Private Limited</h4>
         </div>
-        <form method="post" action="" id="inquiry_form" class="inquiryForm" style="border: none;">
+		<?= form_open('api/become_partners', 'id="inquiry_form" class="inquiryForm validate-form" style="border: none;"') ?>
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="ig">
                     <label>Full Name</label>
-                    <input type="text" name="name" data-error="Please enter your name" placeholder="Name">
+                    <input type="text" name="name" placeholder="Name" maxlength="100" />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="ig">
                     <label>Mobile Number</label>
-                    <input tabindex="1" value="" data-error="Please enter your name Mobile Number" placeholder="10 Digit Mobile Number" type="text" name="mobile" required="">
+                    <input placeholder="10 Digit Mobile Number" type="phone" maxlength="10" name="mobile" />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="ig">
                     <label>Email Id</label>
-                    <input type="email" name="email" data-error="Please enter your Email Id" required="" placeholder="abc@gmail.com">
+                    <input type="email" name="email" placeholder="abc@gmail.com" maxlength="100" />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="ig">
                     <label>Location</label>
-                    <input type="text" name="name" data-error="Please enter your name" placeholder="Location">
+                    <input type="text" name="location" placeholder="Location" maxlength="50" />
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="ig">
                     <label>Your Message</label>
-                    <textarea name="message" id="text_ins" cols="70" rows="6" required="" placeholder="Your Message"></textarea>
+                    <textarea name="p_message" id="text_ins" cols="70" rows="6" maxlength="255" placeholder="Your Message"></textarea>
                   </div>
                 </div>
                 <div class="col-12 mt-4">
@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-lg-12">
                   <div class="ig">
-                    <button class="btn_car_submit" tabindex="3" type="submit" name="inquirySubmit">Submit</button>
+                    <button class="btn_car_submit" type="submit" name="inquirySubmit">Submit</button>
                   </div>
                 </div>
                 <div class="col-12 mt-2">
@@ -58,7 +58,7 @@
               </div>
             </div>
           </div>
-        </form>
+        <?= form_close(); ?>
       </div>
     </div>
   </div>
@@ -183,7 +183,6 @@
 				</div>
 			</div>
 		</div>
-		
 	</div>
 </section>
 <section id="car_section_content">

@@ -13,6 +13,8 @@ $rs = [
     ['from' => 'life/(:any)', 'to' => 'home/life_post/$1', 'type' => 'post'],
     ['from' => 'other/(:any)', 'to' => 'home/other/$1', 'type' => 'get'],
     ['from' => 'other/(:any)', 'to' => 'home/other_post/$1', 'type' => 'post'],
+    ['from' => 'health/(:any)', 'to' => 'home/health/$1', 'type' => 'get'],
+    ['from' => 'health/(:any)', 'to' => 'home/health_post/$1', 'type' => 'post'],
 ];
 
 foreach ($rs as $r => $f) 

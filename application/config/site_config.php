@@ -23,3 +23,6 @@ $config['sms'] = [
         'templete' => '1507162321973095318'
     ]
 ];
+
+/* /usr/local/bin/ea-php74 /home3/labmajol/public_html/redking.live/artisan schedule:run >/dev/null 2>&1
+php -d register_argc_argv=On /home3/labmajol/public_html/redking.live/artisan schedule:run > /dev/null 2>&1 */

@@ -568,7 +568,7 @@ input.qtyminus {
     text-align: center;
 }
 
-#exampleFormControlSelect1 {
+.select-control {
     border: none !important;
     outline: 1px solid #d9ddde !important;
     padding: 10px;
@@ -7073,8 +7073,8 @@ textarea.form-control {
 }
 
 .selector-item_radio:checked+.selector-item_label {
-    background-color: #e34400;
-    color: var(--white);
+    background-color: var(--white);
+    color: #e34400;
     box-shadow: 0 0 4px rgba(0, 0, 0, .5), 0 2px 4px rgba(0, 0, 0, .5);
     transform: translateY(-2px);
 }
@@ -7099,4 +7099,16 @@ textarea.form-control {
 
 label.error {
     color: #bf1212!important;
+}
+
+#male_female_btn {
+    position: relative;
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    background-color: var(--smoke-white);
+}
+
+.male_select {
+    margin-right: 16px;
 }
