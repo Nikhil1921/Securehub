@@ -126,7 +126,24 @@ if ($(".validate-form").length > 0){
                 maxlength: 100
             },
             message: {
+                required: true,
                 maxlength: 255
+            },
+            subject: {
+                required: true,
+                maxlength: 100
+            },
+            fname: {
+                required: true,
+                maxlength: 15
+            },
+            address: {
+                required: true,
+                maxlength: 100
+            },
+            lname: {
+                required: true,
+                maxlength: 15
             },
             p_message: {
                 required: true,
@@ -160,6 +177,14 @@ if ($(".validate-form").length > 0){
                 required: true,
                 minlength: 3,
                 maxlength: 50
+            },
+            uplod_rc: {
+                required: true,
+                accept: "image/jpg, image/jpeg, image/png, application/pdf"
+            },
+            ext_policy: {
+                required: true,
+                accept: "image/jpg, image/jpeg, image/png, application/pdf"
             }
         },
         messages: {

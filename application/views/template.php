@@ -108,12 +108,12 @@
                   Company
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <?= anchor('company/about-us', 'About us', 'class="dropdown-item"'); ?>
-                  <?= anchor('company/mission-vision', 'Mission & Vision', 'class="dropdown-item"'); ?>
-                  <?= anchor('company/gallery', 'Gallery', 'class="dropdown-item"'); ?>
-                  <?= anchor('company/achivements', 'Achivements', 'class="dropdown-item"'); ?>
-                  <?= anchor('company/news-blog', 'News & Blogs', 'class="dropdown-item"'); ?>
-                  <?= anchor('company/contact-us', 'Contact us', 'class="dropdown-item"'); ?>
+                  <?= anchor('about-us', 'About us', 'class="dropdown-item"'); ?>
+                  <?= anchor('mission-vision', 'Mission & Vision', 'class="dropdown-item"'); ?>
+                  <?= anchor('gallery', 'Gallery', 'class="dropdown-item"'); ?>
+                  <?= anchor('achievements', 'Achievements', 'class="dropdown-item"'); ?>
+                  <?= anchor('news-blog', 'News & Blogs', 'class="dropdown-item"'); ?>
+                  <?= anchor('contact-us', 'Contact us', 'class="dropdown-item"'); ?>
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -203,10 +203,10 @@
             <h2 class="ftr_h2">Download</h2>
             <div class="footer_conten">
               <ul class="ftr_ul">
-                <li><?= anchor('proposal-forms', '<span><i class="fas fa-angle-right"></i> Proposal Forms</span>', 'class="ftr_a"'); ?></li>
-                <li><?= anchor('claim-forms', '<span><i class="fas fa-angle-right"></i> Claim Forms</span>', 'class="ftr_a"'); ?></li>
-                <li><?= anchor('brochures', '<span><i class="fas fa-angle-right"></i> Brochures</span>', 'class="ftr_a"'); ?></li>
-                <li><?= anchor('others', '<span><i class="fas fa-angle-right"></i> Others</span>', 'class="ftr_a"'); ?></li>
+                <li><?= anchor('downloads/proposal-forms', '<span><i class="fas fa-angle-right"></i> Proposal Forms</span>', 'class="ftr_a"'); ?></li>
+                <li><?= anchor('downloads/claim-forms', '<span><i class="fas fa-angle-right"></i> Claim Forms</span>', 'class="ftr_a"'); ?></li>
+                <li><?= anchor('downloads/brochures', '<span><i class="fas fa-angle-right"></i> Brochures</span>', 'class="ftr_a"'); ?></li>
+                <li><?= anchor('downloads/others', '<span><i class="fas fa-angle-right"></i> Others</span>', 'class="ftr_a"'); ?></li>
               </ul>
               <!-- <h3 class="widget-title mt-15">Visit Counter</h3>
               <span class="vcounter">3</span>
@@ -225,7 +225,7 @@
                 <li><?= anchor('privacy-policy', '<span><i class="fas fa-angle-right"></i> Privacy policy</span>', 'class="ftr_a"'); ?></li>
                 <li><?= anchor('become-agent', '<span><i class="fas fa-angle-right"></i> Join Us</span>', 'class="ftr_a"'); ?></li>
                 <li><?= anchor('gallery', '<span><i class="fas fa-angle-right"></i> Gallery</span>', 'class="ftr_a"'); ?></li>
-                <li><?= anchor('achivements', '<span><i class="fas fa-angle-right"></i> Achivements</span>', 'class="ftr_a"'); ?></li>
+                <li><?= anchor('achievements', '<span><i class="fas fa-angle-right"></i> Achievements</span>', 'class="ftr_a"'); ?></li>
                 <li><?= anchor('career', '<span><i class="fas fa-angle-right"></i> Career</span>', 'class="ftr_a"'); ?></li>
               </ul>
             </div>
@@ -278,6 +278,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
     <?php endif ?>
-    <script src="<?= base_url('assets/front/js/script.js?v=<?= time() ?>') ?>"></script>
+    <script src="<?= base_url('assets/front/js/script.js?v='.time()) ?>"></script>
   </body>
 </html>

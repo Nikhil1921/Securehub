@@ -22,6 +22,173 @@ class Home extends MY_Controller {
 		return $this->template->load('template', "become_partner", $data);
 	}
 
+	public function contact()
+	{
+		$data['name'] = 'contact';
+		$data['title'] = 'Contact Us';
+		$data['breads'] = [['title' => 'Contact Us']];
+		$data['heading'] = '<span class="page_heading">Contact</span> Us';
+		$data['validate'] = TRUE;
+
+		return $this->template->load('template', "contact", $data);
+	}
+
+	public function about_us()
+	{
+		$data['name'] = 'about_us';
+		$data['title'] = 'About Us';
+		$data['breads'] = [['title' => 'About Us']];
+		$data['heading'] = '<span class="page_heading">About</span> Us';
+
+		return $this->template->load('template', "about_us", $data);
+	}
+
+	public function mission_vision()
+	{
+		$data['name'] = 'mission_vision';
+		$data['title'] = 'Mission & Vision';
+		$data['breads'] = [['title' => 'Mission & Vision']];
+		$data['heading'] = '<span class="page_heading">Mission & </span> Vision';
+
+		return $this->template->load('template', "mission_vision", $data);
+	}
+
+	public function gallery()
+	{
+		$data['name'] = 'gallery';
+		$data['title'] = 'Our Gallery';
+		$data['breads'] = [['title' => 'Our Gallery']];
+		$data['heading'] = '<span class="page_heading">Our </span>Gallery';
+
+		return $this->template->load('template', "gallery", $data);
+	}
+
+	public function achievements()
+	{
+		$data['name'] = 'achievements';
+		$data['title'] = 'Our Achievements';
+		$data['breads'] = [['title' => 'Achievements']];
+		$data['heading'] = '<span class="page_heading">Our </span>Achievements';
+
+		return $this->template->load('template', "achievements", $data);
+	}
+
+	public function privacy()
+	{
+		$data['name'] = 'privacy';
+		$data['title'] = 'Privacy Policy';
+		$data['breads'] = [['title' => 'Privacy Policy']];
+		$data['heading'] = '<span class="page_heading">Privacy </span>Policy';
+
+		return $this->template->load('template', "privacy", $data);
+	}
+
+	public function terms()
+	{
+		$data['name'] = 'terms';
+		$data['title'] = 'Terms Of Use';
+		$data['breads'] = [['title' => 'Terms Of Use']];
+		$data['heading'] = '<span class="page_heading">Terms </span>Of Use';
+
+		return $this->template->load('template', "terms", $data);
+	}
+
+	public function news_blog()
+	{
+		$data['name'] = 'news_blog';
+		$data['title'] = 'News & Blogs';
+		$data['breads'] = [['title' => 'News & Blogs']];
+		$data['heading'] = '<span class="page_heading">News & </span>Blogs';
+		$data['news'] = $this->main->getAll('news', 'created_at, slug, title, CONCAT("'.$this->config->item('news').'", image) image', ['is_deleted' => 0]);
+		
+		return $this->template->load('template', "news_blog", $data);
+	}
+
+	public function career()
+	{
+		$data['name'] = 'career';
+		$data['title'] = 'Career';
+		$data['breads'] = [['title' => 'Career']];
+		$data['heading'] = '<span class="page_heading">Career</span>';
+		$data['validate'] = TRUE;
+		
+		return $this->template->load('template', "career", $data);
+	}
+
+	public function career_post()
+	{
+		$this->path = $this->config->item('document');
+
+		$img = $this->uploadImage('uplod_rc', $exts='jpg|jpeg|png|pdf', [], round(microtime(true) * 1000));
+		
+		if($img['error']) die(json_encode($img));
+
+		$post = [
+			'fname'     => $this->input->post('fname'),
+			'lname'     => $this->input->post('lname'),
+			'address'   => $this->input->post('address'),
+			'email'     => $this->input->post('email'),
+			'mobile'    => $this->input->post('mobile'),
+			'location'  => $this->input->post('location'),
+			'message'   => $this->input->post('message'),
+			'resume_cv' => $img['message']
+		];
+		
+		if($this->main->add($post, "careers"))
+			$response = [
+				'error' => false,
+				'message' => 'Request saved successfully.'
+			];
+		else
+			$response = [
+				'error' => true,
+				'message' => 'Request not saved.'
+			];
+		
+		die(json_encode($response));
+	}
+
+	public function news($slug)
+	{
+		$news = $this->main->get('news', 'title, description', ['is_deleted' => 0, 'slug' => $slug]);
+		
+		if($news)
+		{
+			$data['name'] = 'news';
+			$data['title'] = $news['title'];
+			$data['breads'] = [['title' => 'News & Blogs', 'url' => 'news-blog'], ['title' => 'News Page']];
+			$data['heading'] = '<span class="page_heading">'.$news['title'].'</span>';
+			$data['news'] = $news;
+			
+			return $this->template->load('template', "news", $data);
+		}else
+			return $this->error_404();
+	}
+
+	public function contact_post()
+	{
+		$post = [
+			'name'	  => $this->input->post('name'),
+			'email'	  => $this->input->post('email'),
+			'mobile'  => $this->input->post('mobile'),
+			'subject' => $this->input->post('subject'),
+			'message' => $this->input->post('message')
+		];
+		
+		if($this->main->add($post, "contact_us"))
+			$response = [
+				'error' => false,
+				'message' => 'Request saved successfully.'
+			];
+		else
+			$response = [
+				'error' => true,
+				'message' => 'Request not saved.'
+			];
+		
+		die(json_encode($response));
+	}
+
 	public function motor($page)
 	{
 		$data['name'] = 'motor_insurance';
@@ -209,7 +376,7 @@ class Home extends MY_Controller {
 		die(json_encode($response));
 	}
 
-	public function other($page)
+	public function other($page='')
 	{
 		$data['name'] = 'other_insurance';
 		$data['validate'] = TRUE;
@@ -323,6 +490,46 @@ class Home extends MY_Controller {
 		}
 
 		return $this->template->load('template', "health/$page", $data);
+	}
+
+	public function downloads($page)
+	{
+		$data['name'] = 'downloads';
+		
+		switch ($page) {
+			case 'proposal-forms':
+				$data['title'] = 'Proposal Form Downloads';
+				$data['breads'] = [['title' => 'Proposal Form Downloads']];
+				$data['heading'] = '<span class="page_heading">Proposal Form </span>Downloads';
+				$form = 'Proposal Forms';
+				break;
+			case 'claim-forms':
+				$data['title'] = 'Claim Form Downloads';
+				$data['breads'] = [['title' => 'Claim Form Downloads']];
+				$data['heading'] = '<span class="page_heading">Claim Form </span>Downloads';
+				$form = 'Claim Forms';
+				break;
+			case 'brochures':
+				$data['title'] = 'Brochure Downloads';
+				$data['breads'] = [['title' => 'Brochure Downloads']];
+				$data['heading'] = '<span class="page_heading">Brochure </span>Downloads';
+				$form = 'Brochures';
+				break;
+			case 'others':
+				$data['title'] = 'Other Downloads';
+				$data['breads'] = [['title' => 'Other Downloads']];
+				$data['heading'] = '<span class="page_heading">Other </span>Downloads';
+				$form = 'Others';
+				break;
+			
+			default:
+				return $this->error_404();
+				break;
+		}
+
+		$data['forms'] =  $this->main->getAll('downloads', 'title, CONCAT("'.$this->config->item('downloads').'", d_file) d_file', ['is_deleted' => 0, 'd_type' => $form]);
+		
+		return $this->template->load('template', "downloads", $data);
 	}
 
 	public function health_post($page)

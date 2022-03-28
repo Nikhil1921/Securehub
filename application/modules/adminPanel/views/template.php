@@ -98,6 +98,7 @@
                             <?php if(verify_access('claims', 'view')): ?><li><a class="sidebar-header <?= $name == 'claims' ? 'active' : '' ?>" href="<?= base_url(admin('claims')) ?>"><i data-feather="file-text"></i><span> Claims</span></a></li><?php endif ?>
                             <?php if(verify_access('digital_business', 'view')): ?><li><a class="sidebar-header <?= $name == 'digital_business' ? 'active' : '' ?>" href="<?= base_url(admin('digital_business')) ?>"><i data-feather="briefcase"></i><span> Digital business</span></a></li><?php endif ?>
                             <?php if(verify_access('business_frames', 'view')): ?><li><a class="sidebar-header <?= $name == 'business_frames' ? 'active' : '' ?>" href="<?= base_url(admin('business_frames')) ?>"><i data-feather="image"></i><span> Digital business frames</span></a></li><?php endif ?>
+                            <?php if(verify_access('downloads', 'view')): ?><li><a class="sidebar-header <?= $name == 'downloads' ? 'active' : '' ?>" href="<?= base_url(admin('downloads')) ?>"><i data-feather="download"></i><span> Downloads</span></a></li><?php endif ?>
                             <?php if(verify_access('permissions', 'view')): ?><li><a class="sidebar-header <?= $name == 'permissions' ? 'active' : '' ?>" href="<?= base_url(admin('permissions')) ?>"><i data-feather="users"></i><span> Permissions</span></a></li><?php endif ?>
                         </ul>
                     </div>

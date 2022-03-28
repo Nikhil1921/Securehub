@@ -24,3 +24,5 @@ uploads/business/*
 !uploads/business/index.html
 uploads/document/*
 !uploads/document/index.html
+uploads/downloads/*
+!uploads/downloads/index.html

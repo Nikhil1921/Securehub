@@ -8,6 +8,7 @@ $config['plans'] = 'uploads/plans/';
 $config['purchase'] = 'uploads/purchase/';
 $config['business'] = 'uploads/business/';
 $config['document'] = 'uploads/document/';
+$config['downloads'] = 'uploads/downloads/';
 $config['app_table'] = 'app_configs';
 $config['mobile'] = '9512137878';
 $config['email'] = 'securehubservices@gmail.com';

@@ -322,10 +322,10 @@
             </div>', 'id="hover_a"'); ?>
         </div>
         <div class="col-lg-3 col-md-3 col-6 detail_sec_content">
-            <?= anchor('achivements', '<div class="card crd_bg" id="crd_detail1" style="width: 100%;">
+            <?= anchor('achievements', '<div class="card crd_bg" id="crd_detail1" style="width: 100%;">
                 <i id="icon_detail" class="fas fa-medal"></i>
                 <div class="card-body crd_detail_main">
-                <h5 id="crd_deta_h5_" class="crd_detail_h5">Our Achivements</h5>
+                <h5 id="crd_deta_h5_" class="crd_detail_h5">Our Achievements</h5>
                 </div>
             </div>', 'id="hover_a"'); ?>
         </div>

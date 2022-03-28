@@ -1,17 +1,17 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class News extends Admin_controller  {
+class Downloads extends Admin_controller  {
 
     public function __construct()
 	{
 		parent::__construct();
-		$this->path = $this->config->item('news');
+		$this->path = $this->config->item('downloads');
 	}
 
-	private $table = 'news';
-	protected $redirect = 'news';
-	protected $title = 'News';
-	protected $name = 'news';
+	private $table = 'downloads';
+	protected $redirect = 'downloads';
+	protected $title = 'Downloads';
+	protected $name = 'downloads';
 	
 	public function index()
 	{
@@ -29,7 +29,7 @@ class News extends Admin_controller  {
 	public function get()
     {
         check_ajax();
-        $this->load->model('News_model', 'data');
+        $this->load->model('Downloads_model', 'data');
         $fetch_data = $this->data->make_datatables();
         $sr = $_GET['start'] + 1;
         $data = [];
@@ -40,7 +40,7 @@ class News extends Admin_controller  {
             $sub_array = [];
             $sub_array[] = $sr;
             $sub_array[] = $row->title;
-            $sub_array[] = img(['src' => $this->path.$row->image, 'width' => '100%', 'height' => '100']);
+            $sub_array[] = $row->d_type;
             
             $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="icon-settings"></span></button><div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" x-placement="bottom-start">';
@@ -84,16 +84,14 @@ class News extends Admin_controller  {
             
             return $this->template->load('template', "$this->redirect/form", $data);
         }else{
-            $image = $this->uploadImage('image');
+            $image = $this->uploadImage('image', 'jpg|jpeg|png|pdf');
             if ($image['error'] == TRUE)
 			    flashMsg(0, "", $image["message"], "$this->redirect/add");
             else{
                 $post = [
                     'title'       => $this->input->post('title'),
-                    'description' => $this->input->post('description'),
-                    'slug'        => str_replace(' ', '-', strtolower($this->input->post('title'))),
-                    'created_at'  => time(),
-                    'image'       => $image['message']
+                    'd_type' => $this->input->post('d_type'),
+                    'd_file'       => $image['message']
                 ];
 
                 $id = $this->main->add($post, $this->table);
@@ -114,24 +112,23 @@ class News extends Admin_controller  {
             $data['name'] = $this->name;
             $data['operation'] = "Update";
             $data['url'] = $this->redirect;
-            $data['data'] = $this->main->get($this->table, 'title, image, description', ['id' => d_id($id)]);
+            $data['data'] = $this->main->get($this->table, 'title, d_file, d_type', ['id' => d_id($id)]);
             
             return $this->template->load('template', "$this->redirect/form", $data);
         }else{
             $post = [
                     'title'       => $this->input->post('title'),
-                    'slug'        => str_replace(' ', '-', strtolower($this->input->post('title'))),
-                    'description' => $this->input->post('description')
+                    'd_type' => $this->input->post('d_type'),
                 ];
 
             if (!empty($_FILES['image']['name'])) {
-                $image = $this->uploadImage('image');
+                $image = $this->uploadImage('image', 'jpg|jpeg|png|pdf');
                 if ($image['error'] == TRUE)
                     flashMsg(0, "", $image["message"], "$this->redirect/update/$id");
                 else{
                     if (file_exists($this->path.$this->input->post('image')))
                         unlink($this->path.$this->input->post('image'));
-                    $post['image'] = $image['message'];
+                    $post['d_file'] = $image['message'];
                 }
             }
             
@@ -165,8 +162,8 @@ class News extends Admin_controller  {
             ],
         ],
         [
-            'field' => 'description',
-            'label' => 'Description',
+            'field' => 'd_type',
+            'label' => 'Download Type',
             'rules' => 'required',
             'errors' => [
                 'required' => "%s is required"
