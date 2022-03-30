@@ -441,7 +441,7 @@ class Home extends MY_Controller  {
 	{
 		post();
 		$api = authenticate($this->table);
-		verifyRequiredParams(["name", "mobile", "email", "address", 'about_us', 'payment_id', 'paid_amount']);
+		verifyRequiredParams(["name", "mobile", "email", "address", 'about_us', 'payment_id', 'paid_amount', "whatsapp", "facebook", "instagram"]);
 
 		$logo = $this->uploadImages("logo", $this->business, 'jpg|jpeg|png');
 
@@ -459,6 +459,9 @@ class Home extends MY_Controller  {
 					'name'        => $this->input->post('name'),
 					'mobile'      => $this->input->post('mobile'),
 					'email'       => $this->input->post('email'),
+					'whatsapp'    => $this->input->post('whatsapp'),
+					'facebook'    => $this->input->post('facebook'),
+					'instagram'   => $this->input->post('instagram'),
 					'address'     => $this->input->post('address'),
 					'about_us'    => $this->input->post('about_us'),
 					'payment_id'  => $this->input->post('payment_id'),
@@ -503,13 +506,16 @@ class Home extends MY_Controller  {
 					'address'    => $arr['address'],
 					'logo'       => $arr['logo'],
 					'about_us'   => $arr['about_us'],
+					'whatsapp'   => $arr['whatsapp'],
+					'facebook'   => $arr['facebook'],
+					'instagram'  => $arr['instagram'],
 					'gallery'    => json_decode($arr['gallery']),
 					'banner'     => json_decode($arr['banner']),
 					'payment_id' => $arr['payment_id'],
 					'purchased'  => date('d-m-Y', strtotime($arr['purchased'])),
 					'expiry'     => date('d-m-Y', strtotime($arr['expiry']))
 				];
-		}, $this->main->getall("digital_business", 'name, mobile, email, address, logo, about_us, gallery, banner, payment_id, purchased, expiry', $post));
+		}, $this->main->getall("digital_business", 'whatsapp, facebook, instagram, name, mobile, email, address, logo, about_us, gallery, banner, payment_id, purchased, expiry', $post));
 
 		if ($row) {
 			$response['img_url'] = base_url($this->business);
@@ -750,7 +756,9 @@ class Home extends MY_Controller  {
 
 	public function error_404()
 	{
-		return $this->load->view('error_404');
+		$response['error'] = true;
+		$response['message'] = "The page you are attempting to reach is currently not available.";
+		echoRespnse(404, $response);
 	}
 
 	protected function uploadImages($upload, $path, $allowed)

@@ -70,7 +70,7 @@ class MY_Model extends CI_Model
 	   if($_GET["length"] != -1)  
 	   {  
 	        $this->db->limit($_GET['length'], $_GET['start']);
-	   }  
+	   }
 	   $query = $this->db->get();
 	   return $query->result();
 	}  
