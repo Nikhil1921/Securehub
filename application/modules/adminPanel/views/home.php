@@ -12,7 +12,7 @@
                             </h5>
                             <p>Total Banners</p>
                         </div>
-                        <i class="fa fa-image fa-2x"></i>
+                        <i class="text-danger fa fa-image fa-2x"></i>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                             </h5>
                             <p>Total News</p>
                         </div>
-                        <i class="fa fa-file-text fa-2x"></i>
+                        <i class="text-danger fa fa-file-text fa-2x"></i>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                             </h5>
                             <p>Insurance</p>
                         </div>
-                        <i class="fa fa-file-text fa-2x"></i>
+                        <i class="text-danger fa fa-file-text fa-2x"></i>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                             </h5>
                             <p>Total plans</p>
                         </div>
-                        <i class="fa fa-file-text fa-2x"></i>
+                        <i class="text-danger fa fa-file-text fa-2x"></i>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                             </h5>
                             <p>Total companies</p>
                         </div>
-                        <i class="fa fa-globe fa-2x"></i>
+                        <i class="text-danger fa fa-globe fa-2x"></i>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                             </h5>
                             <p>Partner requests</p>
                         </div>
-                        <i class="fa fa-users fa-2x"></i>
+                        <i class="text-danger fa fa-users fa-2x"></i>
                     </div>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                             </h5>
                             <p>Total branches</p>
                         </div>
-                        <i class="fa fa-home fa-2x"></i>
+                        <i class="text-danger fa fa-home fa-2x"></i>
                     </div>
                 </div>
             </div>
@@ -145,7 +145,7 @@
                             </h5>
                             <p>Total users</p>
                         </div>
-                        <i class="fa fa-home fa-2x"></i>
+                        <i class="text-danger fa fa-home fa-2x"></i>
                     </div>
                 </div>
             </div>
@@ -164,7 +164,7 @@
                             </h5>
                             <p>Total leads</p>
                         </div>
-                        <i class="fa fa-home fa-2x"></i>
+                        <i class="text-danger fa fa-home fa-2x"></i>
                     </div>
                 </div>
             </div>
@@ -183,7 +183,7 @@
                             </h5>
                             <p>Total revenue</p>
                         </div>
-                        <i class="fa fa-money fa-2x"></i>
+                        <i class="text-danger fa fa-money fa-2x"></i>
                     </div>
                 </div>
             </div>
@@ -202,7 +202,7 @@
                             </h5>
                             <p>Pending revenue</p>
                         </div>
-                        <i class="fa fa-money fa-2x"></i>
+                        <i class="text-danger fa fa-money fa-2x"></i>
                     </div>
                 </div>
             </div>
@@ -221,7 +221,7 @@
                             </h5>
                             <p>Paid revenue</p>
                         </div>
-                        <i class="fa fa-money fa-2x"></i>
+                        <i class="text-danger fa fa-money fa-2x"></i>
                     </div>
                 </div>
             </div>

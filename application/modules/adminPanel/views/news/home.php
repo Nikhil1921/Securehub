@@ -15,10 +15,10 @@
     <div class="table-responsive">
         <table class="datatable table table-striped table-bordered nowrap">
             <thead>
-                <th class="target">Sr.</th>
-                <th>Title</th>
-                <th class="target">Image</th>
-                <th class="target">Action</th>
+                <th class="target clr_head">Sr.</th>
+                <th class="clr_head">Title</th>
+                <th class="target clr_head">Image</th>
+                <th class="target clr_head">Action</th>
             </thead>
             <tbody>
             </tbody>

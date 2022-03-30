@@ -21,13 +21,13 @@
     <div class="table-responsive">
         <table class="datatable table table-striped table-bordered nowrap">
             <thead>
-                <th class="target">Sr.</th>
-                <th>Insuarance Plan</th>
-                <th>Policy no</th>
-                <th>Premium</th>
-                <th>Purchase date</th>
-                <th>Status</th>
-                <th class="target">Action</th>
+                <th class="target clr_head">Sr.</th>
+                <th class="clr_head">Insuarance Plan</th>
+                <th class="clr_head">Policy no</th>
+                <th class="clr_head">Premium</th>
+                <th class="clr_head">Purchase date</th>
+                <th class="clr_head">Status</th>
+                <th class="target clr_head">Action</th>
             </thead>
             <tbody>
             </tbody>

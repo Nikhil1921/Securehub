@@ -26,12 +26,12 @@
     <div class="table-responsive">
         <table class="datatable table table-striped table-bordered nowrap">
             <thead>
-                <th class="target">Sr.</th>
-                <th>Plan Title</th>
-                <th>Insurance</th>
-                <th>Plan Type</th>
-                <th>Company</th>
-                <th class="target">Action</th>
+                <th class="target clr_head">Sr.</th>
+                <th class="clr_head">Plan Title</th>
+                <th class="clr_head">Insurance</th>
+                <th class="clr_head">Plan Type</th>
+                <th class="clr_head">Company</th>
+                <th class="target clr_head">Action</th>
             </thead>
             <tbody>
             </tbody>

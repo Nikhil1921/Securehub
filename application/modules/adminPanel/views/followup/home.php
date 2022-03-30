@@ -30,13 +30,13 @@
     <div class="table-responsive">
         <table class="datatable table table-striped table-bordered nowrap">
             <thead>
-                <th class="target">Sr.</th>
-                <th>Name</th>
-                <th>Mobile</th>
-                <th>Remark</th>
-                <th>Created AT</th>
+                <th class="target clr_head">Sr.</th>
+                <th class="clr_head">Name</th>
+                <th class="clr_head">Mobile</th>
+                <th class="clr_head">Remark</th>
+                <th class="clr_head">Created AT</th>
                 <?php if ($this->user->role == 'Admin'): ?>
-                <th>User</th>
+                <th class="clr_head">User</th>
                 <?php endif ?>
             </thead>
             <tbody>

@@ -27,11 +27,11 @@
     <div class="table-responsive">
         <table class="datatable table table-striped table-bordered nowrap">
             <thead>
-                <th class="target">Sr.</th>
-                <th>Document name</th>
-                <th>Expiry date</th>
-                <th>Notifications</th>
-                <th class="target">Action</th>
+                <th class="target clr_head">Sr.</th>
+                <th class="clr_head">Document name</th>
+                <th class="clr_head">Expiry date</th>
+                <th class="clr_head">Notifications</th>
+                <th class="target clr_head">Action</th>
             </thead>
             <tbody>
             </tbody>

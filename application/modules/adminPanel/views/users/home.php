@@ -32,13 +32,13 @@
     <div class="table-responsive">
         <table class="datatable table table-striped table-bordered nowrap">
             <thead>
-                <th class="target">Sr.</th>
-                <th>Name</th>
-                <th>Mobile</th>
-                <th>Email</th>
-                <th>Branch</th>
+                <th class="target clr_head">Sr.</th>
+                <th class="clr_head">Name</th>
+                <th class="clr_head">Mobile</th>
+                <th class="clr_head">Email</th>
+                <th class="clr_head">Branch</th>
                 <!-- <th class="target" id="partner-revenue" style="display:none;">Revenue</th> -->
-                <th class="target">Action</th>
+                <th class="target clr_head">Action</th>
             </thead>
             <tbody>
             </tbody>
