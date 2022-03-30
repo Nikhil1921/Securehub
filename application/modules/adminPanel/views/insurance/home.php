@@ -17,9 +17,9 @@
     <div class="table-responsive">
         <table class="datatable table table-striped table-bordered nowrap">
             <thead>
-                <th class="target">Sr.</th>
-                <th>Insuarance Type</th>
-                <th class="target">Image</th>
+                <th class="target clr_head">Sr.</th>
+                <th class="clr_head">Insuarance Type</th>
+                <th class="target clr_head">Image</th>
                 <!-- <th class="target">Action</th> -->
             </thead>
             <tbody>

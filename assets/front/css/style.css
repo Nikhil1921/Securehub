@@ -3433,6 +3433,11 @@ textarea.form-control {
         padding-top: 67px;
         margin: auto !important;
     }
+    .navbar-toggler:not(:disabled):not(.disabled) {
+        cursor: pointer;
+        outline: none !important;
+        background: #ffffff;
+    }
 }
 
 @media screen and (max-width: 640px) {
@@ -3501,6 +3506,7 @@ textarea.form-control {
         float: left;
         width: 100%;
         text-align: center !important;
+        display: none;
     }
     .header_left {
         float: left;
@@ -3545,6 +3551,29 @@ textarea.form-control {
         float: left;
         width: 100%;
         /* padding-left: 70px; */
+    }
+    .inquiryForm {
+        padding: 0px 0px;
+        margin: 0px;
+        border: 1px solid #d9ddde;
+        display: block;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.7);
+    }
+    .selector-item_label {
+        font-size: 10px !important;
+    }
+    .selector-item_label {
+        position: relative;
+        height: 80%;
+        width: 100%;
+        text-align: center;
+        border-radius: 25px;
+        line-height: 400%;
+        font-weight: 900;
+        transition-duration: .5s;
+        transition-property: transform, color, box-shadow;
+        transform: none;
     }
 }
 
@@ -3631,6 +3660,9 @@ textarea.form-control {
         background: #ffffff;
         margin-bottom: 33px;
         height: 355px !important;
+    }
+    .selector-item_label {
+        font-size: 7px !important;
     }
     /*.crd_not_covered {
     height: 150px !important;
@@ -7070,6 +7102,7 @@ textarea.form-control {
     transition-duration: .5s;
     transition-property: transform, color, box-shadow;
     transform: none;
+    display: table !important;
 }
 
 .selector-item_radio:checked+.selector-item_label {
@@ -7077,6 +7110,7 @@ textarea.form-control {
     color: #e34400;
     box-shadow: 0 0 4px rgba(0, 0, 0, .5), 0 2px 4px rgba(0, 0, 0, .5);
     transform: translateY(-2px);
+    display: table !important;
 }
 
 .toast {

@@ -44,12 +44,12 @@
     <div class="table-responsive">
         <table class="datatable table table-striped table-bordered nowrap">
             <thead>
-                <th class="target">Sr.</th>
-                <th>Name</th>
-                <th>Mobile</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th class="target">Logo</th>
+                <th class="target clr_head">Sr.</th>
+                <th class="clr_head">Name</th>
+                <th class="clr_head">Mobile</th>
+                <th class="clr_head">Email</th>
+                <th class="clr_head">Address</th>
+                <th class="target clr_head">Logo</th>
             </thead>
             <tbody>
             </tbody>

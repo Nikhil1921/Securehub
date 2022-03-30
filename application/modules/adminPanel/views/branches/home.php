@@ -15,12 +15,12 @@
     <div class="table-responsive">
         <table class="datatable table table-striped table-bordered nowrap">
             <thead>
-                <th class="target">Sr.</th>
-                <th>Branch Name</th>
-                <th class="target">Total revenue</th>
-                <th class="target">Pending revenue</th>
-                <th class="target">Paid revenue</th>
-                <th class="target">Action</th>
+                <th class="target clr_head">Sr.</th>
+                <th class="clr_head">Branch Name</th>
+                <th class="target clr_head">Total revenue</th>
+                <th class="target clr_head">Pending revenue</th>
+                <th class="target clr_head">Paid revenue</th>
+                <th class="target clr_head">Action</th>
             </thead>
             <tbody>
             </tbody>
