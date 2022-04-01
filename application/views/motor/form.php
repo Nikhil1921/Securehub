@@ -80,8 +80,8 @@
                             </div>
                         </div>
                         <div class="mt-2 mb-2">
-                            <label class="mr-4">Upload Your Existing Policy Copy :</label>
-                            <input class="uplod_rc ignore" type="file" accept="image/jpeg, image/jpg, image/png, application/pdf" name="ext_policy" style="border: none;padding: 0;outline: none;">
+                            <label class="mr-4" for="upload_policy">Upload Your Existing Policy Copy :</label>
+                            <input class="uplod_rc ignore" id="upload_policy" type="file" accept="image/jpeg, image/jpg, image/png, application/pdf" name="ext_policy" style="border: none;padding: 0;outline: none;">
                         </div>
                     </div>
                 </div>
@@ -97,8 +97,8 @@
                         <textarea name="message" id="text_ins" cols="70" rows="6" placeholder="Your Message"></textarea>
                     </div>
                     <div class="mt-2 col-md-3">
-                        <label class="mr-4">Upload Your Vehicle RC :</label>
-                        <input class="uplod_rc" type="file" accept="image/jpeg, image/jpg, image/png, application/pdf" name="uplod_rc" style="border: none;padding: 0;outline: none;">
+                        <label class="mr-4" for="upload_rcbook">Upload Your Vehicle RC :</label>
+                        <input class="uplod_rc" id="upload_rcbook" type="file" accept="image/jpeg, image/jpg, image/png, application/pdf" name="uplod_rc" style="border: none;padding: 0;outline: none;">
                     </div>
                 </div>
                 <div class="col-12 mt-4">
