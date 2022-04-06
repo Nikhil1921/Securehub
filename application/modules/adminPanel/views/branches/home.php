@@ -17,6 +17,11 @@
             <thead>
                 <th class="target clr_head">Sr.</th>
                 <th class="clr_head">Branch Name</th>
+                <th class="clr_head">Owner</th>
+                <th class="clr_head">Mobile</th>
+                <th class="clr_head">Email</th>
+                <th class="clr_head">State</th>
+                <th class="clr_head">City</th>
                 <th class="target clr_head">Total revenue</th>
                 <th class="target clr_head">Pending revenue</th>
                 <th class="target clr_head">Paid revenue</th>

@@ -27,6 +27,7 @@ $rs = [
     ['from' => 'career', 'to' => 'home/career_post', 'type' => 'post'],
     ['from' => 'privacy-policy', 'to' => 'home/privacy'],
     ['from' => 'terms-of-use', 'to' => 'home/terms'],
+    ['from' => 'refund-policy', 'to' => 'home/refund'],
     ['from' => 'downloads/(:any)', 'to' => 'home/downloads/$1', 'type' => 'get'],
 ];
 

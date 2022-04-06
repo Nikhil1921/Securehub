@@ -223,6 +223,7 @@
                 <li><?= anchor('contact-us', '<span><i class="fas fa-angle-right"></i> Contact us</span>', 'class="ftr_a"'); ?></li>
                 <li><?= anchor('terms-of-use', '<span><i class="fas fa-angle-right"></i> Terms of use</span>', 'class="ftr_a"'); ?></li>
                 <li><?= anchor('privacy-policy', '<span><i class="fas fa-angle-right"></i> Privacy policy</span>', 'class="ftr_a"'); ?></li>
+                <li><?= anchor('refund-policy', '<span><i class="fas fa-angle-right"></i> Refund policy</span>', 'class="ftr_a"'); ?></li>
                 <li><?= anchor('become-agent', '<span><i class="fas fa-angle-right"></i> Join Us</span>', 'class="ftr_a"'); ?></li>
                 <li><?= anchor('gallery', '<span><i class="fas fa-angle-right"></i> Gallery</span>', 'class="ftr_a"'); ?></li>
                 <li><?= anchor('achievements', '<span><i class="fas fa-angle-right"></i> Achievements</span>', 'class="ftr_a"'); ?></li>

@@ -22,7 +22,8 @@ class Permissions extends Admin_controller  {
     public function add($role)
 	{
         check_access($this->name, 'add');
-
+		$role = str_replace('%20', ' ', $role);
+		
 		if ($this->input->server('REQUEST_METHOD') === 'POST') {
 			$id = $this->main->add_permissions();
 			flashMsg($id, "$this->title updated.", "$this->title not updated. Try again.", "$this->redirect/add/$role");

@@ -13,7 +13,6 @@ class Admin_controller extends MY_Controller
 
         $this->user = (object) $this->main->get("logins", 'name, role, mobile, email, branch_id', ['id' => $this->session->auth]);
 		$this->redirect = admin($this->redirect);
-		$this->app_table = $this->config->item('app_table');
 	}
 
     public function get_insurance_list()

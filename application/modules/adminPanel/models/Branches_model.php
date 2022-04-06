@@ -6,9 +6,9 @@
 class Branches_model extends MY_Model
 {
 	public $table = "branches b";
-	public $select_column = ['b.id', 'b.b_name'];
-	public $search_column = ['b.id', 'b.b_name'];
-    public $order_column = [null, 'b.b_name', null];
+	public $select_column = ['b.id', 'b.b_name', 'b.owner', 'b.mobile', 'b.email', 'b.state', 'b.city'];
+	public $search_column = ['b.id', 'b.b_name', 'b.owner', 'b.mobile', 'b.email', 'b.state', 'b.city'];
+    public $order_column = [null, 'b.b_name', 'b.owner', 'b.mobile', 'b.email', 'b.state', 'b.city', null];
 	public $order = ['b.id' => 'DESC'];
 
 	public function make_query()

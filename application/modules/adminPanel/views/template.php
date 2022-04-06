@@ -160,6 +160,6 @@
         <script src="<?= base_url('assets/js/config.js') ?>"></script>
         <script src="<?= base_url('assets/js/select2/select2.full.min.js') ?>"></script>
         <script src="<?= base_url('assets/js/select2/select2-custom.js') ?>"></script>
-        <script src="<?= base_url('assets/js/script.js') ?>"></script>
+        <script src="<?= base_url('assets/js/script.js?v=1.0.1') ?>"></script>
     </body>
 </html>

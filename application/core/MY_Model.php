@@ -84,9 +84,7 @@ class MY_Model extends CI_Model
 
 	public function datatable()
 	{
-		$i = 0;
-
-        foreach ($this->search_column as $item) 
+        foreach ($this->search_column as $i => $item) 
         {
             if($_GET['search']['value']) 
             {
