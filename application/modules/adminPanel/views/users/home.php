@@ -13,20 +13,15 @@
 </div>
 <div class="card-body">
     <div class="row">
-        <div class="col-md-6">
-            <?= form_button([
-                'data-value' => 'Staff',
-                'class'   => 'btn btn-outline-primary btn-block ins_type',
-                'content' => 'Staff'
-            ]); ?>
-        </div>
-        <div class="col-md-6">
-            <?= form_button([
-                'data-value' => 'Partner',
-                'class'   => 'btn btn-outline-primary btn-block ins_type',
-                'content' => 'Partner'
-            ]); ?>
-        </div>
+        <?php foreach($this->main->roles() as $role): if(in_array($role, ['Admin', 'Branch'])) continue; ?>
+            <div class="col-md-3 mb-2">
+                <?= form_button([
+                    'data-value' => $role,
+                    'class'   => 'btn btn-outline-primary btn-block ins_type',
+                    'content' => $role
+                ]); ?>
+            </div>
+        <?php endforeach ?>
     </div>
     <br>
     <div class="table-responsive">
@@ -45,4 +40,4 @@
         </table>
     </div>
 </div>
-<input type="hidden" name="ins_type" value="Staff" />
+<input type="hidden" name="ins_type" value="Branch manager" />

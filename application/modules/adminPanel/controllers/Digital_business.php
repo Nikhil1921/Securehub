@@ -16,33 +16,14 @@ class Digital_business extends Admin_controller  {
 	public function index()
 	{
         check_access($this->name, 'view');
-        $this->form_validation->set_rules($this->validate);
 
-        $data['price'] = $this->main->get($this->app_table, 'value', ['cong_name' => 'business_price']);
-        $data['validity'] = $this->main->get($this->app_table, 'value', ['cong_name' => 'business_validity']);
+        $data['title'] = $this->title;
+        $data['name'] = $this->name;
+        $data['url'] = $this->redirect;
+        $data['operation'] = "List";
+        $data['datatable'] = "$this->redirect/get";
         
-        if (! $data['price']){
-            $this->main->add(['cong_name' => 'business_price', 'value' => 50], $this->app_table);
-            $data['price'] = $this->main->get($this->app_table, 'value', ['cong_name' => 'business_price']);
-        }
-        if (! $data['validity']){
-            $this->main->add(['cong_name' => 'business_validity', 'value' => 12], $this->app_table);
-            $data['validity'] = $this->main->get($this->app_table, 'value', ['cong_name' => 'business_validity']);
-        }
-
-        if ($this->form_validation->run() == FALSE) {
-            $data['title'] = $this->title;
-            $data['name'] = $this->name;
-            $data['url'] = $this->redirect;
-            $data['operation'] = "List";
-            $data['datatable'] = "$this->redirect/get";
-            
-            return $this->template->load('template', "$this->redirect/home", $data);
-        }else{
-            $id = $this->main->update(['cong_name' => 'business_validity'], ['value' => $this->input->post('validity')], $this->app_table);
-            $id = $this->main->update(['cong_name' => 'business_price'], ['value' => $this->input->post('price')], $this->app_table);
-            flashMsg($id, "Price updated.", "Price not updated.", "$this->redirect");
-        }
+        return $this->template->load('template', "$this->redirect/home", $data);
 	}
 
 	public function get()
@@ -83,25 +64,4 @@ class Digital_business extends Admin_controller  {
         
         die(json_encode($output));
     }
-
-    protected $validate = [
-        [
-            'field' => 'price',
-            'label' => 'Price',
-            'rules' => 'required|numeric',
-            'errors' => [
-                'required' => "%s is required",
-                'numeric' => "%s is invalid.",
-            ],
-        ],
-        [
-            'field' => 'validity',
-            'label' => 'Validity',
-            'rules' => 'required|numeric',
-            'errors' => [
-                'required' => "%s is required",
-                'numeric' => "%s is invalid.",
-            ],
-        ]
-    ];
 }

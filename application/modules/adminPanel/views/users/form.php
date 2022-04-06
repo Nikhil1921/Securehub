@@ -62,7 +62,8 @@
                 <div class="col-6">
                     <div class="form-group">
                         <?= form_label('Role', 'role', 'class="col-form-label"'); ?>
-                        <?= form_dropdown('role', ['Staff' => 'Staff', 'Partner' => 'Partner'], set_value('role') ? set_value('role') : (isset($data['role']) ? $data['role'] : ''), 'class="form-control select-commission" id="role" required onchange="selectCommission(this)" data-value="'.(isset($data['id']) ? e_id($data['id']) : '').'"'); ?>
+                        <?php $roles = []; foreach($this->main->roles() as $role): if(in_array($role, ['Admin', 'Branch'])) continue; $roles[$role] = $role; endforeach ?>
+                        <?= form_dropdown('role', $roles, set_value('role') ? set_value('role') : (isset($data['role']) ? $data['role'] : ''), 'class="form-control select-commission" id="role" required onchange="selectCommission(this)" data-value="'.(isset($data['id']) ? e_id($data['id']) : '').'"'); ?>
                         <?= form_error('role') ?>
                     </div>
                 </div>

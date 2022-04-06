@@ -26,3 +26,5 @@ uploads/document/*
 !uploads/document/index.html
 uploads/downloads/*
 !uploads/downloads/index.html
+uploads/users/*
+!uploads/users/index.html

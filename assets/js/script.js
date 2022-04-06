@@ -240,4 +240,21 @@ if ($('.select-commission').length) {
     selectCommission(document.getElementById('role'))
 }
 
+const addFeature = () => {
+    let id = $("#show-features").find("div").length + 1;
+    let feature = `<div class="col-10 features_${id}">
+                        <div class="form-group">
+                            <label for="features[]" class="col-form-label">Plan feature</label>
+                            <input type="text" name="features[]" value="" class="form-control" id="features_${id}" maxlength="255" required="">
+                        </div>
+                    </div>
+                    <div class="col-2 mt-4 features_${id}">
+                        <button type="button" onclick="removeFeature('features_${id}');" class="btn btn-pill btn-outline-danger btn-air-danger btn-sm">Remove</button>
+                    </div>`;
+    $("#show-features").append(feature);
+};
+
+const removeFeature = (id) => {
+    $("." + id).remove();
+};
 // custom code end here

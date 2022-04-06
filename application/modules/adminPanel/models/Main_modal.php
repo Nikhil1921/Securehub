@@ -4,16 +4,47 @@
  */
 class Main_modal extends MY_Model
 {
+	public function roles()
+    {
+        return [
+            'Admin', 'Branch manager', 'Partner', 'Sales person', 'Operation', 'Accountant', 'Digital marketing'
+        ];
+    }
+    
 	public function navs($role)
     {
         $navs = [
-            [
+            /* [
                 'name' => 'banners',
                 'title' => 'Banner',
                 'permissions' => ['view', 'add', 'delete'],
                 'added' => array_map(function($arr){
                     return $arr['operation'];
                 }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'banners']))
+            ],
+            [
+                'name' => 'news',
+                'title' => 'News',
+                'permissions' => ['view', 'add', 'update', 'delete'],
+                'added' => array_map(function($arr){
+                    return $arr['operation'];
+                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'news']))
+            ], */
+            [
+                'name' => 'insurance_plans',
+                'title' => 'Insurance Plans',
+                'permissions' => ['view', 'add', 'update', 'delete'],
+                'added' => array_map(function($arr){
+                    return $arr['operation'];
+                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'insurance_plans']))
+            ],
+            [
+                'name' => 'companies',
+                'title' => 'Insurance Companies',
+                'permissions' => ['view', 'add', 'update', 'delete'],
+                'added' => array_map(function($arr){
+                    return $arr['operation'];
+                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'companies']))
             ],
             [
                 'name' => 'become_partners',
@@ -32,20 +63,12 @@ class Main_modal extends MY_Model
                 }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'branches']))
             ],
             [
-                'name' => 'companies',
-                'title' => 'Insurance Companies',
-                'permissions' => ['view', 'add', 'update', 'delete'],
+                'name' => 'users',
+                'title' => 'Users',
+                'permissions' => ['view', 'add', 'update', 'delete', 'commission'],
                 'added' => array_map(function($arr){
                     return $arr['operation'];
-                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'companies']))
-            ],
-            [
-                'name' => 'insurance_plans',
-                'title' => 'Insurance Plans',
-                'permissions' => ['view', 'add', 'update', 'delete'],
-                'added' => array_map(function($arr){
-                    return $arr['operation'];
-                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'insurance_plans']))
+                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'users']))
             ],
             [
                 'name' => 'leads',
@@ -54,22 +77,6 @@ class Main_modal extends MY_Model
                 'added' => array_map(function($arr){
                     return $arr['operation'];
                 }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'leads']))
-            ],
-            [
-                'name' => 'news',
-                'title' => 'News',
-                'permissions' => ['view', 'add', 'update', 'delete'],
-                'added' => array_map(function($arr){
-                    return $arr['operation'];
-                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'news']))
-            ],
-            [
-                'name' => 'users',
-                'title' => 'Users',
-                'permissions' => ['view', 'add', 'update', 'delete', 'commission'],
-                'added' => array_map(function($arr){
-                    return $arr['operation'];
-                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'users']))
             ],
             [
                 'name' => 'followups',
@@ -88,6 +95,14 @@ class Main_modal extends MY_Model
                 }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'purchased_plans']))
             ],
             [
+                'name' => 'claims',
+                'title' => 'Claims',
+                'permissions' => ['view', 'followup'],
+                'added' => array_map(function($arr){
+                    return $arr['operation'];
+                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'claims']))
+            ],
+            [
                 'name' => 'digital_business',
                 'title' => 'Digital business',
                 'permissions' => ['view'],
@@ -96,21 +111,29 @@ class Main_modal extends MY_Model
                 }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'digital_business']))
             ],
             [
+                'name' => 'business_category',
+                'title' => 'Digital category',
+                'permissions' => ['view', 'add', 'update', 'delete'],
+                'added' => array_map(function($arr){
+                    return $arr['operation'];
+                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'business_category']))
+            ],
+            [
                 'name' => 'business_frames',
                 'title' => 'Digital business frames',
-                'permissions' => ['view', 'add', 'delete'],
+                'permissions' => ['view', 'add', 'update', 'delete'],
                 'added' => array_map(function($arr){
                     return $arr['operation'];
                 }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'business_frames']))
             ],
-            [
-                'name' => 'claims',
-                'title' => 'Claims',
-                'permissions' => ['view', 'followup'],
+            /* [    
+                'name' => 'downloads',
+                'title' => 'Downloads',
+                'permissions' => ['view', 'add', 'update', 'delete'],
                 'added' => array_map(function($arr){
                     return $arr['operation'];
-                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'claims']))
-            ],
+                }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'downloads']))
+            ], */
         ];
         
         return $navs;

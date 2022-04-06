@@ -6,12 +6,12 @@ class Home extends MY_Controller  {
 	{
 		parent::__construct();
         $this->load->helper('api');
+		$this->users = $this->config->item('users');
 		$this->banners = $this->config->item('banners');
 		$this->news = $this->config->item('news');
 		$this->insurance = $this->config->item('insurance');
 		$this->plans = $this->config->item('plans');
 		$this->business = $this->config->item('business');
-		$this->app_table = $this->config->item('app_table');
 		$this->document = $this->config->item('document');
 	}
 
@@ -259,7 +259,7 @@ class Home extends MY_Controller  {
 		get();
 		$api = authenticate($this->table);
 		
-		if ($user = $this->main->get($this->table, 'id, name, mobile, email', ['id' => $api])) {
+		if ($user = $this->main->get($this->table, 'id, name, mobile, email, CONCAT("'.base_url($this->users).'", image) image', ['id' => $api])) {
 			$response['row'] = $user;
 			$response['error'] = false;
 			$response['message'] = "Profile success.";
@@ -290,6 +290,17 @@ class Home extends MY_Controller  {
 				'email'   	    => $this->input->post('email'),
 				'update_at' 	=> date('Y-m-d H:i:s')
 			];
+
+			if(!empty($_FILES['image']['name'])){
+				$image = $this->uploadImages("image", $this->users, 'jpg|jpeg|png');
+				if ($image['error'] == TRUE) {
+					$response['error'] = true;
+					$response['message'] = $image["message"];
+					echoRespnse(200, $response);
+				}else{
+					$post['image'] = $image['message'];
+				}
+			}
 
 			if ($this->main->update(['id' => $api], $post, $this->table)) {
 				$response['error'] = false;
@@ -422,11 +433,17 @@ class Home extends MY_Controller  {
 	{
 		get();
 
-		$price = $this->main->get($this->app_table, 'value price', ['cong_name' => 'business_price']);
-		$validity = $this->main->get($this->app_table, 'CONCAT(value, " Months") validity', ['cong_name' => 'business_validity']);
+		$response['row'] = array_map(function($arr) {
+			return 
+				[
+					'planname'  => $arr['planname'],
+					'validity'  => $arr['validity'],
+					'features'  => $arr['features'] ? explode(', ', $arr['features']) : [],
+					'price'     => $arr['price']
+				];
+		}, $this->main->getall('digital_plans', 'planname, validity, features, price', ['is_deleted' => 0]));
 		
-		if ($row = array_merge($price, $validity)) {
-			$response['row'] = $row;
+		if ($response['row']) {
 			$response['error'] = false;
 			$response['message'] = "Business price success.";
 		}else{
@@ -441,7 +458,7 @@ class Home extends MY_Controller  {
 	{
 		post();
 		$api = authenticate($this->table);
-		verifyRequiredParams(["name", "mobile", "email", "address", 'about_us', 'payment_id', 'paid_amount', "whatsapp", "facebook", "instagram"]);
+		verifyRequiredParams(["name", "mobile", "email", "address", 'about_us', 'payment_id', 'paid_amount', "whatsapp", "facebook", "instagram", "validity"]);
 
 		$logo = $this->uploadImages("logo", $this->business, 'jpg|jpeg|png');
 
@@ -449,8 +466,7 @@ class Home extends MY_Controller  {
 			$response['error'] = true;
 			$response['message'] = $logo["message"];
 		}else{
-			$month = $this->main->check($this->app_table, ['cong_name' => 'business_validity'], 'value');
-			for ($i=0; $i < 6; $i++) { 
+			for ($i=0; $i < 6; $i++) {
 				if ($i < 3) $banner[$i]['image'] = '';
 				$gallery[$i]['image'] = '';
 			}
@@ -470,7 +486,7 @@ class Home extends MY_Controller  {
 					'banner'      => json_encode($banner),
 					'user_id'     => $api,
 					'purchased'   => date('Y-m-d'),
-					'expiry'      => date('Y-m-d', strtotime('+ '.($month ? $month : 12).'Months')),
+					'expiry'      => date('Y-m-d', strtotime('+ '.($this->input->post('validity') ? $this->input->post('validity') : 12).'Months')),
 					'logo'        => $logo['message']
 				];
 				
@@ -596,9 +612,17 @@ class Home extends MY_Controller  {
 	{
 		post();
 		$api = authenticate($this->table);
-		verifyRequiredParams(["reg_no"]);
+		verifyRequiredParams(["reg_no", "own_name", "veh_name", "veh_make", "veh_model", "veh_type"]);
 
-		$post = [ 'user_id' => $api, 'reg_no' => $this->input->post('reg_no') ];
+		$post = [
+					'user_id'    => $api,
+					'reg_no'     => $this->input->post('reg_no'),
+					'own_name'   => $this->input->post('own_name'),
+					'veh_name'   => $this->input->post('veh_name'),
+					'veh_make'   => $this->input->post('veh_make'),
+					'veh_model'  => $this->input->post('veh_model'),
+					'veh_type'   => $this->input->post('veh_type'),
+				];
 
 		if ($this->main->add($post, "vehicles")) {
 			$response['error'] = false;
@@ -615,9 +639,16 @@ class Home extends MY_Controller  {
 	{
 		post();
 		$api = authenticate($this->table);
-		verifyRequiredParams(["id", "reg_no"]);
+		verifyRequiredParams(["reg_no", "own_name", "veh_name", "veh_make", "veh_model", "veh_type"]);
 
-		$post = [ 'reg_no' => $this->input->post('reg_no') ];
+		$post = [
+					'reg_no'     => $this->input->post('reg_no'),
+					'own_name'   => $this->input->post('own_name'),
+					'veh_name'   => $this->input->post('veh_name'),
+					'veh_make'   => $this->input->post('veh_make'),
+					'veh_model'  => $this->input->post('veh_model'),
+					'veh_type'   => $this->input->post('veh_type'),
+				];
 
 		if ($this->main->update(['id' => $this->input->post('id')], $post, "vehicles")) {
 			$response['error'] = false;
@@ -637,11 +668,12 @@ class Home extends MY_Controller  {
 
 		$post = [ 'user_id' => $api, 'is_deleted' => 0 ];
 
-		if ($row = $this->main->getall("vehicles", 'id, reg_no', $post)) {
+		if ($row = $this->main->getall("vehicles", 'id, reg_no, own_name, veh_name, veh_make, veh_model, veh_type', $post)) {
 			$response['row'] = $row;
 			$response['error'] = false;
 			$response['message'] = "Vehicle list success.";
 		}else{
+			$response['row'] = [];
 			$response['error'] = true;
 			$response['message'] = "Vehicle list not success. Try again.";
 		}

@@ -20,18 +20,12 @@
     </div>
     <div class="checkbox">
         <div class="form-group m-t-15 m-checkbox-inline mb-0 custom-radio-ml">
-            <div class="radio radio-danger">
-                <?= form_radio('role', 'Admin', true, 'id="admin"') ?>
-                <?= form_label('Admin', 'admin', 'class="mb-0"') ?>
-            </div>
-            <div class="radio radio-danger">
-                <?= form_radio('role', 'Staff', set_value('role') == 'Staff' ? true : false, 'id="staff"') ?>
-                <?= form_label('Staff', 'staff', 'class="mb-0"') ?>
-            </div>
-            <div class="radio radio-danger">
-                <?= form_radio('role', 'Partner', set_value('role') == 'Partner' ? true : false, 'id="partner"') ?>
-                <?= form_label('Partner', 'partner', 'class="mb-0"') ?>
-            </div>
+            <?php foreach($this->main->roles() as $k => $role): ?>
+                <div class="radio radio-danger">
+                    <?= form_radio('role', $role, $k == 0 ? true : (set_value('role') == 'Staff' ? true : false), 'id="'.$role.'"') ?>
+                    <?= form_label($role, $role, 'class="mb-0"') ?>
+                </div>
+            <?php endforeach ?>
         </div>
     </div>
     <div class="col-12">

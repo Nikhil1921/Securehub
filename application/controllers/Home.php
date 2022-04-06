@@ -92,6 +92,16 @@ class Home extends MY_Controller {
 
 		return $this->template->load('template', "terms", $data);
 	}
+	
+	public function refund()
+	{
+		$data['name'] = 'refund';
+		$data['title'] = 'Refund policy';
+		$data['breads'] = [['title' => 'Refund policy']];
+		$data['heading'] = '<span class="page_heading">Refund </span>policy';
+
+		return $this->template->load('template', "refund", $data);
+	}
 
 	public function news_blog()
 	{
