@@ -454,11 +454,54 @@ class Home extends MY_Controller  {
 		echoRespnse(200, $response);
 	}
 
+	public function digital_business_payment()
+	{
+		post();
+		$api = authenticate($this->table);
+		verifyRequiredParams(['payment_id', 'paid_amount', "validity"]);
+
+		$post = [
+				'payment_id'  => $this->input->post('payment_id'),
+				'paid_amount' => $this->input->post('paid_amount'),
+				'user_id'     => $api,
+				'purchased'   => date('Y-m-d'),
+				'expiry'      => date('Y-m-d', strtotime('+ '.$this->input->post('validity').'Months'))
+			];
+			
+		if ($this->main->add($post, "digital_business_payments") !== false) {
+			$response['error'] = false;
+			$response['message'] = "Payment saved.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Payment not saved. Try again.";
+		}
+
+		echoRespnse(200, $response);
+	}
+	
+	public function digital_payment_history()
+	{
+		get();
+		$api = authenticate($this->table);
+			
+		if ($row = $this->main->getall("digital_business_payments", 'payment_id, purchased, expiry, paid_amount', ['user_id' => $api])) {
+			$response['row'] = $row;
+			$response['error'] = false;
+			$response['message'] = "Payment list success.";
+		}else{
+			$response['row'] = [];
+			$response['error'] = true;
+			$response['message'] = "Payment list not success. Try again.";
+		}
+
+		echoRespnse(200, $response);
+	}
+
 	public function digital_business()
 	{
 		post();
 		$api = authenticate($this->table);
-		verifyRequiredParams(["name", "mobile", "email", "address", 'about_us', 'payment_id', 'paid_amount', "whatsapp", "facebook", "instagram", "validity"]);
+		verifyRequiredParams(["name", "mobile", "email", "address", 'about_us', "whatsapp", "facebook", "instagram"]);
 
 		$logo = $this->uploadImages("logo", $this->business, 'jpg|jpeg|png');
 
@@ -480,17 +523,21 @@ class Home extends MY_Controller  {
 					'instagram'   => $this->input->post('instagram'),
 					'address'     => $this->input->post('address'),
 					'about_us'    => $this->input->post('about_us'),
-					'payment_id'  => $this->input->post('payment_id'),
-					'paid_amount' => $this->input->post('paid_amount'),
+					/* 'payment_id'  => $this->input->post('payment_id'),
+					'paid_amount' => $this->input->post('paid_amount'), */
 					'gallery'     => json_encode($gallery),
 					'banner'      => json_encode($banner),
 					'user_id'     => $api,
-					'purchased'   => date('Y-m-d'),
-					'expiry'      => date('Y-m-d', strtotime('+ '.($this->input->post('validity') ? $this->input->post('validity') : 12).'Months')),
+					/* 'purchased'   => date('Y-m-d'),
+					'expiry'      => date('Y-m-d', strtotime('+ '.($this->input->post('validity') ? $this->input->post('validity') : 12).'Months')), */
 					'logo'        => $logo['message']
 				];
-				
-			if ($this->main->add($post, "digital_business") !== false) {
+			if($check = $this->main->get('digital_business', 'id', ['user_id' => $api, 'is_deleted' => 0]))
+				$id = $this->main->update(['id' => $check['id']], $post, "digital_business");
+			else
+				$id = $this->main->add($post, "digital_business");
+
+			if ($id) {
 				$response['error'] = false;
 				$response['message'] = "Digital business saved.";
 			}else{
@@ -513,28 +560,12 @@ class Home extends MY_Controller  {
     			'is_deleted' => 0
     		];
 
-		$row = array_map(function($arr) {
-			return 
-				[
-					'name'       => $arr['name'],
-					'mobile'     => $arr['mobile'],
-					'email'      => $arr['email'],
-					'address'    => $arr['address'],
-					'logo'       => $arr['logo'],
-					'about_us'   => $arr['about_us'],
-					'whatsapp'   => $arr['whatsapp'],
-					'facebook'   => $arr['facebook'],
-					'instagram'  => $arr['instagram'],
-					'gallery'    => json_decode($arr['gallery']),
-					'banner'     => json_decode($arr['banner']),
-					'payment_id' => $arr['payment_id'],
-					'purchased'  => date('d-m-Y', strtotime($arr['purchased'])),
-					'expiry'     => date('d-m-Y', strtotime($arr['expiry']))
-				];
-		}, $this->main->getall("digital_business", 'whatsapp, facebook, instagram, name, mobile, email, address, logo, about_us, gallery, banner, payment_id, purchased, expiry', $post));
+		$row = $this->main->get("digital_business", 'whatsapp, facebook, instagram, name, mobile, email, address, logo, about_us, gallery, banner', $post);
 
 		if ($row) {
 			$response['img_url'] = base_url($this->business);
+			$row['gallery'] = json_decode($row['gallery']);
+			$row['banner'] = json_decode($row['banner']);
 			$response['row'] = $row;
 			$response['error'] = false;
 			$response['message'] = "Business list success.";
