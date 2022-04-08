@@ -147,6 +147,42 @@ if ($('select[name="ins_id"]').length > 0 && $('select[name="ins_type_id"]').len
     $('select[name="ins_type_id"]').trigger('change');
 }
 
+if ($('select[name="c_id"]').length > 0 && $('select[name="c_type"]').length > 0) {
+    $('select[name="c_type"]').change(function() {
+        var select = $(this);
+        var selected = select.data('value');
+        var options = '<option value="">Select category</option>';
+
+        if (select.val()) {
+            $.ajax({
+                url: url + "get-category-list",
+                type: 'get',
+                data: { 'parent_id': select.val() },
+                dataType: 'json',
+                cache: false,
+                async: false,
+                beforeSend: function() {
+                    $('.loader-wrapper').fadeIn();
+                },
+                complete: function() {
+                    $('.loader-wrapper').fadeOut();
+                },
+                success: function(result) {
+                    for (var k in result)
+                        options += `<option ${result[k].val == selected ? 'selected' : ''} value="${result[k].val}">${result[k].c_name}</option>`;
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    flash_msg("Error", "Something is not going good. Try again.", "danger");
+                }
+            });
+        }
+
+        $('select[name="c_id"]').html(options);
+    });
+
+    $('select[name="c_type"]').trigger('change');
+}
+
 function flash_msg(title, message, type) {
     $.notify({
         title: title,

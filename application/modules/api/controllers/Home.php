@@ -90,7 +90,7 @@ class Home extends MY_Controller  {
 	{
 		get();
             
-		if ($news = $this->main->getall("news", 'title, description, CONCAT("'.base_url($this->news).'", image) image', ['is_deleted' => 0])) {
+		if ($news = $this->main->getall("news", 'title, description, CONCAT("'.base_url($this->news).'", image) image', ['is_deleted' => 0], 'id DESC')) {
 			$response['row'] = $news;
 			$response['error'] = false;
 			$response['message'] = "News list success.";
@@ -503,48 +503,48 @@ class Home extends MY_Controller  {
 		$api = authenticate($this->table);
 		verifyRequiredParams(["name", "mobile", "email", "address", 'about_us', "whatsapp", "facebook", "instagram"]);
 
-		$logo = $this->uploadImages("logo", $this->business, 'jpg|jpeg|png');
+		$post = [
+			'name'        => $this->input->post('name'),
+			'mobile'      => $this->input->post('mobile'),
+			'email'       => $this->input->post('email'),
+			'whatsapp'    => $this->input->post('whatsapp'),
+			'facebook'    => $this->input->post('facebook'),
+			'instagram'   => $this->input->post('instagram'),
+			'address'     => $this->input->post('address'),
+			'about_us'    => $this->input->post('about_us'),
+			'user_id'     => $api
+		];
 
-		if ($logo['error'] == TRUE) {
-			$response['error'] = true;
-			$response['message'] = $logo["message"];
-		}else{
+		if(!empty($_FILES['logo']['name']))
+		{
+			$logo = $this->uploadImages("logo", $this->business, 'jpg|jpeg|png');
+			if ($logo['error'] === FALSE)
+				$post['logo'] = $logo['message'];
+			else{
+				$response['error'] = true;
+				$response['message'] = $logo["message"];
+			}
+		}
+
+		if($check = $this->main->get('digital_business', 'id', ['user_id' => $api, 'is_deleted' => 0]))
+			$id = $this->main->update(['id' => $check['id']], $post, "digital_business");
+		else{
 			for ($i=0; $i < 6; $i++) {
 				if ($i < 3) $banner[$i]['image'] = '';
 				$gallery[$i]['image'] = '';
 			}
-			
-			$post = [
-					'name'        => $this->input->post('name'),
-					'mobile'      => $this->input->post('mobile'),
-					'email'       => $this->input->post('email'),
-					'whatsapp'    => $this->input->post('whatsapp'),
-					'facebook'    => $this->input->post('facebook'),
-					'instagram'   => $this->input->post('instagram'),
-					'address'     => $this->input->post('address'),
-					'about_us'    => $this->input->post('about_us'),
-					/* 'payment_id'  => $this->input->post('payment_id'),
-					'paid_amount' => $this->input->post('paid_amount'), */
-					'gallery'     => json_encode($gallery),
-					'banner'      => json_encode($banner),
-					'user_id'     => $api,
-					/* 'purchased'   => date('Y-m-d'),
-					'expiry'      => date('Y-m-d', strtotime('+ '.($this->input->post('validity') ? $this->input->post('validity') : 12).'Months')), */
-					'logo'        => $logo['message']
-				];
-			if($check = $this->main->get('digital_business', 'id', ['user_id' => $api, 'is_deleted' => 0]))
-				$id = $this->main->update(['id' => $check['id']], $post, "digital_business");
-			else
-				$id = $this->main->add($post, "digital_business");
+			$post['gallery'] = json_encode($gallery);
+			$post['banner'] = json_encode($banner);
+			$id = $this->main->add($post, "digital_business");
+		}
 
-			if ($id) {
-				$response['error'] = false;
-				$response['message'] = "Digital business saved.";
-			}else{
-				if (file_exists($this->business.$logo['message'])) unlink($this->business.$logo['message']);
-				$response['error'] = true;
-				$response['message'] = "Digital business not saved. Try again.";
-			}
+		if ($id) {
+			$response['error'] = false;
+			$response['message'] = "Digital business saved.";
+		}else{
+			if (file_exists($this->business.$logo['message'])) unlink($this->business.$logo['message']);
+			$response['error'] = true;
+			$response['message'] = "Digital business not saved. Try again.";
 		}
 
 		echoRespnse(200, $response);
@@ -560,7 +560,7 @@ class Home extends MY_Controller  {
     			'is_deleted' => 0
     		];
 
-		$row = $this->main->get("digital_business", 'whatsapp, facebook, instagram, name, mobile, email, address, logo, about_us, gallery, banner', $post);
+		$row = $this->main->get("digital_business", 'id, whatsapp, facebook, instagram, name, mobile, email, address, logo, about_us, gallery, banner', $post);
 
 		if ($row) {
 			$response['img_url'] = base_url($this->business);
@@ -619,15 +619,35 @@ class Home extends MY_Controller  {
 		echoRespnse(200, $response);
 	}
 
+	public function business_category()
+	{
+		get();
+		verifyRequiredParams(["c_type"]);
+		$post = [ 'is_deleted' => 0, 'c_type' => $this->input->get('c_type') ];
+
+		$row = $this->main->getall("business_category", 'id, c_name', $post);
+
+		if ($row !== false) {
+			$response['row'] = $row;
+			$response['error'] = false;
+			$response['message'] = "Business category list success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Business category list not success. Try again.";
+		}
+		
+		echoRespnse(200, $response);
+	}
+
 	public function business_frames_list()
 	{
 		get();
-
-		$post = [ 'is_deleted' => 0 ];
+		verifyRequiredParams(["c_id"]);
+		$post = [ 'is_deleted' => 0, 'c_id' => $this->input->get('c_id') ];
 
 		$row = $this->main->getall("business_frames", 'CONCAT("'.base_url($this->business).'", frame)frame', $post);
 
-		if ($row) {
+		if ($row !== false) {
 			$response['row'] = $row;
 			$response['error'] = false;
 			$response['message'] = "Business frame list success.";
@@ -699,7 +719,7 @@ class Home extends MY_Controller  {
 
 		$post = [ 'user_id' => $api, 'is_deleted' => 0 ];
 
-		if ($row = $this->main->getall("vehicles", 'id, reg_no, own_name, veh_name, veh_make, veh_model, veh_type', $post)) {
+		if ($row = $this->main->getall("vehicles", 'id, reg_no, own_name, veh_name, veh_make, veh_model, veh_type', $post, 'id DESC')) {
 			$response['row'] = $row;
 			$response['error'] = false;
 			$response['message'] = "Vehicle list success.";
@@ -805,7 +825,7 @@ class Home extends MY_Controller  {
 
 		$post = [ 'is_deleted' => 0, 'user_id' => $api ];
 
-		if ($row = $this->main->getall("user_documents", 'id, document_name, CONCAT("'.base_url($this->document).'", image) image, doc_type, expiry_date, notification', $post)) {
+		if ($row = $this->main->getall("user_documents", 'id, document_name, CONCAT("'.base_url($this->document).'", image) image, doc_type, expiry_date, notification', $post, 'id DESC')) {
 			$response['row'] = $row;
 			$response['error'] = false;
 			$response['message'] = "Document list success.";

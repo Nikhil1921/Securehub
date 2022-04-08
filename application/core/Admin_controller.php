@@ -25,6 +25,16 @@ class Admin_controller extends MY_Controller
         die(json_encode($return));
     }
 
+    public function get_category_list()
+    {
+        check_ajax();
+        $return = array_map(function($ins){
+            return ['val' => e_id($ins['id']), 'c_name' => $ins['c_name']];
+        }, $this->main->getall("business_category", 'id, c_name', ['is_deleted' => 0, 'c_type' => $this->input->get('parent_id')]));
+        
+        die(json_encode($return));
+    }
+
     public function get_commission()
     {
         check_ajax();

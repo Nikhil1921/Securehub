@@ -16,7 +16,6 @@
         <table class="datatable table table-striped table-bordered nowrap">
             <thead>
                 <th class="target clr_head">Sr.</th>
-                <th class="clr_head">Frame</th>
                 <th class="clr_head">Category</th>
                 <th class="clr_head">Category type</th>
                 <th class="target clr_head">Action</th>
