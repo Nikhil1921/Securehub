@@ -157,7 +157,7 @@ class Home extends MY_Controller  {
 			if ($user)
 				$id = $this->main->update(['id' => $user['id']], $post, $this->table);
 			else{
-				$post['created_at'] = date('Y-m-d H:i:s', strtotime('+5 minutes'));
+				$post['created_at'] = date('Y-m-d H:i:s');
 				$id = $this->main->add($post, $this->table);
 			}
 
