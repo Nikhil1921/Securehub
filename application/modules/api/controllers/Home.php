@@ -837,6 +837,44 @@ class Home extends MY_Controller  {
 		echoRespnse(200, $response);
 	}
 
+	public function make_claim()
+	{
+		post();
+		$api = authenticate($this->table);
+		verifyRequiredParams(["ins_id"]);
+
+		$post = [ 'user_id' => $api, 'id' => $this->input->post('ins_id') ];
+
+		if ($this->main->update($post, ['is_claimed' => 1], "purchase_plan")) {
+			$response['error'] = false;
+			$response['message'] = "Claim success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Claim not success. Try again.";
+		}
+		
+		echoRespnse(200, $response);
+	}
+
+	public function purchase_plans()
+	{
+		get();
+		$api = authenticate($this->table);
+
+		$post = [ 'user_id' => $api ];
+
+		if ($row = $this->main->getall("purchase_plan", 'id, policy_no, CONCAT("'.base_url($this->plans).'", policy_document) policy_document, premium, od_premium, total_premium, expiry_date, purchase_date, is_claimed, claim_status', $post, 'id DESC')) {
+			$response['row'] = $row;
+			$response['error'] = false;
+			$response['message'] = "Purchase list success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Purchase list not success. Try again.";
+		}
+		
+		echoRespnse(200, $response);
+	}
+
 	public function error_404()
 	{
 		$response['error'] = true;

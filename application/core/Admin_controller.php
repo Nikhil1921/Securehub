@@ -80,7 +80,7 @@ class Admin_controller extends MY_Controller
             
             return $this->template->load('template', "leads/purchase_plan", $data);
         }else{
-            $image = $this->uploadImage('image');
+            $image = $this->uploadImage('image', 'pdf');
             if ($image['error'] == TRUE)
 			    flashMsg(0, "", $image["message"], "$this->redirect/purchase-plan/$id");
             else{
