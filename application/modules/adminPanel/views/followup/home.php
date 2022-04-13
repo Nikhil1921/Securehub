@@ -35,7 +35,7 @@
                 <th class="clr_head">Mobile</th>
                 <th class="clr_head">Remark</th>
                 <th class="clr_head">Created AT</th>
-                <?php if ($this->user->role == 'Admin'): ?>
+                <?php if (in_array($this->user->role, ['Admin', 'Branch manager'])): ?>
                 <th class="clr_head">User</th>
                 <?php endif ?>
             </thead>

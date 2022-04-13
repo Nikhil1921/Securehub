@@ -19,10 +19,17 @@ class Followup_model extends MY_Model
                  ->join('logins l', 'l.id = f.u_id')
                  ->join('logins s', 's.id = f.staff_id', 'left');
 		
-		if ($this->user->role == 'Staff')
-			$this->db->where('l.staff_id', $this->session->auth);
-		if ($this->user->role == 'Partner')
-			$this->db->where('l.partner_id', $this->session->auth);
+		switch ($this->session->role) {
+            case 'Sales person':
+                $this->db->where('l.staff_id', $this->session->auth);
+                break;
+            case 'Partner':
+                $this->db->where('l.partner_id', $this->session->auth);
+                break;
+            
+            default:
+                break;
+        }
 
         $this->datatable();
 	}
@@ -35,10 +42,17 @@ class Followup_model extends MY_Model
                  ->join('logins l', 'l.id = f.u_id')
                  ->join('logins s', 's.id = f.staff_id', 'left');
 		
-		if ($this->user->role == 'Staff')
-			$this->db->where('l.staff_id', $this->session->auth);
-		if ($this->user->role == 'Partner')
-			$this->db->where('l.partner_id', $this->session->auth);
+		switch ($this->session->role) {
+            case 'Sales person':
+                $this->db->where('l.staff_id', $this->session->auth);
+                break;
+            case 'Partner':
+                $this->db->where('l.partner_id', $this->session->auth);
+                break;
+            
+            default:
+                break;
+        }
 
 		return $this->db->get()->num_rows();
 	}

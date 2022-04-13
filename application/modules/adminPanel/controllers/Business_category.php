@@ -27,7 +27,7 @@ class Business_category extends Admin_controller  {
         $sr = $_GET['start'] + 1;
         $update = verify_access($this->name, 'update');
         $delete = verify_access($this->name, 'delete');
-
+        $data = [];
         foreach($fetch_data as $row)
         {  
             $sub_array = [];

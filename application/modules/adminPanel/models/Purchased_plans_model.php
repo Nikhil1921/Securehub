@@ -24,10 +24,27 @@ class Purchased_plans_model extends MY_Model
 				 
 		if ($this->input->get('ins_type'))
 			$this->db->where('ip.ins_type_id', d_id($this->input->get('ins_type')));
-		if ($this->user->role == 'Staff')
-			$this->db->where('c.staff_id', $this->session->auth);
-		if ($this->user->role == 'Partner')
-			$this->db->where('p.partner_id', $this->session->auth);
+
+		switch ($this->session->branch_id) {
+            case 0:
+                break;
+            
+            default:
+                $this->db->where('c.branch_id', $this->session->branch_id);
+                break;
+        }
+		
+		switch ($this->session->role) {
+            case 'Sales person':
+                $this->db->where('c.staff_id', $this->session->auth);
+                break;
+            case 'Partner':
+                $this->db->where('p.partner_id', $this->session->auth);
+                break;
+            
+            default:
+                break;
+        }
 			
         $this->datatable();
 	}
@@ -43,10 +60,28 @@ class Purchased_plans_model extends MY_Model
 				 
 		if ($this->input->get('ins_type'))
 			$this->db->where('ip.ins_type_id', d_id($this->input->get('ins_type')));
-		if ($this->user->role == 'Staff')
-			$this->db->where('c.staff_id', $this->session->auth);
-		if ($this->user->role == 'Partner')
-			$this->db->where('p.partner_id', $this->session->auth);
+		
+		switch ($this->session->branch_id) {
+            case 0:
+                break;
+            
+            default:
+                $this->db->where('c.branch_id', $this->session->branch_id);
+                break;
+        }
+		
+		switch ($this->session->role) {
+            case 'Sales person':
+                $this->db->where('c.staff_id', $this->session->auth);
+                break;
+            case 'Partner':
+                $this->db->where('p.partner_id', $this->session->auth);
+                break;
+            
+            default:
+                break;
+        }
+
 		return $this->db->get()->num_rows();
 	}
 

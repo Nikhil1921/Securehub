@@ -86,7 +86,7 @@ class Insurance_plans extends Admin_controller  {
             
             return $this->template->load('template', "$this->redirect/form", $data);
         }else{
-            $image = $this->uploadImage('image');
+            $image = $this->uploadImage('image', 'pdf');
             
             if ($image['error'] == TRUE)
 			    flashMsg(0, "", $image["message"], "$this->redirect/add");
@@ -135,7 +135,7 @@ class Insurance_plans extends Admin_controller  {
                 ];
 
             if (!empty($_FILES['image']['name'])) {
-                $image = $this->uploadImage('image');
+                $image = $this->uploadImage('image', 'pdf');
                 if ($image['error'] == TRUE)
                     flashMsg(0, "", $image["message"], "$this->redirect/update/$id");
                 else{

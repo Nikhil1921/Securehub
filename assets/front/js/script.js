@@ -83,8 +83,8 @@ if ($(".validate-form").length > 0){
         rules: {
             reg_no: {
                 required: true,
-                minlength: 10,
-                maxlength: 10
+                minlength: 5,
+                maxlength: 15
             },
             veh_make: {
                 required: true,

@@ -236,15 +236,12 @@ class Home extends MY_Controller {
 	}
 
 	public function motor_post($page)
-	{
-		$table = 'motor_insurance';
-		
+	{	
 		switch ($page) {
 			case 'car':
 			case 'bike':
 			case 'taxi':
 			case 'truck':
-			case 'misc':
 			case 'staff-buses':
 			case 'school-buses':
 				$this->path = $this->config->item('document');
@@ -276,9 +273,10 @@ class Home extends MY_Controller {
 					'name'		  => $this->input->post('name'),
 					'message'	  => $this->input->post('message'),
 					'uplod_rc'	  => $uplod_rc['message'],
+					'ins_list'	  => $page,
 				];
-
-				if($this->main->add($post, $table))
+				
+				if($this->main->addMotor($post, $this->path.$uplod_rc['message'], $this->path.$ext_policy['message']))
 					$response = [
 						'error' => false,
 						'message' => 'Request saved successfully.'
@@ -289,6 +287,29 @@ class Home extends MY_Controller {
 						'message' => 'Request not saved.'
 					];
 				
+				break;
+			
+			case 'misc':
+				$post = [
+					'name'		  => $this->input->post('name'),
+					'mobile'	  => $this->input->post('mobile'),
+					'email'		  => $this->input->post('email'),
+					'location'	  => $this->input->post('location'),
+					'reg_no'	  => $this->input->post('reg_no'),
+					'message'	  => $this->input->post('message'),
+					'ins_list'	  => $page,
+				];
+				
+				if($this->main->addHealth($post, 'misc_insurance'))
+					$response = [
+						'error' => false,
+						'message' => 'Request saved successfully.'
+					];
+				else
+					$response = [
+						'error' => true,
+						'message' => 'Request not saved.'
+					];
 				break;
 			
 			default:
@@ -339,9 +360,7 @@ class Home extends MY_Controller {
 	}
 
 	public function life_post($page)
-	{
-		$table = 'life_insurance';
-		
+	{	
 		switch ($page) {
 			case 'regular-income':
 			case 'need-base-solution':
@@ -360,9 +379,10 @@ class Home extends MY_Controller {
 					'occupation'  => $this->input->post('occupation'),
 					'income'	  => $this->input->post('income'),
 					'education'	  => $this->input->post('education'),
+					'ins_list'	  => $page,
 				];
 
-				if($this->main->add($post, $table))
+				if($this->main->addHealth($post, 'life_insurance'))
 					$response = [
 						'error' => false,
 						'message' => 'Request saved successfully.'
@@ -427,8 +447,6 @@ class Home extends MY_Controller {
 
 	public function other_post($page)
 	{
-		$table = 'other_insurance';
-		
 		switch ($page) {
 			case 'workmen-compensation':
 			case 'cpm':
@@ -443,10 +461,11 @@ class Home extends MY_Controller {
 					'mobile' => $this->input->post('mobile'),
 					'email' => $this->input->post('email'),
 					'location' => $this->input->post('location'),
-					'message' => $this->input->post('message')
+					'message' => $this->input->post('message'),
+					'ins_list'	  => $page,
 				];
 
-				if($this->main->add($post, $table))
+				if($this->main->addHealth($post, 'other_insurance'))
 					$response = [
 						'error' => false,
 						'message' => 'Request saved successfully.'
@@ -543,9 +562,7 @@ class Home extends MY_Controller {
 	}
 
 	public function health_post($page)
-	{
-		$table = 'health_insurance';
-		
+	{	
 		switch ($page) {
 			case 'mediclaim':
 			case 'covid':
@@ -563,9 +580,10 @@ class Home extends MY_Controller {
 					'mobile' => $this->input->post('mobile'),
 					'email' => $this->input->post('email'),
 					'name' => $this->input->post('name'),
+					'ins_list'	  => $page,
 				];
 				
-				if($this->main->add($post, $table))
+				if($this->main->addHealth($post, 'health_insurance'))
 					$response = [
 						'error' => false,
 						'message' => 'Request saved successfully.'

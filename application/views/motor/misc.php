@@ -7,36 +7,36 @@
             </div>
             <div class="col-lg-7 car_right">
                 <div class="car_insurence_form">
-                    <form class="inquiryForm">
+                    <form id="inquiry_form" class="inquiryForm validate-form" style="border: none;">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="ig">
                                 <label>Name</label>
-                                <input type="text" name="name" required="" data-error="Please enter your name" placeholder="Name">
+                                <input type="text" name="name" required="" placeholder="Name">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="ig">
                                 <label>Mobile Number</label>
-                                <input tabindex="1" value="" data-error="Please enter your name Mobile Number" placeholder="10 Digit Mobile Number" type="text" name="mobile" required="">
+                                <input maxlength="10" placeholder="10 Digit Mobile Number" type="text" name="mobile" required="">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="ig">
                                 <label>Email Id</label>
-                                <input type="email" name="email" data-error="Please enter your Email Id" required="" placeholder="Email Id">
+                                <input type="email" name="email" maxlength="100" required="" placeholder="Email Id">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="ig">
                                 <label>Location</label>
-                                <input type="text" name="name" data-error="Please enter your Location" required="" data-error="Please enter your name" placeholder="Location">
+                                <input type="text" name="location" maxlength="20" required="" data-error="Please enter your name" placeholder="Location">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="ig">
                                 <label>Vehicle Registration Number</label>
-                                <input tabindex="2" value="" data-error="Please enter your Vehicle Registration Number" placeholder="GJ 05 JH 1505" type="text" name="vehicleNumber" required="">
+                                <input placeholder="GJ 05 JH 1505" type="text" name="reg_no" maxlength="20" required="">
                                 </div>
                             </div>
                             <div class="col-12">
@@ -47,7 +47,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="ig">
-                                <button  class="btn_car_submit" tabindex="3" type="submit" name="inquirySubmit"><a href="motor_ins_submit_inquery.php">Submit Inquiry</a></button>
+                                <button  class="btn_car_submit" type="submit">Submit Inquiry</button>
                                 </div>
                             </div>
                         </div>

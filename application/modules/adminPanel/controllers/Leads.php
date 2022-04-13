@@ -34,7 +34,7 @@ class Leads extends Admin_controller  {
         $veh_documents = verify_access($this->name, 'vehicle documents');
         $documents = verify_access($this->name, 'user documents');
         foreach($fetch_data as $row)
-        {  
+        {
             $sub_array = [];
             $sub_array[] = $sr;
             $sub_array[] = $row->name;
@@ -44,6 +44,9 @@ class Leads extends Admin_controller  {
             
             $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="icon-settings"></span></button><div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" x-placement="bottom-start">';
+
+            $action .= anchor($this->redirect."/details/".e_id($row->id), '<i class="fa fa-user"></i> User Details</a>', 'class="dropdown-item"');
+            
             if ($update && ! $row->is_activated)
                 $action .= anchor($this->redirect."/update/".e_id($row->id), '<i class="fa fa-edit"></i> Edit</a>', 'class="dropdown-item"');
             if ($assign && ! $row->is_activated)
@@ -98,7 +101,7 @@ class Leads extends Admin_controller  {
     			'email'   	 => $this->input->post('email'),
     			'name'   	 => $this->input->post('name'),
     			'role'   	 => "User",
-    			'staff_id'   => $this->user->role == 'Staff' ? $this->session->auth : 0,
+    			'staff_id'   => $this->user->role == 'Sales person' ? $this->session->auth : 0,
     			'partner_id' => $this->user->role == 'Partner' ? $this->session->auth : 0,
                 'branch_id'  => d_id($this->input->post('branch_id')),
                 'password'   => my_crypt('123456')
@@ -152,7 +155,7 @@ class Leads extends Admin_controller  {
             $data['operation'] = "Assign Staff";
             $data['url'] = $this->redirect;
             $data['data'] = $this->main->get($this->table, 'staff_id, branch_id', ['id' => d_id($id)]);
-            $data['users'] = $this->main->getall('logins', 'id, name', ['is_deleted' => 0, 'role' => 'Staff', 'branch_id' => $data['data']['branch_id']]);
+            $data['users'] = $this->main->getall('logins', 'id, name', ['is_deleted' => 0, 'role' => 'Sales person', 'branch_id' => $data['data']['branch_id']]);
             
             return $this->template->load('template', "$this->redirect/assign", $data);
         }else{
@@ -290,6 +293,22 @@ class Leads extends Admin_controller  {
 
             return $this->template->load('template', "$this->redirect/documents", $data);
         }
+    }
+    
+    public function details($id)
+    {
+        $data['title'] = 'user';
+        $data['name'] = 'user-details';
+        $data['details']['motor'] = $this->main->getAll('motor_insurance', '*', ['lead_id' => d_id($id)]);
+        $data['details']['life'] = $this->main->getAll('life_insurance', '*', ['lead_id' => d_id($id)]);
+        $data['details']['health'] = $this->main->getAll('health_insurance', '*', ['lead_id' => d_id($id)]);
+        $data['details']['other'] = $this->main->getAll('other_insurance', '*', ['lead_id' => d_id($id)]);
+        $data['details']['misc'] = $this->main->getAll('misc_insurance', '*', ['lead_id' => d_id($id)]);
+        
+        $data['url'] = $this->redirect;
+        $data['operation'] = 'details';
+
+        return $this->template->load('template', "$this->redirect/details", $data);
     }
 
     public function mobile_check($str)

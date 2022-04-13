@@ -43,22 +43,22 @@ class Purchased_plans extends Admin_controller  {
             $sub_array[] = date('d-m-Y', strtotime($row->purchase_date));
             $sub_array[] = date('d-m-Y', strtotime($row->expiry_date));
             $sub_array[] = $row->client;
-            if ($this->user->role == 'Admin'):
+            if (in_array($this->user->role, ['Admin', 'Accountant'])):
                 $sub_array[] = $row->partner ? $row->partner : 'Direct Customer';
                 $comm = $row->comm_type == 'NET' ? $row->premium : $row->od_premium;
                 $sub_array[] = $row->partner ? $comm * $row->commission / 100 : 'Direct Customer';
                 $sub_array[] = $row->partner ? $row->commission_status : 'Direct Customer';
             endif;
             
-            $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            /* $action = '<div class="btn-group" role="group"><button class="btn btn-success dropdown-toggle" id="btnGroupVerticalDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="icon-settings"></span></button><div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" x-placement="bottom-start">';
             
-            /* $action .= anchor($this->redirect."/update/".e_id($row->id), '<i class="fa fa-edit"></i> Edit</a>', 'class="dropdown-item"'); */
+            $action .= anchor($this->redirect."/update/".e_id($row->id), '<i class="fa fa-edit"></i> Edit</a>', 'class="dropdown-item"');
                 
             $action .= '</div></div>';
-            $sub_array[] = $action;
+            $sub_array[] = $action; */
 
-            $data[] = $sub_array;  
+            $data[] = $sub_array;
             $sr++;
         }
 

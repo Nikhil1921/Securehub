@@ -33,7 +33,7 @@
                 <?php endif ?>
             </tbody>
         </table>
-        <?php if($hide == false && $this->user->role == 'Staff'): ?>
+        <?php if($hide === false && $this->user->role == 'Sales person'): ?>
         <?= form_open() ?>
             <div class="row">
                 <div class="col-6">

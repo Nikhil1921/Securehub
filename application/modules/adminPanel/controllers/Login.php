@@ -54,7 +54,7 @@ class Login extends MY_Controller
     			'is_deleted' => 0
     		];
             
-    		$user = $this->main->get($this->table, 'id auth, name, role, mobile', $post);
+    		$user = $this->main->get($this->table, 'id auth, name, role, mobile, branch_id', $post);
     		
             if ($user) {
     			$this->session->set_userdata($user);

@@ -51,14 +51,16 @@
                         <?= form_error('mobile') ?>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <?php $branch_id[0] = 'Main Branch'; foreach ($branches as $branch) $branch_id[e_id($branch['id'])] = $branch['b_name']; ?>
-                        <?= form_label('Branch', 'branch_id', 'class="col-form-label"'); ?>
-                        <?= form_dropdown('branch_id', $branch_id, set_value('branch_id') ? set_value('branch_id') : (isset($data['branch_id']) ? e_id($data['branch_id']) : ''), 'class="form-control" required id="branch_id"'); ?>
-                        <?= form_error('branch_id') ?>
+                <?php if($this->session->branch_id == 0): ?>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <?php $branch_id[0] = 'Main Branch'; foreach ($branches as $branch) $branch_id[e_id($branch['id'])] = $branch['b_name']; ?>
+                            <?= form_label('Branch', 'branch_id', 'class="col-form-label"'); ?>
+                            <?= form_dropdown('branch_id', $branch_id, set_value('branch_id') ? set_value('branch_id') : (isset($data['branch_id']) ? e_id($data['branch_id']) : ''), 'class="form-control" required id="branch_id"'); ?>
+                            <?= form_error('branch_id') ?>
+                        </div>
                     </div>
-                </div>
+                <?php else: echo form_hidden('branch_id', e_id($this->session->branch_id)); endif ?>
                 <div class="col-6">
                     <div class="form-group">
                         <?= form_label('Role', 'role', 'class="col-form-label"'); ?>

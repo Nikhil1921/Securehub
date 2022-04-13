@@ -36,7 +36,7 @@ class Followup extends Admin_controller  {
             $sub_array[] = $row->remarks;
             $sub_array[] = $row->created_at;
             
-            if ($this->user->role == 'Admin'):
+            if (in_array($this->user->role, ['Admin', 'Branch manager'])):
                 $sub_array[] = $row->user_name;
             endif;
 

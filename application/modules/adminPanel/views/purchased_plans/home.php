@@ -24,7 +24,7 @@
                 <th class="clr_head">Purchase date</th>
                 <th class="clr_head">Expiry</th>
                 <th class="clr_head">Client Name</th>
-                <?php if($this->user->role == 'Admin'): ?>
+                <?php if(in_array($this->user->role, ['Admin', 'Accountant'])): ?>
                 <th class="clr_head">Partner Name</th>
                 <th class="clr_head">Revenue</th>
                 <th class="clr_head">Revenue status</th>

@@ -6,15 +6,33 @@ class Main_modal extends MY_Model
 {
 	public function roles()
     {
-        return [
-            'Admin', 'Branch manager', 'Partner', 'Sales person', 'Operation', 'Accountant', 'Digital marketing'
-        ];
+        switch ($this->session->branch_id) {
+            case 0:
+                switch ($this->session->role) {
+                    case 'Accountant':
+                        $return = ['Partner'];
+                        break;
+                    
+                    default:
+                        $return = [
+                            'Admin', 'Branch manager', 'Partner', 'Sales person', 'Operation', 'Accountant', 'Digital marketing'
+                        ];
+                    break;
+                }
+                
+                break;
+            
+            default:
+                $return = ['Partner', 'Sales person'];
+                break;
+        }
+        return $return;
     }
     
 	public function navs($role)
     {
         $navs = [
-            /* [
+            [
                 'name' => 'banners',
                 'title' => 'Banner',
                 'permissions' => ['view', 'add', 'delete'],
@@ -29,7 +47,7 @@ class Main_modal extends MY_Model
                 'added' => array_map(function($arr){
                     return $arr['operation'];
                 }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'news']))
-            ], */
+            ],
             [
                 'name' => 'insurance_plans',
                 'title' => 'Insurance Plans',
@@ -126,14 +144,14 @@ class Main_modal extends MY_Model
                     return $arr['operation'];
                 }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'business_frames']))
             ],
-            /* [    
+            [    
                 'name' => 'downloads',
                 'title' => 'Downloads',
                 'permissions' => ['view', 'add', 'update', 'delete'],
                 'added' => array_map(function($arr){
                     return $arr['operation'];
                 }, $this->getall('permissions', 'operation', ['role' => $role, 'nav' => 'downloads']))
-            ], */
+            ],
         ];
         
         return $navs;

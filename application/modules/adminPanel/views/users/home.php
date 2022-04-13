@@ -13,7 +13,7 @@
 </div>
 <div class="card-body">
     <div class="row">
-        <?php foreach($this->main->roles() as $role): if(in_array($role, ['Admin', 'Branch'])) continue; ?>
+        <?php $i = 0; foreach($this->main->roles() as $role): if(in_array($role, ['Admin'])) continue; ?>
             <div class="col-md-3 mb-2">
                 <?= form_button([
                     'data-value' => $role,
@@ -21,7 +21,7 @@
                     'content' => $role
                 ]); ?>
             </div>
-        <?php endforeach ?>
+        <?php if($i === 0) echo form_hidden('ins_type', $role); $i++; endforeach ?>
     </div>
     <br>
     <div class="table-responsive">
@@ -40,4 +40,3 @@
         </table>
     </div>
 </div>
-<input type="hidden" name="ins_type" value="Branch manager" />

@@ -30,7 +30,7 @@ class Users extends Admin_controller  {
         $delete = verify_access($this->name, 'delete');
         $commission = verify_access($this->name, 'commission');
         foreach($fetch_data as $row)
-        {  
+        {
             $sub_array = [];
             $sub_array[] = $sr;
             $sub_array[] = $row->name;
