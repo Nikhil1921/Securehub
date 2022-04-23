@@ -22,7 +22,7 @@ class Main_modal extends MY_Model
 								ELSE
 									p.commission * p.od_premium / 100
 								END)
-								as revenue')
+								as rewards')
 		         ->from('purchase_plan p')
                  ->where('p.partner_id', $api)
 				 ->join('insurance_plans ip', 'ip.id = p.plan_id', 'left')
@@ -33,6 +33,6 @@ class Main_modal extends MY_Model
 
 		$commission = $this->db->get()->row_array();
 		
-		return $commission ? floor($commission['revenue']) : 0;
+		return $commission ? floor($commission['rewards']) : 0;
 	}
 }

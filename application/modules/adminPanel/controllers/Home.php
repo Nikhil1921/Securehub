@@ -121,8 +121,8 @@ class Home extends Admin_controller  {
     		}
         }
 
-        $data['title'] = 'revenue details';
-        $data['name'] = 'revenue details';
+        $data['title'] = 'rewards details';
+        $data['name'] = 'rewards details';
         $data['operation'] = 'view';
         $data['url'] = $this->redirect;
         

@@ -22,9 +22,9 @@
                 <th class="clr_head">Email</th>
                 <th class="clr_head">State</th>
                 <th class="clr_head">City</th>
-                <th class="target clr_head">Total revenue</th>
-                <th class="target clr_head">Pending revenue</th>
-                <th class="target clr_head">Paid revenue</th>
+                <th class="target clr_head">Total rewards</th>
+                <th class="target clr_head">Pending rewards</th>
+                <th class="target clr_head">Paid rewards</th>
                 <th class="target clr_head">Action</th>
             </thead>
             <tbody>

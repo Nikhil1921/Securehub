@@ -22,6 +22,8 @@
                         <th>Make</th>
                         <th>Model</th>
                         <th>Message</th>
+                        <th>RC</th>
+                        <th>OLD Policy</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,6 +38,12 @@
                         <td><?= $motor['veh_make'] ?></td>
                         <td><?= $motor['veh_model'] ?></td>
                         <td><?= $motor['message'] ?></td>
+                        <td><?= anchor($this->config->item('document').$motor['uplod_rc'], '<i class="fa fa-eye"></i>', 'class="btn btn-pill btn-xs btn-outline-danger" target="_blank"') ?></td>
+                        <?php if($motor['ext_policy']): ?>
+                            <td><?= anchor($this->config->item('document').$motor['ext_policy'], '<i class="fa fa-eye"></i>', 'class="btn btn-pill btn-xs btn-outline-danger" target="_blank"') ?></td>
+                        <?php else: ?>
+                            <td>NA</td>
+                        <?php endif ?>
                     </tr>
                     <?php endforeach ?>
                 </tbody>

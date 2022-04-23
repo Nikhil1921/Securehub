@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <?php $status = ['In process' => 'In process', 'Accepted' => 'Accepted', 'Completed' => 'Completed', 'Rejected' => 'Rejected'] ?>
+                        <?php $status = ['In process' => 'In process', 'Claim Registered' => 'Claim Registered', 'Settle' => 'Settle', 'Rejected' => 'Rejected'] ?>
                         <?= form_label('Status', 'status', 'class="col-form-label"'); ?>
                         <?= form_dropdown('status', $status, set_value('status'), 'class="form-control" required id="status"'); ?>
                         <?= form_error('status') ?>
@@ -52,6 +52,7 @@
                             'type' => "text",
                             'id' => "remarks",
                             'name' => "remarks",
+                            'required' => "",
                             'maxlength' => 255,
                             'value' => set_value('remarks')
                         ]); ?>

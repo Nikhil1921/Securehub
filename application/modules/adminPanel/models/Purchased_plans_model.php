@@ -24,6 +24,10 @@ class Purchased_plans_model extends MY_Model
 				 
 		if ($this->input->get('ins_type'))
 			$this->db->where('ip.ins_type_id', d_id($this->input->get('ins_type')));
+		if ($this->input->get('start_date'))
+			$this->db->where('p.expiry_date >= ', $this->input->get('start_date'));
+		if ($this->input->get('end_date'))
+			$this->db->where('p.expiry_date <= ', $this->input->get('end_date'));
 
 		switch ($this->session->branch_id) {
             case 0:
@@ -60,7 +64,10 @@ class Purchased_plans_model extends MY_Model
 				 
 		if ($this->input->get('ins_type'))
 			$this->db->where('ip.ins_type_id', d_id($this->input->get('ins_type')));
-		
+		if ($this->input->get('start_date'))
+			$this->db->where('p.expiry_date >= ', $this->input->get('start_date'));
+		if ($this->input->get('end_date'))
+			$this->db->where('p.expiry_date <= ', $this->input->get('end_date'));
 		switch ($this->session->branch_id) {
             case 0:
                 break;
@@ -93,7 +100,7 @@ class Purchased_plans_model extends MY_Model
 								ELSE
 									p.commission * p.od_premium / 100
 								END)
-								as revenue')
+								as rewards')
 		         ->from($this->table)
 				 ->join('insurance_plans ip', 'ip.id = p.plan_id', 'left')
 				 ->join('insurance i', 'i.id = ip.ins_id', 'left')
@@ -105,6 +112,6 @@ class Purchased_plans_model extends MY_Model
 		
 		$commission = $this->db->get()->row_array();
 		
-		return $commission ? floor($commission['revenue']) : 0;
+		return $commission ? floor($commission['rewards']) : 0;
 	}
 }

@@ -49,6 +49,8 @@ var table = $('.datatable').DataTable({
         data: function(data) {
             data.ins_type = $("input[name='ins_type']").val();
             data.doc_type = $("input[name='doc_type']").val();
+            data.start_date = $("input[name='start']").val();
+            data.end_date = $("input[name='end']").val();
         },
         complete: function(response) {},
     },
@@ -70,5 +72,13 @@ $('.doc_type').click(function() {
 
 $("select[name=vehicle]").change(function() {
     $("input[name='ins_type']").val($(this).val());
+    table.ajax.reload();
+});
+
+$('input[name="daterange"]').daterangepicker();
+
+$('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
+    $("input[name='start']").val(picker.startDate.format("YYYY-MM-DD"));
+    $("input[name='end']").val(picker.endDate.format('YYYY-MM-DD'));
     table.ajax.reload();
 });

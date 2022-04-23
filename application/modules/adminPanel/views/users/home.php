@@ -32,7 +32,7 @@
                 <th class="clr_head">Mobile</th>
                 <th class="clr_head">Email</th>
                 <th class="clr_head">Branch</th>
-                <!-- <th class="target" id="partner-revenue" style="display:none;">Revenue</th> -->
+                <!-- <th class="target" id="partner-rewards" style="display:none;">Rewards</th> -->
                 <th class="target clr_head">Action</th>
             </thead>
             <tbody>
