@@ -116,7 +116,7 @@
                   <?= anchor('contact-us', 'Contact us', 'class="dropdown-item"'); ?>
                 </div>
               </li>
-              <li class="nav-item dropdown">
+              <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="javascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Members
                 </a>
@@ -125,7 +125,7 @@
                   <?= anchor('new-user', 'New User', 'class="dropdown-item"'); ?>
                   <?= anchor('become-agent', 'Join Us', 'class="dropdown-item"'); ?>
                 </div>
-              </li>
+              </li> -->
               <li class="nav-item">
                   <?= anchor('become-partner', 'Become Partner', 'class="nav-link"'); ?>
               </li>
@@ -193,13 +193,13 @@
     <section class="footer_section">
       <div class="container">
         <div class="row footer_main">
-          <div class="col-lg-3 ftr_content">
+          <div class="col-lg-4 ftr_content">
             <div class="ftr_logo">
                 <?= anchor('', img('assets/images/logo.png', '', 'class="ftr_logo_ mb-1"')); ?>
               <p>We believe insurance was always meant to protect what one loves. We are here to ‘Make Insurance Simple’.</p>
             </div>
           </div>
-          <div class="col-lg-3 ftr_content">
+          <div class="col-lg-4 ftr_content">
             <h2 class="ftr_h2">Download</h2>
             <div class="footer_conten">
               <ul class="ftr_ul">
@@ -216,7 +216,7 @@
               <span class="vcounter">3</span> -->
             </div>
           </div>
-          <div class="col-lg-3 ftr_content">
+          <div class="col-lg-4 ftr_content">
             <h2 class="ftr_h2">Quick Links</h2>
             <div class="footer_conten">
               <ul class="ftr_ul">
@@ -224,14 +224,13 @@
                 <li><?= anchor('terms-of-use', '<span><i class="fas fa-angle-right"></i> Terms of use</span>', 'class="ftr_a"'); ?></li>
                 <li><?= anchor('privacy-policy', '<span><i class="fas fa-angle-right"></i> Privacy policy</span>', 'class="ftr_a"'); ?></li>
                 <li><?= anchor('refund-policy', '<span><i class="fas fa-angle-right"></i> Refund policy</span>', 'class="ftr_a"'); ?></li>
-                <li><?= anchor('become-agent', '<span><i class="fas fa-angle-right"></i> Join Us</span>', 'class="ftr_a"'); ?></li>
                 <li><?= anchor('gallery', '<span><i class="fas fa-angle-right"></i> Gallery</span>', 'class="ftr_a"'); ?></li>
                 <li><?= anchor('achievements', '<span><i class="fas fa-angle-right"></i> Achievements</span>', 'class="ftr_a"'); ?></li>
                 <li><?= anchor('career', '<span><i class="fas fa-angle-right"></i> Career</span>', 'class="ftr_a"'); ?></li>
               </ul>
             </div>
           </div>
-          <div class="col-lg-3 ftr_content">
+          <!-- <div class="col-lg-3 ftr_content">
             <div class="widget-contact-content">
               <h3>NEWSLETTER</h3>
               <div class="widget-about-content">
@@ -242,19 +241,14 @@
                   <input id="mc-email" type="email" autocomplete="off" placeholder="Email Address" name="EMAIL">
                   <button id="mc-submit" type="submit"><i class="fas fa-envelope"></i></button>
                 </form>
-                <!-- mailchimp-alerts Start -->
                 <div class="mailchimp-alerts text-centre">
                   <div class="mailchimp-submitting"></div>
-                  <!-- mailchimp-submitting end -->
                   <div class="mailchimp-success"></div>
-                  <!-- mailchimp-success end -->
                   <div class="mailchimp-error"></div>
-                  <!-- mailchimp-error end -->
                 </div>
-                <!-- mailchimp-alerts end -->
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>

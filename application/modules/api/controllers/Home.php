@@ -663,13 +663,13 @@ class Home extends MY_Controller  {
 	{
 		post();
 		$api = authenticate($this->table);
-		verifyRequiredParams(["reg_no", "own_name", "veh_name", "veh_make", "veh_model", "veh_type"]);
+		verifyRequiredParams(["reg_no", "own_name", "veh_make", "veh_model", "veh_type"]);
 
 		$post = [
 					'user_id'    => $api,
 					'reg_no'     => $this->input->post('reg_no'),
 					'own_name'   => $this->input->post('own_name'),
-					'veh_name'   => $this->input->post('veh_name'),
+					/* 'veh_name'   => $this->input->post('veh_name'), */
 					'veh_make'   => $this->input->post('veh_make'),
 					'veh_model'  => $this->input->post('veh_model'),
 					'veh_type'   => $this->input->post('veh_type'),
@@ -686,16 +686,33 @@ class Home extends MY_Controller  {
 		echoRespnse(200, $response);
 	}
 
+	public function delete_vehicle()
+	{
+		post();
+		$api = authenticate($this->table);
+		verifyRequiredParams(["id"]);
+
+		if ($this->main->update(['id' => $this->input->post('id')], ['is_deleted' => 1], "vehicles")) {
+			$response['error'] = false;
+			$response['message'] = "Delete vehicle success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Delete vehicle not success. Try again.";
+		}
+		
+		echoRespnse(200, $response);
+	}
+
 	public function update_vehicle()
 	{
 		post();
 		$api = authenticate($this->table);
-		verifyRequiredParams(["reg_no", "own_name", "veh_name", "veh_make", "veh_model", "veh_type"]);
+		verifyRequiredParams(["reg_no", "own_name", "veh_make", "veh_model", "veh_type"]);
 
 		$post = [
 					'reg_no'     => $this->input->post('reg_no'),
 					'own_name'   => $this->input->post('own_name'),
-					'veh_name'   => $this->input->post('veh_name'),
+					/* 'veh_name'   => $this->input->post('veh_name'), */
 					'veh_make'   => $this->input->post('veh_make'),
 					'veh_model'  => $this->input->post('veh_model'),
 					'veh_type'   => $this->input->post('veh_type'),
@@ -761,6 +778,60 @@ class Home extends MY_Controller  {
 			}
 		}
 		
+		echoRespnse(200, $response);
+	}
+
+	public function delete_vehicle_document()
+	{
+		post();
+		$api = authenticate($this->table);
+		verifyRequiredParams(["id"]);
+
+		if ($this->main->update(['id' => $this->input->post('id')], ['is_deleted' => 1], "vehicle_documents")) {
+			$response['error'] = false;
+			$response['message'] = "Delete vehicle document success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Delete vehicle document not success. Try again.";
+		}
+
+		echoRespnse(200, $response);
+	}
+
+	public function update_vehicle_document()
+	{
+		post();
+		$api = authenticate($this->table);
+		verifyRequiredParams(["id", "veh_id", 'document_name', 'expiry_date']);
+
+		$post = [ 
+			'veh_id' => $this->input->post('veh_id'),
+			'document_name' => $this->input->post('document_name'),
+			'expiry_date' => date('Y-m-d', strtotime($this->input->post('expiry_date'))),
+		];
+
+		if(!empty($_FILES['image']['name']))
+		{
+			$image = $this->uploadImages("image", $this->document, 'jpg|jpeg|png|pdf');
+			if ($image['error'] == TRUE) {
+				$response['error'] = true;
+				$response['message'] = $image["message"];
+
+				echoRespnse(200, $response);
+			}else{
+				$post['image'] = $image["message"];
+			}
+		}
+
+		if ($row = $this->main->update(['id' => $this->input->post('id')], $post, "vehicle_documents")) {
+			$response['error'] = false;
+			$response['message'] = "Update vehicle document success.";
+		}else{
+			if (file_exists($this->document.$image['message'])) unlink($this->document.$image['message']);
+			$response['error'] = true;
+			$response['message'] = "Update vehicle document not success. Try again.";
+		}
+
 		echoRespnse(200, $response);
 	}
 
