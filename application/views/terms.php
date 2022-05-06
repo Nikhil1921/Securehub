@@ -7,182 +7,32 @@
           <h2 id="res_term_respo" class="head_clr"><span class="head_name_color">Terms and</span> Conditions</h2>
         </div>
         <div class="values_p_">
-          <p><span><i class="far fa-hand-point-right"></i>  Last updated: April 13, 2021</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  Please read these terms and conditions carefully before using Our Service.</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="row values_main">
-      <div class="col-12 values_content">
-        <div class="main_vision_value">
-          <h2 id="res_term_respo" class="head_clr_"><span class="head_name_color_">Interpretation</span> and Definitions</h2>
-        </div>
-        <div class="values_p_">
-          <h2 class="value_head">Interpretation</h2>
-          <p><span><i class="far fa-hand-point-right"></i>  The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</span></p>
-          <h2 class="value_head">Definitions</h2>
-          <p><span><i class="far fa-hand-point-right"></i>  For the purposes of these Terms and Conditions:</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  <span class="starting_p">Affiliate</span> means an entity that controls, is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  <span class="starting_p">Country</span> refers to: Gujarat, India</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  <span class="starting_p">Company</span> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to Secure Hub Services, #10 - 11, Siddhi Vinayak Complex, 1st Floor, S.Kundla Bypass Road, Rajula, Gujarat - 365560.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  <span class="starting_p">Device</span> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  <span class="starting_p">Service</span> refers to the Website.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  <span class="starting_p">Terms and Conditions</span> (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service. This Terms and Conditions agreement has been created with the help of the Terms and Conditions Generator.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  <span class="starting_p">Third-party Social Media Service</span> means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  <span class="starting_p">Website</span> refers to SecureHub, accessible from <a href="<?= base_url() ?>"><?= base_url() ?></a> </span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  <span class="starting_p">You</span> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="row values_main">
-      <div class="col-12 values_content">
-        <div class="main_vision_value">
-          <h2 id="res_term_respo" class="head_clr"><span class="head_name_color">Acknowle</span>dgment</h2>
-        </div>
-        <div class="values_p_">
-          <p><span><i class="far fa-hand-point-right"></i>  These are the Terms and Conditions governing the use of this Service and the agreement that operates between You and the Company. These Terms and Conditions set out the rights and obligations of all users regarding the use of the Service.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  Your access to and use of the Service is conditioned on Your acceptance of and compliance with these Terms and Conditions. These Terms and Conditions apply to all visitors, users and others who access or use the Service.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  By accessing or using the Service You agree to be bound by these Terms and Conditions. If You disagree with any part of these Terms and Conditions then You may not access the Service.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  You represent that you are over the age of 18. The Company does not permit those under 18 to use the Service.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the Privacy Policy of the Company. Our Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your personal information when You use the Application or the Website and tells You about Your privacy rights and how the law protects You. Please read Our Privacy Policy carefully before using Our Service.</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="row values_main">
-      <div class="col-12 values_content">
-        <div class="main_vision_value">
-          <h2 id="res_term_respo" class="head_clr"><span class="head_name_color">Links to </span>Other Websites</h2>
-        </div>
-        <div class="values_p_">
-          <p><span><i class="far fa-hand-point-right"></i>  Our Service may contain links to third-party web sites or services that are not owned or controlled by the Company.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  The Company has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that the Company shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods or services available on or through any such web sites or services.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  We strongly advise You to read the terms and conditions and privacy policies of any third-party web sites or services that You visit.</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="row values_main">
-      <div class="col-12 values_content">
-        <div class="main_vision_value">
-          <h2 id="res_term_respo" class="head_clr"><span class="head_name_color">Termin</span>ation</h2>
-        </div>
-        <div class="values_p_">
-          <p><span><i class="far fa-hand-point-right"></i>  We may terminate or suspend Your access immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms and Conditions.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  Upon termination, Your right to use the Service will cease immediately.</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="row values_main">
-      <div class="col-12 values_content">
-        <div class="main_vision_value">
-          <h2 id="res_term_respo" class="head_clr"><span class="head_name_color">Limitation</span> of Liability</h2>
-        </div>
-        <div class="values_p_">
-          <p><span><i class="far fa-hand-point-right"></i>  Notwithstanding any damages that You might incur, the entire liability of the Company and any of its suppliers under any provision of this Terms and Your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by You through the Service or 100 USD if You haven't purchased anything through the Service.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  To the maximum extent permitted by applicable law, in no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service, third-party software and/or third-party hardware used with the Service, or otherwise in connection with any provision of this Terms), even if the Company or any supplier has been advised of the possibility of such damages and even if the remedy fails of its essential purpose.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  Some states do not allow the exclusion of implied warranties or limitation of liability for incidental or consequential damages, which means that some of the above limitations may not apply. In these states, each party's liability will be limited to the greatest extent permitted by law.</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="row values_main">
-      <div class="col-12 values_content">
-        <div class="main_vision_value">
-          <h2 id="res_term_respo" class="head_clr"><span class="head_name_color">"AS IS" and "AS</span> AVAILABLE" Disclaimer</h2>
-        </div>
-        <div class="values_p_">
-          <p><span><i class="far fa-hand-point-right"></i>  The Service is provided to You "AS IS" and "AS AVAILABLE" and with all faults and defects without warranty of any kind. To the maximum extent permitted under applicable law, the Company, on its own behalf and on behalf of its Affiliates and its and their respective licensors and service providers, expressly disclaims all warranties, whether express, implied, statutory or otherwise, with respect to the Service, including all implied warranties of merchantability, fitness for a particular purpose, title and non-infringement, and warranties that may arise out of course of dealing, course of performance, usage or trade practice. Without limitation to the foregoing, the Company provides no warranty or undertaking, and makes no representation of any kind that the Service will meet Your requirements, achieve any intended results, be compatible or work with any other software, applications, systems or services, operate without interruption, meet any performance or reliability standards or be error free or that any errors or defects can or will be corrected.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  Without limiting the foregoing, neither the Company nor any of the company's provider makes any representation or warranty of any kind, express or implied: </span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  (i) as to the operation or availability of the Service, or the information, content, and materials or products included thereon;</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  (ii) that the Service will be uninterrupted or error-free;</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  (iii) as to the accuracy, reliability, or currency of any information or content provided through the Service;</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  (iv) that the Service, its servers, the content, or e-mails sent from or on behalf of the Company are free of viruses, scripts, trojan horses, worms, malware, timebombs or other harmful components.</span></p>
-          
-          <p><span><i class="far fa-hand-point-right"></i>  Some jurisdictions do not allow the exclusion of certain types of warranties or limitations on applicable statutory rights of a consumer, so some or all of the above exclusions and limitations may not apply to You. But in such a case the exclusions and limitations set forth in this section shall be applied to the greatest extent enforceable under applicable law.</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="row values_main">
-      <div class="col-12 values_content">
-        <div class="main_vision_value">
-          <h2 id="res_term_respo" class="head_clr"><span class="head_name_color">Governing</span> Law</h2>
-        </div>
-        <div class="values_p_">
-          <p><span><i class="far fa-hand-point-right"></i>  The laws of the Country, excluding its conflicts of law rules, shall govern this Terms and Your use of the Service. Your use of the Application may also be subject to other local, state, national, or international laws.</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="row values_main">
-      <div class="col-12 values_content">
-        <div class="main_vision_value">
-          <h2 id="res_term_respo" class="head_clr"><span class="head_name_color">Disputes</span> Resolution</h2>
-        </div>
-        <div class="values_p_">
-          <p><span><i class="far fa-hand-point-right"></i>  If You have any concern or dispute about the Service, You agree to first try to resolve the dispute informally by contacting the Company.</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="row values_main">
-      <div class="col-12 values_content">
-        <div class="main_vision_value">
-          <h2 id="res_term_respo" class="head_clr"><span class="head_name_color">For European</span> Union (EU) Users</h2>
-        </div>
-        <div class="values_p_">
-          <p><span><i class="far fa-hand-point-right"></i>  If You are a European Union consumer, you will benefit from any mandatory provisions of the law of the country in which you are resident in.</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="row values_main">
-      <div class="col-12 values_content">
-        <div class="main_vision_value">
-          <h2 id="res_term_respo" class="head_clr"><span class="head_name_color">United States </span>Legal Compliance</h2>
-        </div>
-        <div class="values_p_">
-          <p><span><i class="far fa-hand-point-right"></i>  You represent and warrant that (i) You are not located in a country that is subject to the United States government embargo, or that has been designated by the United States government as a "terrorist supporting" country, and (ii) You are not listed on any United States government list of prohibited or restricted parties.</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="row values_main">
-      <div class="col-12 values_content">
-        <div class="main_vision_value">
-          <h2 id="res_term_respo" class="head_clr"><span class="head_name_color">Severability </span>and Waiver</h2>
-        </div>
-        <div class="values_p_">
-          <h2 class="value_head">Severability</h2>
-          <p><span><i class="far fa-hand-point-right"></i>  If any provision of these Terms is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will continue in full force and effect.</span></p>
-          <h2 class="value_head">Waiver</h2>
-          <p><span><i class="far fa-hand-point-right"></i>  Except as provided herein, the failure to exercise a right or to require performance of an obligation under this Terms shall not effect a party's ability to exercise such right or require such performance at any time thereafter nor shall be the waiver of a breach constitute a waiver of any subsequent breach.</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="row values_main">
-      <div class="col-12 values_content">
-        <div class="main_vision_value">
-          <h2 id="res_term_respo" class="head_clr"><span class="head_name_color">Translation </span>Interpretation</h2>
-        </div>
-        <div class="values_p_">
-          <p><span><i class="far fa-hand-point-right"></i>  These Terms and Conditions may have been translated if We have made them available to You on our Service. You agree that the original English text shall prevail in the case of a dispute.</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="row values_main">
-      <div class="col-12 values_content">
-        <div class="main_vision_value">
-          <h2 id="res_term_respo" class="head_clr"><span class="head_name_color">Changes to These</span> Terms and Conditions</h2>
-        </div>
-        <div class="values_p_">
-          <p><span><i class="far fa-hand-point-right"></i>  We reserve the right, at Our sole discretion, to modify or replace these Terms at any time. If a revision is material We will make reasonable efforts to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at Our sole discretion.</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  By continuing to access or use Our Service after those revisions become effective, You agree to be bound by the revised terms. If You do not agree to the new terms, in whole or in part, please stop using the website and the Service.</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="row values_main">
-      <div class="col-12 values_content">
-        <div class="main_vision_value">
-          <h2 id="res_term_respo" class="head_clr"><span class="head_name_color">Contact</span> Us</h2>
-        </div>
-        <div class="values_p_">
-          <p><span><i class="far fa-hand-point-right"></i>  If you have any questions about these Terms and Conditions, You can contact us:</span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  By email: <a class="text_decor" href="mailto:<?= $this->config->item('email') ?>"><?= $this->config->item('email') ?></a></span></p>
-          <p><span><i class="far fa-hand-point-right"></i>  By phone number: <a class="text_decor" href="tel:+91 <?= $this->config->item('mobile') ?>"> +91 <?= $this->config->item('mobile') ?></a></span></p>
+          <p><span><i class="far fa-hand-point-right"></i>  By downloading or using the app, these terms will automatically apply to you – you should make sure therefore that you read them carefully before using the app. You’re not allowed to copy or modify the app, any part of the app, or our trademarks in any way. You’re not allowed to attempt to extract the source code of the app, and you also shouldn’t try to translate the app into other languages or make derivative versions. The app itself, and all the trademarks, copyright, database rights, and other intellectual property rights related to it, still belong to Securehub consultants private limited.</span></p>
+          <p><span><i class="far fa-hand-point-right"></i>  Securehub consultants private limited is committed to ensuring that the app is as useful and efficient as possible. For that reason, we reserve the right to make changes to the app or to charge for its services, at any time and for any reason. We will never charge you for the app or its services without making it very clear to you exactly what you’re paying for.
+          </span></p>
+          <p><span><i class="far fa-hand-point-right"></i>  The Securehub app stores and processes personal data that you have provided to us, to provide our Service. It’s your responsibility to keep your phone and access to the app secure. We therefore recommend that you do not jailbreak or root your phone, which is the process of removing software restrictions and limitations imposed by the official operating system of your device. It could make your phone vulnerable to malware/viruses/malicious programs, compromise your phone’s security features and it could mean that the Securehub app won’t work properly or at all.
+          </span></p>
+          <p><span><i class="far fa-hand-point-right"></i>  The app does use third-party services that declare their Terms and Conditions. Link to Terms and Conditions of third-party service providers used by the app. You should be aware that there are certain things that Securehub consultants private limited will not take responsibility for. Certain functions of the app will require the app to have an active internet connection. The connection can be Wi-Fi or provided by your mobile network provider, but Securehub consultants private limited cannot take responsibility for the app not working at full functionality if you don’t have access to Wi-Fi, and you don’t have any of your data allowance left.
+          </span></p>
+          <p><span><i class="far fa-hand-point-right"></i>  If you’re using the app outside of an area with Wi-Fi, you should remember that the terms of the agreement with your mobile network provider will still apply. As a result, you may be charged by your mobile provider for the cost of data for the duration of the connection while accessing the app, or other third-party charges. In using the app, you’re accepting responsibility for any such charges, including roaming data charges if you use the app outside of your home territory (i.e. region or country) without turning off data roaming. If you are not the bill payer for the device on which you’re using the app, please be aware that we assume that you have received permission from the bill payer for using the app.
+          </span></p>
+          <p><span><i class="far fa-hand-point-right"></i>  Along the same lines, Securehub consultants private limited cannot always take responsibility for the way you use the app i.e. You need to make sure that your device stays charged – if it runs out of battery and you can’t turn it on to avail the Service, Securehub consultants private limited cannot accept responsibility.
+          </span></p>
+          <p><span><i class="far fa-hand-point-right"></i>  With respect to Securehub consultants private limited’s responsibility for your use of the app, when you’re using the app, it’s important to bear in mind that although we endeavor to ensure that it is updated and correct at all times, we do rely on third parties to provide information to us so that we can make it available to you. Securehub consultants private limited accepts no liability for any loss, direct or indirect, you experience as a result of relying wholly on this functionality of the app.
+          </span></p>
+          <p><span><i class="far fa-hand-point-right"></i>  At some point, we may wish to update the app. The app is currently available on Android & iOS – the requirements for the both systems(and for any additional systems we decide to extend the availability of the app to) may change, and you’ll need to download the updates if you want to keep using the app. Securehub consultants private limited does not promise that it will always update the app so that it is relevant to you and/or works with the Android & iOS version that you have installed on your device. However, you promise to always accept updates to the application when offered to you, We may also wish to stop providing the app, and may terminate use of it at any time without giving notice of termination to you. Unless we tell you otherwise, upon any termination, (a) the rights and licenses granted to you in these terms will end; (b) you must stop using the app, and (if needed) delete it from your device.
+          </span></p>
+          <h2 class="value_head">Changes to This Terms and Conditions</h2>
+          <p><span><i class="far fa-hand-point-right"></i>  We may update our Terms and Conditions from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Terms and Conditions on this page.
+          </span></p>
+          <p><span><i class="far fa-hand-point-right"></i>  We may update our Terms and Conditions from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Terms and Conditions on this page.
+          </span></p>
+          <p><span><i class="far fa-hand-point-right"></i>  These terms and conditions are effective as of 2022-04-23
+          </span></p>
+          <h2 class="value_head">Contact Us</h2>
+          <p><span><i class="far fa-hand-point-right"></i>  If you have any questions or suggestions about our Terms and Conditions, do not hesitate to contact us at  
+          <a class="text_decor" href="mailto:">securehubservices@gmail.com.</a>
+          </span></p>
         </div>
       </div>
     </div>
