@@ -856,6 +856,10 @@
         border: 1px solid rgba(0, 0, 0, 0.15);
         border-radius: 0.25rem;
     }
+    .insr_img {
+        max-width: 22%;
+        margin: auto;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -1050,6 +1054,10 @@
         /* margin-bottom: 35px !important; */
         margin: auto !important;
     }
+    .insr_img {
+        max-width: 46%;
+        margin: auto;
+    }
 }
 
 @media screen and (max-width: 375px) {
@@ -1228,6 +1236,10 @@
     .crd_tit_h5_ {
         padding-top: 20px !important;
         font-size: 14px !important;
+    }
+    .insr_img {
+        max-width: 59%;
+        margin: auto;
     }
 }
 

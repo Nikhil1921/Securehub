@@ -66,34 +66,34 @@
     <div class="row why_choose_car_content">
       <div id="crd_why_choose" class="col-lg-3 col-md-12 col-sm-12 why_choose_car_con">
         <div class="card crd_why_choose" style="width: 100%;">
-          <?= img("assets/front/img/icon/24-7.png", '', 'class="insr_img"') ?>
-          <div class="card-body crd_bdy_ins">
+          <?= img("assets/front/img/icon/1.png", '', 'class="insr_img"') ?>
+          <!-- <div class="card-body crd_bdy_ins">
             <h5 class="card-title crd_ins_h5">24*7 Support</h5>
-          </div>
+          </div> -->
         </div>
       </div>
       <div id="crd_why_choose" class="col-lg-3 col-md-12 col-sm-12 why_choose_car_con">
         <div class="card crd_why_choose" style="width: 100%;">
-          <?= img("assets/front/img/icon/claim.png", '', 'class="insr_img"') ?>
-          <div class="card-body crd_bdy_ins">
+          <?= img("assets/front/img/icon/2.png", '', 'class="insr_img"') ?>
+          <!-- <div class="card-body crd_bdy_ins">
             <h5 class="card-title crd_ins_h5">Premium Claim Support</h5>
-          </div>
+          </div> -->
         </div>
       </div>
       <div id="crd_why_choose" class="col-lg-3 col-md-12 col-sm-12 why_choose_car_con">
         <div class="card crd_why_choose" style="width: 100%;">
-          <?= img("assets/front/img/icon/paperless.png", '', 'class="insr_img"') ?>
-          <div class="card-body crd_bdy_ins">
+          <?= img("assets/front/img/icon/3.png", '', 'class="insr_img"') ?>
+          <!-- <div class="card-body crd_bdy_ins">
             <h5 class="card-title crd_ins_h5">Paperless Claims</h5>
-          </div>
+          </div> -->
         </div>
       </div>
       <div id="crd_why_choose" class="col-lg-3 col-md-12 col-sm-12 why_choose_car_con">
         <div class="card crd_why_choose" style="width: 100%;">
-          <?= img("assets/front/img/icon/paperless.png", '', 'class="insr_img"') ?>
-          <div class="card-body crd_bdy_ins">
+          <?= img("assets/front/img/icon/4.png", '', 'class="insr_img"') ?>
+          <!-- <div class="card-body crd_bdy_ins">
             <h5 class="card-title crd_ins_h5">Legal Liability Cover</h5>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
