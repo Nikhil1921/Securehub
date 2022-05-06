@@ -1,26 +1,117 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <section id="values_section">
-    <div class="container">
-        <div class="row values_main">
-            <div class="col-12 values_content">
-                <div class="main_vision_value">
-                    <h2 id="res_term_respo" class="head_clr"><span class="head_name_color">PRIVACY </span>POLICY</h2>
-                </div>
-                <div class="values_p_">
-                    <p><span><i class="far fa-hand-point-right"></i>  We respect your privacy and are committed to maintaining it. When you shop on our shopping store, we will ask you to input your information and will collect Personal Information from you such as your name, e-mail address, billing address, shipping address, telephone/ mobile number, product selections, credit card or other payment information and password.</span></p>
-                    <p><span><i class="far fa-hand-point-right"></i>  We recognize your right to confidentiality and are committed to protecting your privacy. We do not furnish any identifiable information at the individual level regarding its customers to any third party. The information you give to us is held with the utmost care and security. This information is collected primarily to ensure that we are able to fulfill your requirements and to deliver you a truly personalized shopping experience. When navigating our web site, personal information about you is not collected automatically or without your knowledge.</span></p>
-                    <p><span><i class="far fa-hand-point-right"></i>  We are also bound to cooperate fully should a situation arise where we are required by law or legal process to provide information about a customer. We may share non-personal, non-individual statistical or demographic information in aggregate form with our marketing partners, advertisers or other third-parties for research and advertising purposes. In other words, we will not tell our marketing partners that you purchased a specific product, but we may tell them how many customers purchased that product.</span></p>
-                    <p><span><i class="far fa-hand-point-right"></i>  If you consent, to notify you of products or special offers that may be of interest to you. You agree that you do not object to us contacting you for any of the above purposes whether by telephone, e-mail or in writing and you confirm that you do not and will not consider any of the above as being a breach of any of your rights under the Telecommunications (Data Protection and Privacy) Regulations 1999.</span></p>
-                    <p><span><i class="far fa-hand-point-right"></i>  We will not release your Personal Information to any company outside for mailing or marketing purposes.</span></p>
-                    <p><span><i class="far fa-hand-point-right"></i>  We use 'Cookies' to keep track of your current shopping session to personalize your experience and so that you may retrieve your shopping cart at any time. 'Cookies' are tiny text files which our Website places on your computer's hard drive to store information about your shopping session and to identify your computer. `Cookies` cannot harm your computer and do not contain any personal or private information. We do not hold any of your credit card information. This information is securely collected by our authorized payment processors.</span></p>
-                    <p><span><i class="far fa-hand-point-right"></i>  In short, we always strive to respect the privacy of our customers completely. We use the information we collect on the Store to enhance your overall shopping experience. We do not sell, trade, or rent your personal information to others.We do not hold any of your credit card information. This information is securely collected by our authorized payment gateways. With the industry's most-advanced encryption, fraud prevention and protection policies, our payment gateways are dedicated to keeping your account safe and secure. Once your information reaches our payment gateways it resides on a server that is heavily guarded both physically and electronically.</span></p>
-                    <div class="main_vision_value_">
-                        <h2 class="head_clr"><span class="head_name_color">Your Privacy</span> - Our Commitment</h2>
-                    </div>
-                    <p><span><i class="far fa-hand-point-right"></i>  eShoplik.com, through its website, is extremely proud of it’s commitment to protect your privacy. We value your trust in us. We will work hard to earn your confidence so that you can enthusiastically use our services and recommend us to friends and family. Please read the following policy to understand how your personal information will be treated as you make full use of our Site.</span></p>
-                    <p><span><i class="far fa-hand-point-right"></i>  For further details/query regarding the privacy policy, you may contact us</span></p>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row values_main">
+      <div class="col-12 values_content">
+        <div class="main_vision_value">
+          <h2 id="res_term_respo" class="head_clr">
+            <span class="head_name_color">PRIVACY-</span>POLICY
+          </h2>
         </div>
+        <div class="values_p_">
+          <p>
+            <span
+              ><i class="far fa-hand-point-right"></i> Securehub consultants
+              private limited built the Securehub app as a Free app. This
+              SERVICE is provided by Securehub consultants private limited at no
+              cost and is intended for use as is
+            </span>
+          </p>
+          <p>
+            <span
+              ><i class="far fa-hand-point-right"></i> This page is used to inform visitors regarding our policies with the collection,use, and disclosure of Personal Information if anyone decided to use our Service.
+
+              </span>
+          </p>
+          <p>
+            <span
+              ><i class="far fa-hand-point-right"></i> If you choose to use our Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that we collect is used for providing and improving the Service. We will not use or share your information with anyone except as described in this Privacy Policy.
+            </span>
+          </p>
+          <p>
+            <span
+              ><i class="far fa-hand-point-right"></i> The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which are accessible at Securehub unless otherwise defined in this Privacy Policy.
+            </span>
+          </p>
+          <h2 class="value_head h6_per_acc">Information Collection and Use</h2>
+          <p>
+            <span
+              ><i class="far fa-hand-point-right"></i> For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information, including but not limited to Phone number. The information that we request will be retained by us and used as described in this privacy policy.
+            </span>
+          </p>
+          <p>
+            <span
+              ><i class="far fa-hand-point-right"></i> The app does use third-party services that may collect information used to identify you
+            </span>
+          </p>
+          <p>
+            <span>
+              <i class="far fa-hand-point-right"></i> Link to the privacy policy of third-party service providers used by the app
+            </span>
+          </p>
+          <h2 class="value_head h6_per_acc">Log Data</h2>
+          <p>
+            <span
+              ><i class="far fa-hand-point-right"></i> We want to inform you that whenever you use our Service, in a case of an error in the app we collect data and information (through third-party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name,operating system version, the configuration of the app when utilizing our Service, the time and date of your use of the Service, and other statistics.
+            </span>
+          </p>
+          <h2 class="value_head h6_per_acc">Cookies</h2>
+          <p>
+            <span
+              ><i class="far fa-hand-point-right"></i> Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory. This Service does not use these “cookies” explicitly. However, the app may use third-party code and libraries that use “cookies” to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.
+            </span>
+          </p>
+          <h2 class="value_head h6_per_acc">Service Providers</h2>
+          <p>
+            <span
+              ><i class="far fa-hand-point-right"></i> We may employ third-party companies and individuals due to the following reasons:
+            </span>
+          </p>
+          <div class="font_family">
+                <ul>
+                    <li>To facilitate our Service;</li>
+                    <li>To provide the Service on our behalf;</li>
+                    <li>To perform Service-related services; or</li>
+                    <li>To assist us in analyzing how our Service is used.</li>
+                </ul>
+          </div>
+          <p>
+            <span
+              ><i class="far fa-hand-point-right"></i> We want to inform users of this Service that these third parties have access to their Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.
+            </span>
+          </p>
+          <h2 class="value_head h6_per_acc">Security</h2>
+          <p>
+            <span
+              ><i class="far fa-hand-point-right"></i> We value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and we cannot guarantee its absolute security
+            </span>
+          </p>
+          <h2 class="value_head h6_per_acc">Links to Other Sites</h2>
+          <p>
+            <span
+              ><i class="far fa-hand-point-right"></i> This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by us. Therefore, we strongly advise you to review the Privacy Policy of these websites. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
+            </span>
+          </p>
+          <h2 class="value_head h6_per_acc">Children’s Privacy</h2>
+          <p>
+            <span
+              ><i class="far fa-hand-point-right"></i> These Services do not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13 years of age. In the case we discover that a child under 13 has provided us with personal information, we immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so that we will be able to do the necessary actions.
+            </span>
+          </p>
+            <h2 class="value_head h6_per_acc">Changes to This Privacy Policy</h2>
+          <p>
+            <span
+              ><i class="far fa-hand-point-right"></i> We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. This policy is effective as of 2022-04-23
+            </span>
+          </p>
+          <h2 class="value_head h6_per_acc">Contact Us</h2>
+          <p>
+            <span
+              ><i class="far fa-hand-point-right"></i> If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <a href="mailto:securehubservices@gmail.com" class="text_decor">Securehubservices@gmail.com.</a>
+            </span>
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
 </section>

@@ -477,6 +477,10 @@ i.fas.fa-shield-alt {
     min-height: 0px;
 }
 
+.font_family {
+    font-family: 'Poppins', sans-serif;
+}
+
 #crd_detail3 {
     background-position: left top;
     background-repeat: no-repeat;
