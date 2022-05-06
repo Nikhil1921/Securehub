@@ -509,7 +509,7 @@ i.fas.fa-shield-alt {
 }
 
 .crd_detail_h5 {
-    font-size: 23px;
+    font-size: 21px;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -1509,7 +1509,7 @@ input.qtyminus {
 }
 
 .insr_img {
-    max-width: 40%;
+    max-width: 41%;
     margin: auto;
 }
 
@@ -3662,7 +3662,7 @@ textarea.form-control {
         height: 355px !important;
     }
     .selector-item_label {
-        font-size: 7px !important;
+        font-size: 10px !important;
     }
     /*.crd_not_covered {
     height: 150px !important;
