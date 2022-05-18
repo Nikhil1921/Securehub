@@ -123,3 +123,31 @@ if ( ! function_exists('send_sms'))
         }
     }
 }
+
+if ( ! function_exists('send_notification'))
+{
+    function send_notification($title, $body, $token)
+	{
+        $url = "https://fcm.googleapis.com/fcm/send";
+
+        $serverKey = 'AAAACkvWavY:APA91bFUJFQHoheRzofZEuEbeBVYsqKv31_75LYxAkJXjxZ0LeUQbjqHUdCnoBzuBsUroyyWabJn2KQlpYDg7EqwyhDZvHc-NO5-lWH3gDIarNJ0_MjZVODAga7ILrz1GYMSNSdTpfA5';
+        
+        $notification = array('title' => $title, 'body' => $body, 'sound' => 'default', 'badge' => '1');
+        $arrayToSend = array('to' => $token, 'notification' => $notification, 'priority'=>'high');
+        $json = json_encode($arrayToSend);
+        $headers = array();
+        $headers[] = 'Content-Type: application/json';
+        $headers[] = 'Authorization: key='.$serverKey;
+        
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_exec($ch);
+        curl_close($ch);
+        
+        return;
+	}
+}

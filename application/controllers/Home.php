@@ -7,7 +7,7 @@ class Home extends MY_Controller {
 	{
 		$data['name'] = 'home';
 		$data['title'] = 'Home';
-
+		
 		return $this->template->load('template', "home", $data);
 	}
 
@@ -612,5 +612,13 @@ class Home extends MY_Controller {
 		$data['title'] = 'Error 404';
 
 		return $this->template->load('template', "error_404", $data);
+	}
+	
+	public function send_notifications()
+	{
+		foreach ($this->main->getExpiryDocs() as $doc) {
+			$body = "Your $doc->document_name will expire on ". date('d-m-Y', strtotime($doc->expiry_date));
+			send_notification(APP_NAME, $body, $doc->auth_token);
+		}
 	}
 }

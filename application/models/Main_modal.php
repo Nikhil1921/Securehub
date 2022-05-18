@@ -63,4 +63,14 @@ class Main_modal extends MY_Model
 
         return $this->db->trans_status();
     }
+
+    public function getExpiryDocs()
+    {
+        return $this->db->select('auth_token, document_name, expiry_date')
+                        ->from('vehicle_documents d')
+                        ->where(['d.expiry_date <=' => date('Y-m-d', strtotime('+1 month'))])
+                        ->join('vehicles v', 'v.id = d.veh_id')
+                        ->join('logins l', 'l.id = v.user_id')
+                        ->get()->result();
+    }
 }

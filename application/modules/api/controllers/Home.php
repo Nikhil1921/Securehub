@@ -761,7 +761,7 @@ class Home extends MY_Controller  {
 			$response['error'] = true;
 			$response['message'] = $image["message"];
 		}else{
-			$post = [ 
+			$post = [
 				'veh_id' => $this->input->post('veh_id'),
 				'document_name' => $this->input->post('document_name'),
 				'expiry_date' => date('Y-m-d', strtotime($this->input->post('expiry_date'))),
@@ -941,6 +941,26 @@ class Home extends MY_Controller  {
 		}else{
 			$response['error'] = true;
 			$response['message'] = "Purchase list not success. Try again.";
+		}
+		
+		echoRespnse(200, $response);
+	}
+
+	public function update_token()
+	{
+		post();
+		verifyRequiredParams(["token"]);
+
+		$api = authenticate($this->table);
+
+		$post = [ 'auth_token' => $this->input->post("token") ];
+
+		if ($this->main->update(['id' => $api], $post, $this->table)) {
+			$response['error'] = false;
+			$response['message'] = "Token update success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Token update not success. Try again.";
 		}
 		
 		echoRespnse(200, $response);
