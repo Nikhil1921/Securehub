@@ -869,6 +869,62 @@ class Home extends MY_Controller  {
 		echoRespnse(200, $response);
 	}
 
+	public function update_document()
+	{
+		post();
+		$api = authenticate($this->table);
+		verifyRequiredParams(['id', 'document_name', 'doc_type', 'expiry_date', 'notification']);
+
+		$post = [
+			'user_id' 		=> $api,
+			'document_name' => $this->input->post('document_name'),
+			'notification' 	=> $this->input->post('notification'),
+			'doc_type' 		=> $this->input->post('doc_type'),
+			'expiry_date' 	=> date('Y-m-d', strtotime($this->input->post('expiry_date')))
+		];
+
+		if(!empty($_FILES['image']['name']))
+		{
+			$image = $this->uploadImages("image", $this->document, 'jpg|jpeg|png|pdf');
+			if ($image['error'] == TRUE) {
+				$response['error'] = true;
+				$response['message'] = $image["message"];
+
+				echoRespnse(200, $response);
+			}else{
+				$post['image'] = $image["message"];
+			}
+		}
+
+		if ($row = $this->main->update(['id' => $this->input->post('id')], $post, "user_documents")) {
+			$response['error'] = false;
+			$response['message'] = "Update document success.";
+		}else{
+			if (file_exists($this->document.$image['message'])) unlink($this->document.$image['message']);
+			$response['error'] = true;
+			$response['message'] = "Update document not success. Try again.";
+		}
+
+		echoRespnse(200, $response);
+	}
+
+	public function delete_document()
+	{
+		post();
+		$api = authenticate($this->table);
+		verifyRequiredParams(["id"]);
+
+		if ($this->main->update(['id' => $this->input->post('id')], ['is_deleted' => 1], "user_documents")) {
+			$response['error'] = false;
+			$response['message'] = "Delete document success.";
+		}else{
+			$response['error'] = true;
+			$response['message'] = "Delete document not success. Try again.";
+		}
+
+		echoRespnse(200, $response);
+	}
+
 	public function vehicle_document_list()
 	{
 		get();
